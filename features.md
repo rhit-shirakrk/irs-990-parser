@@ -8,12 +8,18 @@ data types for the database
 
 Need to provide ability to connect to database to send/modify data as necessary
 
+Need a reference list of college names to filter irrelevant IRS 990 forms. Recall
+IRS 990 covers most non-profit organizations, which colleges in the United States
+are a subset of.
+
 Need to encapsulate IRS 990 data from other tables but provide a way to allow
 for cohesion between different tables
 
 # Features
 
 Ability to select specific sections/answers in the IRS 990 form.
+
+Ability to derive a reference list of colleges via IPEDS.
 
 Ability to automate the process of sending data to the database and update
 tables with minimal manual intervention.
@@ -34,16 +40,17 @@ Assumes all names of collegs to pull will use IPEDS as a reference point.
 
 # Process
 
-1. Parse the XML file
-2. Get the name of the organization
-3. If the name is not a recognized institution, then skip the file. Otherwise,
+1. Get list of all college names in IPEDS.
+2. Parse the XML file
+3. Get the name of the organization
+4. If the name is not a recognized institution, then skip the file. Otherwise,
 continue.
-4. Get the required datapoints listed above.
-5. For each name in Part VII, Section A, 1a, guess the gender of the person and
+5. Get the required datapoints listed above.
+6. For each name in Part VII, Section A, 1a, guess the gender of the person and
 record the result.
 
 - Assume the only two genders are male and female
 - Store the total number of male and female stakeholders
 
-6. Calculate the percentage of male/female stakeholders and record this
+7. Calculate the percentage of male/female stakeholders and record this
 information.
