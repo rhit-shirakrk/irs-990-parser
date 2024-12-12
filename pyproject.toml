@@ -17,5 +17,7 @@ description = "Parses IRS 990 forms for specific responses/sections"
 readme = "README.md"
 
 [project.optional-dependencies]
-gui = ["PyQt6"]
 test = ["pytest"]
+
+[tool.pytest.ini_options]
+pythonpath = "src"
