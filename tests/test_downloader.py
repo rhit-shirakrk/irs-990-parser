@@ -52,8 +52,19 @@ class TestIRS990FileDownload:
         """
         Tests if link to 2018 reports is properly fetched
         """
-        LINK_2018 = "https://www.irs.gov/charities-non-profits/form-990-series-downloads#collapseCollapsible1711547204262_839017"
+        LINKS_2018 = [
+            "https://apps.irs.gov/pub/epostcard/990/xml/2018/2018_TEOS_XML_CT1.zip",
+            "https://apps.irs.gov/pub/epostcard/990/xml/2018/2018_TEOS_XML_CT2.zip",
+            "https://apps.irs.gov/pub/epostcard/990/xml/2018/2018_TEOS_XML_CT3.zip",
+            "https://apps.irs.gov/pub/epostcard/990/xml/2018/download990xml_2018_1.zip",
+            "https://apps.irs.gov/pub/epostcard/990/xml/2018/download990xml_2018_2.zip",
+            "https://apps.irs.gov/pub/epostcard/990/xml/2018/download990xml_2018_3.zip",
+            "https://apps.irs.gov/pub/epostcard/990/xml/2018/download990xml_2018_4.zip",
+            "https://apps.irs.gov/pub/epostcard/990/xml/2018/download990xml_2018_5.zip",
+            "https://apps.irs.gov/pub/epostcard/990/xml/2018/download990xml_2018_6.zip",
+            "https://apps.irs.gov/pub/epostcard/990/xml/2018/download990xml_2018_7.zip",
+        ]
         irs_downloader = downloader.IRS990FileDownloader(constants.EARLIEST_START_YEAR)
-        assert LINK_2018 == irs_downloader.get_link_to_yearly_reports(
+        assert LINKS_2018 == irs_downloader.get_links_to_yearly_report(
             constants.EARLIEST_START_YEAR
         )
