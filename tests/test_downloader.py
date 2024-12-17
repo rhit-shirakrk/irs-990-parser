@@ -2,21 +2,12 @@
 Unit tests for downloading IRS 990 files
 """
 
-import pathlib
 from datetime import datetime
 
 import pytest
 from pytest_unordered import unordered
 
 from irs990_parser import constants, downloader
-
-
-@pytest.fixture(scope="session")
-def mock_directory(tmp_path_factory: pytest.TempPathFactory) -> pathlib.Path:
-    """
-    Generate mock directory for usage across multiple tests
-    """
-    return tmp_path_factory.mktemp("mock_directory")
 
 
 class TestIRS990FileDownload:
