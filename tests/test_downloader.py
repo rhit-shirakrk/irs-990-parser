@@ -28,7 +28,7 @@ class TestIRS990FileDownload:
         """
         NON_EXISTENT_DIRECTORY = pathlib.Path("BAD_PATH")
         with pytest.raises(NotADirectoryError) as excinfo:
-            downloader.IRS990FileDownloader(NON_EXISTENT_DIRECTORY)
+            downloader.IRS990FileDownloader(NON_EXISTENT_DIRECTORY, 2018)
         assert f"Invalid directory {NON_EXISTENT_DIRECTORY}" in str(excinfo.value)
 
     def test_earlier_than_2018_start_year_expected_value_error(
