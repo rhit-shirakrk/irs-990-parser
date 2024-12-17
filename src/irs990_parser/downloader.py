@@ -14,7 +14,7 @@ class IRS990FileDownloader:
     def __init__(self, start_year: int) -> None:
         self._validate_start_year(start_year)
         self.start_year = start_year
-        self.irs_website_html_elements = self._parse_website()
+        self._irs_website_html_elements = self._parse_website()
 
     def _parse_website(self) -> bs4.BeautifulSoup:
         response = requests.get(
@@ -41,11 +41,13 @@ class IRS990FileDownloader:
         """
         Return links to index csv files from the start year onward
         """
-        href_elements_by_year = self.irs_website_html_elements.select(
+        href_elements_by_year = self._irs_website_html_elements.select(
             ".collapsible-item-body > p a"
         )
 
         return [item["href"] for item in href_elements_by_year][
-            : len(href_elements_by_year)
-            - (self.start_year - constants.EARLIEST_START_YEAR)
+            : self._calculate_furthest_year_back(len(href_elements_by_year))
         ]
+
+    def _calculate_furthest_year_back(self, yearly_reports: int) -> int:
+        return yearly_reports - (self.start_year - constants.EARLIEST_START_YEAR)
