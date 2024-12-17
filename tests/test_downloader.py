@@ -7,7 +7,7 @@ from datetime import datetime
 
 import pytest
 
-from irs990_parser import downloader
+from irs990_parser import constants, downloader
 
 
 @pytest.fixture(scope="session")
@@ -27,15 +27,15 @@ class TestIRS990FileDownload:
         """
         Tests for a start year earlier than 2018
         """
-        INVALID_START_YEAR = 2017
+        invalid_start_year = constants.EARLIEST_START_YEAR - 1
         with pytest.raises(ValueError) as excinfo:
-            downloader.IRS990FileDownloader(INVALID_START_YEAR)
+            downloader.IRS990FileDownloader(invalid_start_year)
         assert (
-            f"Invalid start year {INVALID_START_YEAR}. The earliest available year is 2018"
+            f"Invalid start year {invalid_start_year}. The earliest available year is {constants.EARLIEST_START_YEAR}"
             in str(excinfo.value)
         )
 
-    def test_later_than_current_year_start_year_expected_value_error(self):
+    def test_later_than_current_year_start_year_expected_value_error(self) -> None:
         """
         Tests for a start year later than the current year
         """
