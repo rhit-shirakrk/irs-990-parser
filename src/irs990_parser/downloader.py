@@ -39,10 +39,13 @@ class IRS990FileDownloader:
 
     def get_index_csv_links(self) -> list[str | list[str]]:
         """
-        Return links to index csv files
+        Return links to index csv files from the start year onward
         """
         href_elements_by_year = self.irs_website_html_elements.select(
             ".collapsible-item-body > p a"
         )
 
-        return [item["href"] for item in href_elements_by_year]
+        return [item["href"] for item in href_elements_by_year][
+            : len(href_elements_by_year)
+            - (self.start_year - constants.EARLIEST_START_YEAR)
+        ]

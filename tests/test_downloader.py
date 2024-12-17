@@ -61,5 +61,8 @@ class TestIRS990FileDownload:
             "https://apps.irs.gov/pub/epostcard/990/xml/2019/index_2019.csv",
             "https://apps.irs.gov/pub/epostcard/990/xml/2018/index_2018.csv",
         ]
-        irs_downloader = downloader.IRS990FileDownloader(constants.EARLIEST_START_YEAR)
-        assert INDEX_LINKS == irs_downloader.get_index_csv_links()
+        current_year = datetime.now().year
+        for year in range(constants.EARLIEST_START_YEAR, current_year):
+            irs_downloader = downloader.IRS990FileDownloader(year)
+            assert INDEX_LINKS == irs_downloader.get_index_csv_links()
+            INDEX_LINKS.pop()
