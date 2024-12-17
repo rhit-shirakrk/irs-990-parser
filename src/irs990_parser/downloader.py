@@ -11,20 +11,23 @@ from irs990_parser import constants
 
 
 class IRS990FileDownloader:
+    """Download all IRS files from a specified start year and onward
+
+    :param start_year: The year from which to download published IRS forms
+    :type start_year: int
+    """
+
     def __init__(self, start_year: int) -> None:
         self._validate_start_year(start_year)
         self.start_year = start_year
         self._irs_website_html_elements = self._parse_website()
 
-    def _parse_website(self) -> bs4.BeautifulSoup:
-        response = requests.get(
-            constants.IRS_URL, timeout=constants.IRS_REQUEST_TIMEOUT_SEC
-        )
-        return bs4.BeautifulSoup(response.text, "html.parser")
-
     def _validate_start_year(self, start_year: int) -> None:
-        """
-        Ensure start year is between the earliest available year in IRS and current year
+        """Ensures start year is between the earliest available year in IRS and current year
+
+        :param start_year: The year from which to download published IRS forms
+        :type start_year: int
+        :raises ValueError: Invalid start year
         """
         if start_year < constants.EARLIEST_START_YEAR:
             raise ValueError(
@@ -37,9 +40,22 @@ class IRS990FileDownloader:
                 f"Invalid start year {start_year}. The latest available year is {current_year}"
             )
 
-    def get_index_csv_links(self) -> list[str | list[str]]:
+    def _parse_website(self) -> bs4.BeautifulSoup:
+        """Retrieves HTML elements of the IRS 990 website
+
+        :returns: Parsed HTML elements
+        :rtype: bs4.BeautifulSoup
         """
-        Return links to index csv files from the start year onward
+        response = requests.get(
+            constants.IRS_URL, timeout=constants.IRS_REQUEST_TIMEOUT_SEC
+        )
+        return bs4.BeautifulSoup(response.text, "html.parser")
+
+    def get_index_csv_links(self) -> list[str | list[str]]:
+        """Return links to index csv files from the start year onward
+
+        :return: A collection of all links to CSV index files
+        :rtype: list[str | list[str]]
         """
         href_elements_by_year = self._irs_website_html_elements.select(
             ".collapsible-item-body > p a"
@@ -51,8 +67,10 @@ class IRS990FileDownloader:
         return [item["href"] for item in href_elements_by_year][:furthest_year_back]
 
     def get_zip_links(self) -> list[str | list[str]]:
-        """
-        Return links to zip files from the start year onward
+        """Return links to zip files from the start year onward
+
+        :return: A collection of all zip files
+        :rtype: list[str | list[str]]
         """
         list_elements_by_year = self._irs_website_html_elements.select(
             ".collapsible-item-body"
@@ -70,5 +88,13 @@ class IRS990FileDownloader:
         return zip_links
 
     def _within_year_range(self, link: str) -> bool:
+        """Verify the link to a yearly record is within the start and current year
+
+        :param link: The link to a yearly record of IRS files
+        :type link: str
+        :return: True if the link is between the start (inclusive) and current year (inclusive),
+        False otherwise
+        :rtype: bool
+        """
         year_from_link = int(link.split("/")[-2])
         return year_from_link >= self.start_year
