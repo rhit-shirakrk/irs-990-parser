@@ -156,34 +156,6 @@ class TestIRS990FileDownload:
             assert INDEX_LINKS == irs_downloader.get_index_csv_links()
             INDEX_LINKS.pop()
 
-    # def test_get_2018_zip_links_expected_valid(self) -> None:
-    #     """
-    #     Tests for properly fetching 2018 zip links
-    #     """
-    #     test_year = 2018
-    #     expected_zip_links = [
-    #         zip_link
-    #         for year, zip_links in TestIRS990FileDownload.YEAR_TO_ZIP_LINKS.items()
-    #         if year >= test_year
-    #         for zip_link in zip_links
-    #     ]
-    #     irs_downloader = downloader.IRS990FileDownloader(test_year)
-    #     assert irs_downloader.get_zip_links() == unordered(expected_zip_links)
-    #
-    # def test_get_2019_zip_links_expected_valid(self) -> None:
-    #     """
-    #     Tests for properly fetching 2018 zip links
-    #     """
-    #     test_year = 2018
-    #     expected_zip_links = [
-    #         zip_link
-    #         for year, zip_links in TestIRS990FileDownload.YEAR_TO_ZIP_LINKS.items()
-    #         if year >= test_year
-    #         for zip_link in zip_links
-    #     ]
-    #     irs_downloader = downloader.IRS990FileDownloader(test_year)
-    #     assert irs_downloader.get_zip_links() == unordered(expected_zip_links)
-
     def test_get_zip_links_expected_valid(self) -> None:
         """
         Tests for properly fetching of zip links
