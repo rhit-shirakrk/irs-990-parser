@@ -5,7 +5,10 @@ build-backend = "hatchling.build"
 [project]
 name = "irs-990-parser"
 version = "0.0.0"
-dependencies = []
+dependencies = [
+  "beautifulsoup4",
+  "requests",
+]
 requires-python = ">= 3.13"
 authors = [
    {name = "Ryan Shiraki", email = "shirakrk@rose-hulman.edu"}
@@ -17,7 +20,7 @@ description = "Parses IRS 990 forms for specific responses/sections"
 readme = "README.md"
 
 [project.optional-dependencies]
-test = ["pytest"]
+test = ["pytest", "pytest-unordered"]
 
 [tool.pytest.ini_options]
 pythonpath = "src"
