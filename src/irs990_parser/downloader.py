@@ -4,6 +4,7 @@ Download IRS 990 files and save at specified directory
 
 import os
 import pathlib
+from datetime import datetime
 
 
 class IRS990FileDownloader:
@@ -19,3 +20,9 @@ class IRS990FileDownloader:
                 f"Invalid start year {start_year}. The earliest available year is 2018"
             )
         self.start_year = start_year
+
+        current_year = datetime.now().year
+        if start_year > current_year:
+            raise ValueError(
+                f"Invalid start year {start_year}. The latest available year is {current_year}"
+            )
