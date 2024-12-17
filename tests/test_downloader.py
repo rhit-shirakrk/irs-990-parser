@@ -47,3 +47,13 @@ class TestIRS990FileDownload:
             f"Invalid start year {invalid_start_year}. The latest available year is {current_year}"
             in str(excinfo.value)
         )
+
+    def test_get_link_to_2018_reports_expected_valid(self) -> None:
+        """
+        Tests if link to 2018 reports is properly fetched
+        """
+        LINK_2018 = "https://www.irs.gov/charities-non-profits/form-990-series-downloads#collapseCollapsible1711547204262_839017"
+        irs_downloader = downloader.IRS990FileDownloader(constants.EARLIEST_START_YEAR)
+        assert LINK_2018 == irs_downloader.get_link_to_yearly_reports(
+            constants.EARLIEST_START_YEAR
+        )
