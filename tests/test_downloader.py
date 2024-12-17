@@ -48,23 +48,18 @@ class TestIRS990FileDownload:
             in str(excinfo.value)
         )
 
-    def test_get_link_to_2018_reports_expected_valid(self) -> None:
+    def test_get_index_csv_links_expected_valid(self) -> None:
         """
-        Tests if link to 2018 reports is properly fetched
+        Tests for proper fetching of links to index files
         """
-        LINKS_2018 = [
-            "https://apps.irs.gov/pub/epostcard/990/xml/2018/2018_TEOS_XML_CT1.zip",
-            "https://apps.irs.gov/pub/epostcard/990/xml/2018/2018_TEOS_XML_CT2.zip",
-            "https://apps.irs.gov/pub/epostcard/990/xml/2018/2018_TEOS_XML_CT3.zip",
-            "https://apps.irs.gov/pub/epostcard/990/xml/2018/download990xml_2018_1.zip",
-            "https://apps.irs.gov/pub/epostcard/990/xml/2018/download990xml_2018_2.zip",
-            "https://apps.irs.gov/pub/epostcard/990/xml/2018/download990xml_2018_3.zip",
-            "https://apps.irs.gov/pub/epostcard/990/xml/2018/download990xml_2018_4.zip",
-            "https://apps.irs.gov/pub/epostcard/990/xml/2018/download990xml_2018_5.zip",
-            "https://apps.irs.gov/pub/epostcard/990/xml/2018/download990xml_2018_6.zip",
-            "https://apps.irs.gov/pub/epostcard/990/xml/2018/download990xml_2018_7.zip",
+        INDEX_LINKS = [
+            "https://apps.irs.gov/pub/epostcard/990/xml/2024/index_2024.csv",
+            "https://apps.irs.gov/pub/epostcard/990/xml/2023/index_2023.csv",
+            "https://apps.irs.gov/pub/epostcard/990/xml/2022/index_2022.csv",
+            "https://apps.irs.gov/pub/epostcard/990/xml/2021/index_2021.csv",
+            "https://apps.irs.gov/pub/epostcard/990/xml/2020/index_2020.csv",
+            "https://apps.irs.gov/pub/epostcard/990/xml/2019/index_2019.csv",
+            "https://apps.irs.gov/pub/epostcard/990/xml/2018/index_2018.csv",
         ]
         irs_downloader = downloader.IRS990FileDownloader(constants.EARLIEST_START_YEAR)
-        assert LINKS_2018 == irs_downloader.get_links_to_yearly_report(
-            constants.EARLIEST_START_YEAR
-        )
+        assert INDEX_LINKS == irs_downloader.get_index_csv_links()
