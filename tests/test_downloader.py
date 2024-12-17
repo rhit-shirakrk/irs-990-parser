@@ -1,5 +1,5 @@
 """
-Unit tests for downloading IRS 990 files
+Unit tests for retriving links to index and zip files
 """
 
 from datetime import datetime
@@ -7,12 +7,12 @@ from datetime import datetime
 import pytest
 from pytest_unordered import unordered
 
-from irs990_parser import constants, downloader
+from irs990_parser import constants, link_retriever
 
 
-class TestIRS990FileDownload:
+class TestIRS990LinkRetriever:
     """
-    Unit tests for IRS990FileDownloader class
+    Unit tests for IRS990LinkRetriever class
     """
 
     YEAR_TO_ZIP_LINKS = {
@@ -109,7 +109,7 @@ class TestIRS990FileDownload:
         """
         invalid_start_year = constants.EARLIEST_START_YEAR - 1
         with pytest.raises(ValueError) as excinfo:
-            downloader.IRS990FileDownloader(invalid_start_year)
+            link_retriever.IRS990LinkRetriever(invalid_start_year)
         assert (
             f"Invalid start year {invalid_start_year}. The earliest available year is {constants.EARLIEST_START_YEAR}"
             in str(excinfo.value)
@@ -122,7 +122,7 @@ class TestIRS990FileDownload:
         current_year = datetime.now().year
         invalid_start_year = current_year + 1
         with pytest.raises(ValueError) as excinfo:
-            downloader.IRS990FileDownloader(invalid_start_year)
+            link_retriever.IRS990LinkRetriever(invalid_start_year)
         assert (
             f"Invalid start year {invalid_start_year}. The latest available year is {current_year}"
             in str(excinfo.value)
@@ -143,8 +143,8 @@ class TestIRS990FileDownload:
         ]
         current_year = datetime.now().year
         for year in range(constants.EARLIEST_START_YEAR, current_year):
-            irs_downloader = downloader.IRS990FileDownloader(year)
-            assert INDEX_LINKS == irs_downloader.get_index_csv_links()
+            irs_link_retriever = link_retriever.IRS990LinkRetriever(year)
+            assert INDEX_LINKS == irs_link_retriever.get_index_csv_links()
             INDEX_LINKS.pop()
 
     def test_get_zip_links_expected_valid(self) -> None:
@@ -154,9 +154,9 @@ class TestIRS990FileDownload:
         for test_year in range(constants.EARLIEST_START_YEAR, datetime.now().year + 1):
             expected_zip_links = [
                 zip_link
-                for year, zip_links in TestIRS990FileDownload.YEAR_TO_ZIP_LINKS.items()
+                for year, zip_links in TestIRS990LinkRetriever.YEAR_TO_ZIP_LINKS.items()
                 if year >= test_year
                 for zip_link in zip_links
             ]
-            irs_downloader = downloader.IRS990FileDownloader(test_year)
-            assert irs_downloader.get_zip_links() == unordered(expected_zip_links)
+            irs_link_retriever = link_retriever.IRS990LinkRetriever(test_year)
+            assert irs_link_retriever.get_zip_links() == unordered(expected_zip_links)

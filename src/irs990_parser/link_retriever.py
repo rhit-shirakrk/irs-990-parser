@@ -10,8 +10,8 @@ import requests
 from irs990_parser import constants
 
 
-class IRS990FileDownloader:
-    """Download all IRS files from a specified start year and onward
+class IRS990LinkRetriever:
+    """Retrieve links to index and IRS zip files
 
     :param start_year: The year from which to download published IRS forms
     :type start_year: int
