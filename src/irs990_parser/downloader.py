@@ -44,10 +44,31 @@ class IRS990FileDownloader:
         href_elements_by_year = self._irs_website_html_elements.select(
             ".collapsible-item-body > p a"
         )
+        furthest_year_back = len(href_elements_by_year) - (
+            self.start_year - constants.EARLIEST_START_YEAR
+        )
 
-        return [item["href"] for item in href_elements_by_year][
-            : self._calculate_furthest_year_back(len(href_elements_by_year))
-        ]
+        return [item["href"] for item in href_elements_by_year][:furthest_year_back]
 
-    def _calculate_furthest_year_back(self, yearly_reports: int) -> int:
-        return yearly_reports - (self.start_year - constants.EARLIEST_START_YEAR)
+    def get_zip_links(self) -> list[str | list[str]]:
+        """
+        Return links to zip files from the start year onward
+        """
+        list_elements_by_year = self._irs_website_html_elements.select(
+            ".collapsible-item-body"
+        )
+        zip_links = []
+        for item in list_elements_by_year:
+            zip_links.extend(
+                [
+                    link["href"]
+                    for link in item.select("a[href$='.zip']")
+                    if self._within_year_range(link["href"])
+                ]
+            )
+
+        return zip_links
+
+    def _within_year_range(self, link: str) -> bool:
+        year_from_link = int(link.split("/")[-2])
+        return year_from_link >= self.start_year
