@@ -8,6 +8,6 @@ import pathlib
 
 class IRS990FileDownloader:
     def __init__(self, directory: pathlib.Path) -> None:
-        if os.path.isdir(directory):
-            self.directory = directory
-        raise NotADirectoryError(f"Invalid directory {directory}")
+        if not os.path.isdir(directory):
+            raise NotADirectoryError(f"Invalid directory {directory}")
+        self.directory = directory
