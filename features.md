@@ -40,17 +40,26 @@ Assumes all names of collegs to pull will use IPEDS as a reference point.
 
 # Process
 
-1. Get list of all college names in IPEDS.
-2. Parse the XML file
-3. Get the name of the organization
-4. If the name is not a recognized institution, then skip the file. Otherwise,
-continue.
-5. Get the required datapoints listed above.
-6. For each name in Part VII, Section A, 1a, guess the gender of the person and
-record the result.
+1. Specify the range of years to pull data from
+2. Repeat the following for each year:
+    1. Download the ZIP file corresponding to each month
+    2. Repeat the following for each month:
+        1. Repeat the following for each form:
+            1. Retrieve the following information:
 
-- Assume the only two genders are male and female
-- Store the total number of male and female stakeholders
+            - Organization name
+            - Section A, Part I, question 15
+            - Section A, Part V, 2a
+            - Section B, question 13
+            - Section B, question 15
+            - Part VII, Section A, 1a
 
-7. Calculate the percentage of male/female stakeholders and record this
-information.
+            2. Guess the gender of each stakeholder
+            3. Calculate the average wage as follows:
+                1. Find the total funds spent on salaries
+                2. Deduct the sum of the salaries from Part VII, Section A, 1a
+                3. Divide the result by the number of employees
+                4. Calculate the ratio between the salary of the highest-paid stakeholder
+                and the result from step 3
+
+    3. Delete the directory containing the unzipped files
