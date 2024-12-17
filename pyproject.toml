@@ -6,7 +6,7 @@ build-backend = "hatchling.build"
 name = "irs-990-parser"
 version = "0.0.0"
 dependencies = []
-requires-python = ">= 3.14"
+requires-python = ">= 3.13"
 authors = [
    {name = "Ryan Shiraki", email = "shirakrk@rose-hulman.edu"}
 ]
