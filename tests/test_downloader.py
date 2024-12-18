@@ -108,8 +108,9 @@ class TestIRS990LinkRetriever:
         Tests for a start year earlier than 2018
         """
         invalid_start_year = constants.EARLIEST_START_YEAR - 1
+        current_year = datetime.now().year
         with pytest.raises(ValueError) as excinfo:
-            link_retriever.IRS990LinkRetriever(invalid_start_year)
+            link_retriever.IRS990LinkRetriever(invalid_start_year, current_year)
         assert (
             f"Invalid start year {invalid_start_year}. The earliest available year is {constants.EARLIEST_START_YEAR}"
             in str(excinfo.value)
@@ -122,9 +123,35 @@ class TestIRS990LinkRetriever:
         current_year = datetime.now().year
         invalid_start_year = current_year + 1
         with pytest.raises(ValueError) as excinfo:
-            link_retriever.IRS990LinkRetriever(invalid_start_year)
+            link_retriever.IRS990LinkRetriever(invalid_start_year, current_year)
         assert (
             f"Invalid start year {invalid_start_year}. The latest available year is {current_year}"
+            in str(excinfo.value)
+        )
+
+    def test_later_than_current_year_end_year_expected_value_error(self) -> None:
+        """
+        Tests for an end year later than the current year
+        """
+        current_year = datetime.now().year
+        invalid_end_year = current_year + 1
+        with pytest.raises(ValueError) as excinfo:
+            link_retriever.IRS990LinkRetriever(current_year, invalid_end_year)
+        assert (
+            f"Invalid end year {invalid_end_year}. The latest available year is {current_year}"
+            in str(excinfo.value)
+        )
+
+    def test_end_year_earlier_than_start_year_expected_value_error(self) -> None:
+        """
+        Tests for an end year earlier than the start year
+        """
+        current_year = datetime.now().year
+        invalid_end_year = current_year - 1
+        with pytest.raises(ValueError) as excinfo:
+            link_retriever.IRS990LinkRetriever(current_year, invalid_end_year)
+        assert (
+            f"Invalid end year {invalid_end_year}. The earliest available year is {current_year}"
             in str(excinfo.value)
         )
 
@@ -143,7 +170,7 @@ class TestIRS990LinkRetriever:
         ]
         current_year = datetime.now().year
         for year in range(constants.EARLIEST_START_YEAR, current_year):
-            irs_link_retriever = link_retriever.IRS990LinkRetriever(year)
+            irs_link_retriever = link_retriever.IRS990LinkRetriever(year, current_year)
             assert INDEX_LINKS == irs_link_retriever.get_index_csv_links()
             INDEX_LINKS.pop()
 
@@ -151,6 +178,7 @@ class TestIRS990LinkRetriever:
         """
         Tests for properly fetching of zip links
         """
+        current_year = datetime.now().year
         for test_year in range(constants.EARLIEST_START_YEAR, datetime.now().year + 1):
             expected_zip_links = [
                 zip_link
@@ -158,5 +186,7 @@ class TestIRS990LinkRetriever:
                 if year >= test_year
                 for zip_link in zip_links
             ]
-            irs_link_retriever = link_retriever.IRS990LinkRetriever(test_year)
+            irs_link_retriever = link_retriever.IRS990LinkRetriever(
+                test_year, current_year
+            )
             assert irs_link_retriever.get_zip_links() == unordered(expected_zip_links)
