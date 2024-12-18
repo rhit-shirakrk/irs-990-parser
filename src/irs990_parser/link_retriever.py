@@ -125,4 +125,4 @@ class IRS990LinkRetriever:
         :rtype: bool
         """
         year_from_link = int(link.split("/")[-2])
-        return year_from_link >= self.start_year
+        return self.start_year <= year_from_link <= self.end_year
