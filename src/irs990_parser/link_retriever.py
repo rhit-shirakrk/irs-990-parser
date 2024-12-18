@@ -57,6 +57,11 @@ class IRS990LinkRetriever:
                 f"Invalid end year {end_year}. The latest available year is {current_year}"
             )
 
+        if end_year < self.start_year:
+            raise ValueError(
+                f"Invalid end year {end_year}. The earliest available year is {self.start_year}"
+            )
+
     def _parse_website(self) -> bs4.BeautifulSoup:
         """Retrieves HTML elements of the IRS 990 website
 
