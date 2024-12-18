@@ -5,7 +5,6 @@ Unit tests for retriving links to index and zip files
 from datetime import datetime
 
 import pytest
-from pytest_unordered import unordered
 
 from irs990_parser import constants, link_retriever
 
@@ -97,19 +96,6 @@ class TestIRS990LinkRetriever:
             "https://apps.irs.gov/pub/epostcard/990/xml/2023/2023_TEOS_XML_11B.zip",
             "https://apps.irs.gov/pub/epostcard/990/xml/2023/2023_TEOS_XML_11C.zip",
             "https://apps.irs.gov/pub/epostcard/990/xml/2023/2023_TEOS_XML_12A.zip",
-        ],
-        2024: [
-            "https://apps.irs.gov/pub/epostcard/990/xml/2024/2024_TEOS_XML_01A.zip",
-            "https://apps.irs.gov/pub/epostcard/990/xml/2024/2024_TEOS_XML_02A.zip",
-            "https://apps.irs.gov/pub/epostcard/990/xml/2024/2024_TEOS_XML_03A.zip",
-            "https://apps.irs.gov/pub/epostcard/990/xml/2024/2024_TEOS_XML_04A.zip",
-            "https://apps.irs.gov/pub/epostcard/990/xml/2024/2024_TEOS_XML_05A.zip",
-            "https://apps.irs.gov/pub/epostcard/990/xml/2024/2024_TEOS_XML_05B.zip",
-            "https://apps.irs.gov/pub/epostcard/990/xml/2024/2024_TEOS_XML_06A.zip",
-            "https://apps.irs.gov/pub/epostcard/990/xml/2024/2024_TEOS_XML_07A.zip",
-            "https://apps.irs.gov/pub/epostcard/990/xml/2024/2024_TEOS_XML_08A.zip",
-            "https://apps.irs.gov/pub/epostcard/990/xml/2024/2024_TEOS_XML_09A.zip",
-            "https://apps.irs.gov/pub/epostcard/990/xml/2024/2024_TEOS_XML_10A.zip",
         ],
     }
 
@@ -203,3 +189,14 @@ class TestIRS990LinkRetriever:
             TestIRS990LinkRetriever.INDEX_LINKS
             == irs_link_retriever.get_index_csv_links()
         )
+
+    def test_get_zip_links_expected_valid(self) -> None:
+        """
+        Tests for proper fetching of links to zip files. 2024 will
+        be omitted since more files will be uploaded later.
+        """
+        for year in range(constants.EARLIEST_START_YEAR, 2024):
+            assert (
+                TestIRS990LinkRetriever.YEAR_TO_ZIP_LINKS[year]
+                == link_retriever.IRS990LinkRetriever(year, year).get_zip_links()
+            )
