@@ -142,6 +142,19 @@ class TestIRS990LinkRetriever:
             in str(excinfo.value)
         )
 
+    def test_end_year_earlier_than_start_year_expected_value_error(self) -> None:
+        """
+        Tests for an end year earlier than the start year
+        """
+        current_year = datetime.now().year
+        invalid_end_year = current_year - 1
+        with pytest.raises(ValueError) as excinfo:
+            link_retriever.IRS990LinkRetriever(current_year, invalid_end_year)
+        assert (
+            f"Invalid end year {invalid_end_year}. The earliest available year is {current_year}"
+            in str(excinfo.value)
+        )
+
     def test_get_index_csv_links_expected_valid(self) -> None:
         """
         Tests for proper fetching of links to index files
