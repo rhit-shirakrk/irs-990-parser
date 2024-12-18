@@ -79,14 +79,20 @@ class IRS990LinkRetriever:
         :return: A collection of all links to CSV index files
         :rtype: list[str | list[str]]
         """
+        print(f"Start year: {self.start_year}, end year: {self.end_year}")
         href_elements_by_year = self._irs_website_html_elements.select(
             ".collapsible-item-body > p a"
         )
-        furthest_year_back = len(href_elements_by_year) - (
-            self.start_year - constants.EARLIEST_START_YEAR
-        )
+        print([item["href"] for item in href_elements_by_year])
 
-        return [item["href"] for item in href_elements_by_year][:furthest_year_back]
+        current_year = datetime.now().year
+        end = (current_year - constants.EARLIEST_START_YEAR + 1) - (
+            self.start_year % constants.EARLIEST_START_YEAR
+        )
+        start = end - (self.end_year - self.start_year) - 1
+        print(f"Start: {start}, end: {end}")
+
+        return [item["href"] for item in href_elements_by_year][start:end]
 
     def get_zip_links(self) -> list[str | list[str]]:
         """Return links to zip files from the start year onward
@@ -119,4 +125,4 @@ class IRS990LinkRetriever:
         :rtype: bool
         """
         year_from_link = int(link.split("/")[-2])
-        return year_from_link >= self.start_year
+        return self.start_year <= year_from_link <= self.end_year

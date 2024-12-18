@@ -15,6 +15,16 @@ class TestIRS990LinkRetriever:
     Unit tests for IRS990LinkRetriever class
     """
 
+    INDEX_LINKS = [
+        "https://apps.irs.gov/pub/epostcard/990/xml/2024/index_2024.csv",
+        "https://apps.irs.gov/pub/epostcard/990/xml/2023/index_2023.csv",
+        "https://apps.irs.gov/pub/epostcard/990/xml/2022/index_2022.csv",
+        "https://apps.irs.gov/pub/epostcard/990/xml/2021/index_2021.csv",
+        "https://apps.irs.gov/pub/epostcard/990/xml/2020/index_2020.csv",
+        "https://apps.irs.gov/pub/epostcard/990/xml/2019/index_2019.csv",
+        "https://apps.irs.gov/pub/epostcard/990/xml/2018/index_2018.csv",
+    ]
+
     YEAR_TO_ZIP_LINKS = {
         2018: [
             "https://apps.irs.gov/pub/epostcard/990/xml/2018/2018_TEOS_XML_CT1.zip",
@@ -100,6 +110,9 @@ class TestIRS990LinkRetriever:
             "https://apps.irs.gov/pub/epostcard/990/xml/2024/2024_TEOS_XML_08A.zip",
             "https://apps.irs.gov/pub/epostcard/990/xml/2024/2024_TEOS_XML_09A.zip",
             "https://apps.irs.gov/pub/epostcard/990/xml/2024/2024_TEOS_XML_10A.zip",
+            "https://apps.irs.gov/pub/epostcard/990/xml/2024/2024_TEOS_XML_11A.zip",
+            "https://apps.irs.gov/pub/epostcard/990/xml/2024/2024_TEOS_XML_11B.zip",
+            "https://apps.irs.gov/pub/epostcard/990/xml/2024/2024_TEOS_XML_11C.zip",
         ],
     }
 
@@ -155,38 +168,83 @@ class TestIRS990LinkRetriever:
             in str(excinfo.value)
         )
 
-    def test_get_index_csv_links_expected_valid(self) -> None:
+    def test_get_index_csv_links_zero_year_range_expected_valid(self) -> None:
         """
-        Tests for proper fetching of links to index files
+        Tests for proper fetching of links to index files for a single year
         """
-        INDEX_LINKS = [
-            "https://apps.irs.gov/pub/epostcard/990/xml/2024/index_2024.csv",
-            "https://apps.irs.gov/pub/epostcard/990/xml/2023/index_2023.csv",
-            "https://apps.irs.gov/pub/epostcard/990/xml/2022/index_2022.csv",
-            "https://apps.irs.gov/pub/epostcard/990/xml/2021/index_2021.csv",
-            "https://apps.irs.gov/pub/epostcard/990/xml/2020/index_2020.csv",
-            "https://apps.irs.gov/pub/epostcard/990/xml/2019/index_2019.csv",
-            "https://apps.irs.gov/pub/epostcard/990/xml/2018/index_2018.csv",
-        ]
         current_year = datetime.now().year
-        for year in range(constants.EARLIEST_START_YEAR, current_year):
-            irs_link_retriever = link_retriever.IRS990LinkRetriever(year, current_year)
-            assert INDEX_LINKS == irs_link_retriever.get_index_csv_links()
-            INDEX_LINKS.pop()
+        reverse_index = 1
+        for start_year in range(constants.EARLIEST_START_YEAR, current_year + 1):
+            expected_link = TestIRS990LinkRetriever.INDEX_LINKS[-reverse_index]
+            irs_link_retriever = link_retriever.IRS990LinkRetriever(
+                start_year, start_year
+            )
+            assert [expected_link] == irs_link_retriever.get_index_csv_links()
+            reverse_index += 1
+
+    def test_get_index_csv_links_one_year_range_expected_valid(self) -> None:
+        """
+        Tests for proper fetching of links to index files across two years
+        """
+        expected_links = TestIRS990LinkRetriever.INDEX_LINKS[-3:-1]
+        assert (
+            expected_links
+            == link_retriever.IRS990LinkRetriever(
+                constants.EARLIEST_START_YEAR + 1, constants.EARLIEST_START_YEAR + 2
+            ).get_index_csv_links()
+        )
+
+    def test_get_index_csv_links_max_year_range_expected_valid(self) -> None:
+        """
+        Tests for proper fetching of links to index files for a single year
+        """
+        current_year = datetime.now().year
+        irs_link_retriever = link_retriever.IRS990LinkRetriever(
+            constants.EARLIEST_START_YEAR, current_year
+        )
+        assert (
+            TestIRS990LinkRetriever.INDEX_LINKS
+            == irs_link_retriever.get_index_csv_links()
+        )
 
     def test_get_zip_links_expected_valid(self) -> None:
         """
-        Tests for properly fetching of zip links
+        Tests for proper fetching of links to zip files. 2024 will
+        be omitted since more files will be uploaded later.
         """
-        current_year = datetime.now().year
-        for test_year in range(constants.EARLIEST_START_YEAR, datetime.now().year + 1):
-            expected_zip_links = [
-                zip_link
-                for year, zip_links in TestIRS990LinkRetriever.YEAR_TO_ZIP_LINKS.items()
-                if year >= test_year
-                for zip_link in zip_links
-            ]
-            irs_link_retriever = link_retriever.IRS990LinkRetriever(
-                test_year, current_year
+        for year in range(constants.EARLIEST_START_YEAR, 2024):
+            assert (
+                TestIRS990LinkRetriever.YEAR_TO_ZIP_LINKS[year]
+                == link_retriever.IRS990LinkRetriever(year, year).get_zip_links()
             )
-            assert irs_link_retriever.get_zip_links() == unordered(expected_zip_links)
+
+    def test_get_zip_links_one_year_range_expected_valid(self) -> None:
+        """
+        Tests for proper fetching of links to zip files in a 1 year
+        range
+        """
+        start_year = 2019
+        end_year = 2020
+        expected_links = (
+            TestIRS990LinkRetriever.YEAR_TO_ZIP_LINKS[start_year]
+            + TestIRS990LinkRetriever.YEAR_TO_ZIP_LINKS[end_year]
+        )
+        assert (
+            unordered(expected_links)
+            == link_retriever.IRS990LinkRetriever(start_year, end_year).get_zip_links()
+        )
+
+    def test_get_zip_links_max_year_range_expected_valid(self) -> None:
+        """
+        Tests for proper fetching of all links to zip files
+        """
+        expected_links = []
+        for links in TestIRS990LinkRetriever.YEAR_TO_ZIP_LINKS.values():
+            expected_links.extend(links)
+
+        assert (
+            unordered(expected_links)
+            == link_retriever.IRS990LinkRetriever(
+                constants.EARLIEST_START_YEAR, datetime.now().year
+            ).get_zip_links()
+        )
