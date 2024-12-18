@@ -165,7 +165,7 @@ class TestIRS990LinkRetriever:
             in str(excinfo.value)
         )
 
-    def test_get_index_csv_links_one_year_expected_valid(self) -> None:
+    def test_get_index_csv_links_zero_year_range_expected_valid(self) -> None:
         """
         Tests for proper fetching of links to index files for a single year
         """
@@ -178,3 +178,28 @@ class TestIRS990LinkRetriever:
             )
             assert [expected_link] == irs_link_retriever.get_index_csv_links()
             reverse_index += 1
+
+    def test_get_index_csv_links_one_year_range_expected_valid(self) -> None:
+        """
+        Tests for proper fetching of links to index files across two years
+        """
+        expected_links = TestIRS990LinkRetriever.INDEX_LINKS[-3:-1]
+        assert (
+            expected_links
+            == link_retriever.IRS990LinkRetriever(
+                constants.EARLIEST_START_YEAR + 1, constants.EARLIEST_START_YEAR + 2
+            ).get_index_csv_links()
+        )
+
+    def test_get_index_csv_links_max_year_range_expected_valid(self) -> None:
+        """
+        Tests for proper fetching of links to index files for a single year
+        """
+        current_year = datetime.now().year
+        irs_link_retriever = link_retriever.IRS990LinkRetriever(
+            constants.EARLIEST_START_YEAR, current_year
+        )
+        assert (
+            TestIRS990LinkRetriever.INDEX_LINKS
+            == irs_link_retriever.get_index_csv_links()
+        )
