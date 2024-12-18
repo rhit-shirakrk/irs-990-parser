@@ -17,9 +17,13 @@ class IRS990LinkRetriever:
     :type start_year: int
     """
 
-    def __init__(self, start_year: int) -> None:
+    def __init__(self, start_year: int, end_year: int) -> None:
         self._validate_start_year(start_year)
         self.start_year = start_year
+
+        self._validate_end_year(end_year)
+        self.end_year = end_year
+
         self._irs_website_html_elements = self._parse_website()
 
     def _validate_start_year(self, start_year: int) -> None:
@@ -31,13 +35,26 @@ class IRS990LinkRetriever:
         """
         if start_year < constants.EARLIEST_START_YEAR:
             raise ValueError(
-                f"Invalid start year {start_year}. The earliest available year is 2018"
+                f"Invalid start year {start_year}. The earliest available year is {constants.EARLIEST_START_YEAR}"
             )
 
         current_year = datetime.now().year
         if start_year > current_year:
             raise ValueError(
                 f"Invalid start year {start_year}. The latest available year is {current_year}"
+            )
+
+    def _validate_end_year(self, end_year: int) -> None:
+        """Ensures end year is at least the start year and no later than the current year
+
+        :param start_year: The year from which to download published IRS forms
+        :type start_year: int
+        :raises ValueError: Invalid start year
+        """
+        current_year = datetime.now().year
+        if end_year > current_year:
+            raise ValueError(
+                f"Invalid end year {end_year}. The latest available year is {current_year}"
             )
 
     def _parse_website(self) -> bs4.BeautifulSoup:
