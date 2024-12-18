@@ -174,6 +174,14 @@ class TestIRS990LinkRetriever:
             assert INDEX_LINKS == irs_link_retriever.get_index_csv_links()
             INDEX_LINKS.pop()
 
+        for start_year in range(constants.EARLIEST_START_YEAR, current_year + 1):
+            for end_year in range(start_year, current_year + 1):
+                expected_links = INDEX_LINKS[-(end_year % start_year + 1) :]
+                irs_link_retriever = link_retriever.IRS990LinkRetriever(
+                    start_year, end_year
+                )
+                assert expected_links == irs_link_retriever.get_index_csv_links()
+
     def test_get_zip_links_expected_valid(self) -> None:
         """
         Tests for properly fetching of zip links
