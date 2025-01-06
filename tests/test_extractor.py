@@ -4,7 +4,7 @@ Tests downloading and extracting information from IRS files
 
 import pytest
 
-from irs990_parser import extractor
+from irs990_parser import custom_exceptions, extractor
 
 
 class TestIRSExtractor:
@@ -22,6 +22,6 @@ class TestIRSExtractor:
             "https://apps.irs.gov/pub/epostcard/990/xml/2024/2024_TEOS_XML_01A.zip"
         )
         irs_extractor = extractor.IRSExtractor()
-        with pytest.raises(UnsupportedFileError) as excinfo:
+        with pytest.raises(custom_exceptions.InvalidZipFileException) as excinfo:
             irs_extractor.extract_zip(sample_url)
         assert f"URL {sample_url} does not yield a ZIP file" in str(excinfo)
