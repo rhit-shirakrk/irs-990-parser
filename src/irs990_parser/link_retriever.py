@@ -7,8 +7,6 @@ from datetime import datetime
 import bs4
 import requests
 
-from irs990_parser import constants
-
 
 class IRS990LinkRetriever:
     """Retrieve links to index and IRS zip files
@@ -16,6 +14,10 @@ class IRS990LinkRetriever:
     :param start_year: The year from which to download published IRS forms
     :type start_year: int
     """
+
+    IRS_URL = "https://www.irs.gov/charities-non-profits/form-990-series-downloads"
+    EARLIEST_START_YEAR = 2018
+    IRS_REQUEST_TIMEOUT_SEC = 5
 
     def __init__(self, start_year: int, end_year: int) -> None:
         self._validate_start_year(start_year)
@@ -33,9 +35,9 @@ class IRS990LinkRetriever:
         :type start_year: int
         :raises ValueError: Invalid start year
         """
-        if start_year < constants.EARLIEST_START_YEAR:
+        if start_year < IRS990LinkRetriever.EARLIEST_START_YEAR:
             raise ValueError(
-                f"Invalid start year {start_year}. The earliest available year is {constants.EARLIEST_START_YEAR}"
+                f"Invalid start year {start_year}. The earliest available year is {IRS990LinkRetriever.EARLIEST_START_YEAR}"
             )
 
         current_year = datetime.now().year
@@ -69,7 +71,8 @@ class IRS990LinkRetriever:
         :rtype: bs4.BeautifulSoup
         """
         response = requests.get(
-            constants.IRS_URL, timeout=constants.IRS_REQUEST_TIMEOUT_SEC
+            IRS990LinkRetriever.IRS_URL,
+            timeout=IRS990LinkRetriever.IRS_REQUEST_TIMEOUT_SEC,
         )
         return bs4.BeautifulSoup(response.text, "html.parser")
 
