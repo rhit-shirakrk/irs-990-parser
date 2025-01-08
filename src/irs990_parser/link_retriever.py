@@ -79,20 +79,26 @@ class IRS990LinkRetriever:
         :return: A collection of all links to CSV index files
         :rtype: list[str | list[str]]
         """
-        print(f"Start year: {self.start_year}, end year: {self.end_year}")
         href_elements_by_year = self._irs_website_html_elements.select(
             ".collapsible-item-body > p a"
         )
-        print([item["href"] for item in href_elements_by_year])
+        return [
+            csv_link["href"]
+            for csv_link in href_elements_by_year
+            if self._csv_file_within_year_range(csv_link["href"])
+        ]
 
-        current_year = datetime.now().year
-        end = (current_year - constants.EARLIEST_START_YEAR + 1) - (
-            self.start_year % constants.EARLIEST_START_YEAR
-        )
-        start = end - (self.end_year - self.start_year) - 1
-        print(f"Start: {start}, end: {end}")
+    def _csv_file_within_year_range(self, link: str) -> bool:
+        """Verify the link to a csv indx file is within the start and end year
 
-        return [item["href"] for item in href_elements_by_year][start:end]
+        :param link: The link to an index file
+        :type link: str
+        :return: True if the link is between the start (inclusive) and current year (inclusive),
+        False otherwise
+        :rtype: bool
+        """
+        year_from_link = int(link.split("/")[-2])
+        return self.start_year <= year_from_link <= self.end_year
 
     def get_zip_links(self) -> list[str | list[str]]:
         """Return links to zip files from the start year onward
@@ -109,14 +115,14 @@ class IRS990LinkRetriever:
                 [
                     link["href"]
                     for link in item.select("a[href$='.zip']")
-                    if self._within_year_range(link["href"])
+                    if self._zip_file_within_year_range(link["href"])
                 ]
             )
 
         return zip_links
 
-    def _within_year_range(self, link: str) -> bool:
-        """Verify the link to a yearly record is within the start and current year
+    def _zip_file_within_year_range(self, link: str) -> bool:
+        """Verify the link to a yearly record is within the start and end year
 
         :param link: The link to a yearly record of IRS files
         :type link: str

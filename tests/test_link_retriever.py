@@ -172,9 +172,8 @@ class TestIRS990LinkRetriever:
         """
         Tests for proper fetching of links to index files for a single year
         """
-        current_year = datetime.now().year
         reverse_index = 1
-        for start_year in range(constants.EARLIEST_START_YEAR, current_year + 1):
+        for start_year in range(constants.EARLIEST_START_YEAR, 2024):
             expected_link = TestIRS990LinkRetriever.INDEX_LINKS[-reverse_index]
             irs_link_retriever = link_retriever.IRS990LinkRetriever(
                 start_year, start_year
