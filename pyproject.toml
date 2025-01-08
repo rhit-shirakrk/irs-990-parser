@@ -14,6 +14,7 @@ dependencies = [
   "pydantic",
   "requests",
   "SQLAlchemy",
+  "zipfile-deflate64",
 ]
 requires-python = ">= 3.6"
 authors = [
