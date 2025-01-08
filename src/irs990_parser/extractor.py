@@ -12,7 +12,7 @@ import zipfile_deflate64 as zipfile
 from irs990_parser import custom_exceptions
 
 
-class IRSExtractor:
+class IRSZipFileExtractor:
     TIMEOUT_SEC = 5
     ZIP_EXTENSION_LENGTH = 3
 
@@ -29,7 +29,7 @@ class IRSExtractor:
         :return: The directory containing the XML files
         :rtype: pathlib.Path
         """
-        res = requests.get(url, timeout=IRSExtractor.TIMEOUT_SEC)
+        res = requests.get(url, timeout=IRSZipFileExtractor.TIMEOUT_SEC)
         try:
             monthly_reports_directory = pathlib.Path(
                 os.path.join(directory, self._get_monthly_reports_folder_name(url))
@@ -45,4 +45,4 @@ class IRSExtractor:
 
     def _get_monthly_reports_folder_name(self, url: str) -> str:
         # remove the ".zip" from the zip file link
-        return url.split("/")[-1][: -(IRSExtractor.ZIP_EXTENSION_LENGTH + 1)]
+        return url.split("/")[-1][: -(IRSZipFileExtractor.ZIP_EXTENSION_LENGTH + 1)]

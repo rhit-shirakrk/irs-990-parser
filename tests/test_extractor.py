@@ -23,9 +23,9 @@ def temp_dir(tmp_path_factory: pytest.TempPathFactory) -> pathlib.Path:
     return tmp_path_factory.mktemp(TEMP_DIR_NAME)
 
 
-class TestIRSExtractor:
+class TestIRSZipFileExtractor:
     """
-    Tests the IRSExtractor class
+    Tests the IRSZipFileExtractor class
     """
 
     def test_downloaded_file_is_not_zip_file_expected_unsupported_file_format_error(
@@ -39,7 +39,7 @@ class TestIRSExtractor:
         sample_url = (
             "https://apps.irs.gov/pub/epostcard/990/xml/2024/2024_TEOS_XML_01A.zipp"
         )
-        irs_extractor = extractor.IRSExtractor()
+        irs_extractor = extractor.IRSZipFileExtractor()
         with pytest.raises(custom_exceptions.InvalidZipFileException) as excinfo:
             irs_extractor.extract_zip(sample_url, temp_dir)
         assert f"URL {sample_url} does not yield a ZIP file" in str(excinfo)
@@ -55,7 +55,7 @@ class TestIRSExtractor:
         sample_url = (
             "https://apps.irs.gov/pub/epostcard/990/xml/2024/2024_TEOS_XML_01A.zip"
         )
-        irs_extractor = extractor.IRSExtractor()
+        irs_extractor = extractor.IRSZipFileExtractor()
         path_to_xml_files = irs_extractor.extract_zip(sample_url, temp_dir)
         assert len(list(temp_dir.iterdir())) == 1
         assert path_to_xml_files == pathlib.Path(
