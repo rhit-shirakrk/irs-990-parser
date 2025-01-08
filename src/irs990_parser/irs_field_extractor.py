@@ -33,3 +33,8 @@ class EINEXtractor:
             )
 
         return ein_xml_object.text
+
+
+class OrgNameExtractor:
+    def __init__(self) -> None:
+        pass

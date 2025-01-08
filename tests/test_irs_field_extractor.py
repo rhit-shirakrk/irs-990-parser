@@ -69,4 +69,4 @@ class TestIRSFieldExtractor:
         self,
     ) -> None:
         """Tests for extracting an organization's name which only uses one line in the form"""
-        org_name_extractor = irs_field_extractor.OrgNameExtractor(file_name, parsed_xml)
+        org_name_extractor = irs_field_extractor.OrgNameExtractor()
