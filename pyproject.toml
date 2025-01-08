@@ -27,7 +27,7 @@ description = "Parses IRS 990 forms for specific responses/sections"
 readme = "README.md"
 
 [project.optional-dependencies]
-test = ["pytest", "pytest-unordered"]
+test = ["pytest", "pytest-unordered", "requests-mock"]
 
 [tool.pytest.ini_options]
 pythonpath = "src"
