@@ -7,9 +7,15 @@ name = "irs-990-parser"
 version = "0.0.0"
 dependencies = [
   "beautifulsoup4",
+  "gender-guesser",
+  "lxml",
+  "mysql-connector-python",
+  "pandas",
+  "pydantic",
   "requests",
+  "SQLAlchemy",
 ]
-requires-python = ">= 3.13"
+requires-python = ">= 3.6"
 authors = [
    {name = "Ryan Shiraki", email = "shirakrk@rose-hulman.edu"}
 ]
