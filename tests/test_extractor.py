@@ -52,7 +52,7 @@ class TestIRSExtractor:
         :ptype temp_dir: pathlib.Path
         """
         sample_url = (
-            "https://apps.irs.gov/pub/epostcard/990/xml/2024/2024_TEOS_XML_01A.zipp"
+            "https://apps.irs.gov/pub/epostcard/990/xml/2024/2024_TEOS_XML_01A.zip"
         )
         irs_extractor = extractor.IRSExtractor()
         irs_extractor.extract_zip(sample_url, temp_dir)
