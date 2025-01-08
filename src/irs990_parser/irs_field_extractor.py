@@ -46,9 +46,7 @@ class OrgNameExtractor:
         :return: Organization name
         :rtype: str
         """
-        return (
-            self.parsed_xml.find("Filer")
-            .find("BusinessName")
-            .find("BusinessNameLine1Txt")
-            .text
+        business_name_xml_object = self.parsed_xml.find("Filer").find("BusinessName")
+        return " ".join(
+            [line.text for line in business_name_xml_object if line.text != "\n"]
         )
