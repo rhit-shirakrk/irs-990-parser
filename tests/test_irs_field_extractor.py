@@ -21,7 +21,9 @@ class TestIRSFieldExtractor:
     def test_ein_extractor_expected_381357951(self) -> None:
         """Tests for an error when a non-xml file is being parsed"""
         file_with_ein_path = pathlib.Path(
-            os.path.join(TestIRSFieldExtractor.SAMPLE_FILES_DIR, "contains_ein.xml")
+            os.path.join(
+                TestIRSFieldExtractor.SAMPLE_FILES_DIR, "ein", "contains_ein.xml"
+            )
         )
         with open(file_with_ein_path, "r", encoding="utf-8") as f:
             file = f.read()
