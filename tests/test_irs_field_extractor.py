@@ -64,3 +64,9 @@ class TestIRSFieldExtractor:
             with pytest.raises(custom_exceptions.MissingEINException) as excinfo:
                 ein_extractor.extract()
             assert f"EIN missing from file {file_name}" in str(excinfo)
+
+    def test_org_name_extractor_one_line_field_expected_HABITAT_FOR_HUMANITY_OF_METRO_DENVER(
+        self,
+    ) -> None:
+        """Tests for extracting an organization's name which only uses one line in the form"""
+        org_name_extractor = irs_field_extractor.OrgNameExtractor(file_name, parsed_xml)
