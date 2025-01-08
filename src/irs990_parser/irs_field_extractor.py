@@ -39,3 +39,16 @@ class OrgNameExtractor:
     def __init__(self, file_name: str, parsed_xml: bs4.BeautifulSoup) -> None:
         self.file_name = file_name
         self.parsed_xml = parsed_xml
+
+    def extract(self) -> str:
+        """Extract organization name from IRS 990 form
+
+        :return: Organization name
+        :rtype: str
+        """
+        return (
+            self.parsed_xml.find("Filer")
+            .find("BusinessName")
+            .find("BusinessNameLine1Txt")
+            .text
+        )

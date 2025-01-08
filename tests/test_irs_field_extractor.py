@@ -82,5 +82,5 @@ class TestIRSFieldExtractor:
                 file_name, parsed_xml
             )
             assert (
-                org_name_extractor.extract() == "HABITAT_FOR_HUMANITY_OF_METRO_DENVER"
+                org_name_extractor.extract() == "HABITAT FOR HUMANITY OF METRO DENVER"
             )
