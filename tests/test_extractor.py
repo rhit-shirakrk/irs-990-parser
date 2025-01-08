@@ -58,4 +58,6 @@ class TestIRSExtractor:
         irs_extractor = extractor.IRSExtractor()
         path_to_xml_files = irs_extractor.extract_zip(sample_url, temp_dir)
         assert len(list(temp_dir.iterdir())) == 1
-        assert path_to_xml_files == os.path.join(temp_dir, "2024_TEOS_XML_01A")
+        assert path_to_xml_files == pathlib.Path(
+            os.path.join(temp_dir, "2024_TEOS_XML_01A")
+        )

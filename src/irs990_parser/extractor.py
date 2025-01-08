@@ -19,22 +19,25 @@ class IRSExtractor:
     def __init__(self) -> None:
         pass
 
-    def extract_zip(self, url: str, directory: pathlib.Path) -> None:
+    def extract_zip(self, url: str, directory: pathlib.Path) -> pathlib.Path:
         """Extract XML files into a directory
 
         :param url: The link to the zipped XML files
         :ptype url: str
         :param directory: The directory to extract the zipped XML files
         :ptype directory: pathlib.Path
+        :return: The directory containing the XML files
+        :rtype: pathlib.Path
         """
         res = requests.get(url, timeout=IRSExtractor.TIMEOUT_SEC)
         try:
+            monthly_reports_directory = pathlib.Path(
+                os.path.join(directory, self._get_monthly_reports_folder_name(url))
+            )
             with zipfile.ZipFile(io.BytesIO(res.content)) as zip_file:
-                zip_file.extractall(
-                    path=os.path.join(
-                        directory, self._get_monthly_reports_folder_name(url)
-                    )
-                )
+                zip_file.extractall(path=monthly_reports_directory)
+
+            return monthly_reports_directory
         except zipfile.BadZipFile:
             raise custom_exceptions.InvalidZipFileException(
                 f"URL {url} does not yield a ZIP file"
