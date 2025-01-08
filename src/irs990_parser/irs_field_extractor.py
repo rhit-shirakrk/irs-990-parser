@@ -20,9 +20,16 @@ class EINEXtractor:
         :return: EIN
         :rtype: str
         """
-        ein_xml_object = self.parsed_xml.find("Filer").find("EIN")
+        filer_xml_object = self.parsed_xml.find("Filer")
+        if filer_xml_object is None:
+            raise custom_exceptions.MissingFilerException(
+                f"Filer section missing from file {self.file_name}"
+            )
+
+        ein_xml_object = filer_xml_object.find("EIN")
         if ein_xml_object is None:
             raise custom_exceptions.MissingEINException(
                 f"EIN missing from file {self.file_name}"
             )
+
         return ein_xml_object.text
