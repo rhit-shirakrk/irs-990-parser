@@ -84,3 +84,26 @@ class TestIRSFieldExtractor:
             assert (
                 org_name_extractor.extract() == "HABITAT FOR HUMANITY OF METRO DENVER"
             )
+
+    def test_org_name_extractor_multiple_line_field_expected_HABITAT_FOR_HUMANITY_OF_METRO_DENVER_INC(
+        self,
+    ) -> None:
+        """Tests for extracting an organization's name which only uses one line in the form"""
+        multiple_line_org_name_path = pathlib.Path(
+            os.path.join(
+                TestIRSFieldExtractor.SAMPLE_FILES_DIR,
+                "org_name",
+                "multiple_line_name.xml",
+            )
+        )
+        with open(multiple_line_org_name_path, "r", encoding="utf-8") as f:
+            file = f.read()
+            file_name = os.path.basename(multiple_line_org_name_path)
+            parsed_xml = bs4.BeautifulSoup(file, "xml")
+            org_name_extractor = irs_field_extractor.OrgNameExtractor(
+                file_name, parsed_xml
+            )
+            assert (
+                org_name_extractor.extract()
+                == "HABITAT FOR HUMANITY OF METRO DENVER INC"
+            )
