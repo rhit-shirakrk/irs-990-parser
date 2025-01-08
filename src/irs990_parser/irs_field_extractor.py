@@ -36,5 +36,6 @@ class EINEXtractor:
 
 
 class OrgNameExtractor:
-    def __init__(self) -> None:
-        pass
+    def __init__(self, file_name: str, parsed_xml: bs4.BeautifulSoup) -> None:
+        self.file_name = file_name
+        self.parsed_xml = parsed_xml
