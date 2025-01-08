@@ -7,7 +7,7 @@ from datetime import datetime
 import pytest
 from pytest_unordered import unordered
 
-from irs990_parser import constants, link_retriever
+from irs990_parser import link_retriever
 
 
 class TestIRS990LinkRetriever:
@@ -120,12 +120,12 @@ class TestIRS990LinkRetriever:
         """
         Tests for a start year earlier than 2018
         """
-        invalid_start_year = constants.EARLIEST_START_YEAR - 1
+        invalid_start_year = link_retriever.IRS990LinkRetriever.EARLIEST_START_YEAR - 1
         current_year = datetime.now().year
         with pytest.raises(ValueError) as excinfo:
             link_retriever.IRS990LinkRetriever(invalid_start_year, current_year)
         assert (
-            f"Invalid start year {invalid_start_year}. The earliest available year is {constants.EARLIEST_START_YEAR}"
+            f"Invalid start year {invalid_start_year}. The earliest available year is {link_retriever.IRS990LinkRetriever.EARLIEST_START_YEAR}"
             in str(excinfo.value)
         )
 
@@ -172,9 +172,10 @@ class TestIRS990LinkRetriever:
         """
         Tests for proper fetching of links to index files for a single year
         """
-        current_year = datetime.now().year
         reverse_index = 1
-        for start_year in range(constants.EARLIEST_START_YEAR, current_year + 1):
+        for start_year in range(
+            link_retriever.IRS990LinkRetriever.EARLIEST_START_YEAR, 2024
+        ):
             expected_link = TestIRS990LinkRetriever.INDEX_LINKS[-reverse_index]
             irs_link_retriever = link_retriever.IRS990LinkRetriever(
                 start_year, start_year
@@ -190,7 +191,8 @@ class TestIRS990LinkRetriever:
         assert (
             expected_links
             == link_retriever.IRS990LinkRetriever(
-                constants.EARLIEST_START_YEAR + 1, constants.EARLIEST_START_YEAR + 2
+                link_retriever.IRS990LinkRetriever.EARLIEST_START_YEAR + 1,
+                link_retriever.IRS990LinkRetriever.EARLIEST_START_YEAR + 2,
             ).get_index_csv_links()
         )
 
@@ -200,7 +202,7 @@ class TestIRS990LinkRetriever:
         """
         current_year = datetime.now().year
         irs_link_retriever = link_retriever.IRS990LinkRetriever(
-            constants.EARLIEST_START_YEAR, current_year
+            link_retriever.IRS990LinkRetriever.EARLIEST_START_YEAR, current_year
         )
         assert (
             TestIRS990LinkRetriever.INDEX_LINKS
@@ -212,7 +214,7 @@ class TestIRS990LinkRetriever:
         Tests for proper fetching of links to zip files. 2024 will
         be omitted since more files will be uploaded later.
         """
-        for year in range(constants.EARLIEST_START_YEAR, 2024):
+        for year in range(link_retriever.IRS990LinkRetriever.EARLIEST_START_YEAR, 2024):
             assert (
                 TestIRS990LinkRetriever.YEAR_TO_ZIP_LINKS[year]
                 == link_retriever.IRS990LinkRetriever(year, year).get_zip_links()
@@ -245,6 +247,7 @@ class TestIRS990LinkRetriever:
         assert (
             unordered(expected_links)
             == link_retriever.IRS990LinkRetriever(
-                constants.EARLIEST_START_YEAR, datetime.now().year
+                link_retriever.IRS990LinkRetriever.EARLIEST_START_YEAR,
+                datetime.now().year,
             ).get_zip_links()
         )

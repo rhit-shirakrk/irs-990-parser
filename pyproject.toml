@@ -7,9 +7,16 @@ name = "irs-990-parser"
 version = "0.0.0"
 dependencies = [
   "beautifulsoup4",
+  "gender-guesser",
+  "lxml",
+  "mysql-connector-python",
+  "pandas",
+  "pydantic",
   "requests",
+  "SQLAlchemy",
+  "zipfile-deflate64",
 ]
-requires-python = ">= 3.13"
+requires-python = ">= 3.6"
 authors = [
    {name = "Ryan Shiraki", email = "shirakrk@rose-hulman.edu"}
 ]
@@ -20,7 +27,7 @@ description = "Parses IRS 990 forms for specific responses/sections"
 readme = "README.md"
 
 [project.optional-dependencies]
-test = ["pytest", "pytest-unordered"]
+test = ["pytest", "pytest-unordered", "requests-mock"]
 
 [tool.pytest.ini_options]
 pythonpath = "src"
