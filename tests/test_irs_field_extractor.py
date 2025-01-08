@@ -33,6 +33,22 @@ class TestIRSFieldExtractor:
             )
             assert ein_extractor.extract() == "742050021"
 
+    def test_ein_extractor_expected_missing_filer_error(self) -> None:
+        """Tests for an error when the Filer section is missing from an IRS form"""
+        file_without_filer_path = pathlib.Path(
+            os.path.join(
+                TestIRSFieldExtractor.SAMPLE_FILES_DIR, "ein", "missing_filer.xml"
+            )
+        )
+        with open(file_without_filer_path, "r", encoding="utf-8") as f:
+            file = f.read()
+            file_name = os.path.basename(file_without_filer_path)
+            parsed_xml = bs4.BeautifulSoup(file, "xml")
+            ein_extractor = irs_field_extractor.EINEXtractor(file_name, parsed_xml)
+            with pytest.raises(custom_exceptions.MissingFilerException) as excinfo:
+                ein_extractor.extract()
+            assert f"Filer section missing from file {file_name}" in str(excinfo)
+
     def test_ein_extractor_expected_missing_ein_error(self) -> None:
         """Tests for an error when an EIN is missing from an IRS form"""
         file_without_ein_path = pathlib.Path(
