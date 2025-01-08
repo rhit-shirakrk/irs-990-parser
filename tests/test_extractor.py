@@ -2,6 +2,7 @@
 Tests downloading and extracting information from IRS files
 """
 
+import os
 import pathlib
 
 import pytest
@@ -55,5 +56,6 @@ class TestIRSExtractor:
             "https://apps.irs.gov/pub/epostcard/990/xml/2024/2024_TEOS_XML_01A.zip"
         )
         irs_extractor = extractor.IRSExtractor()
-        irs_extractor.extract_zip(sample_url, temp_dir)
+        path_to_xml_files = irs_extractor.extract_zip(sample_url, temp_dir)
         assert len(list(temp_dir.iterdir())) == 1
+        assert path_to_xml_files == os.path.join(temp_dir, "2024_TEOS_XML_01A")
