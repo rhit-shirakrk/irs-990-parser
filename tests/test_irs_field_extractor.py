@@ -42,10 +42,9 @@ class TestIRSFieldExtractor:
         )
         with open(file_without_ein_path, "r", encoding="utf-8") as f:
             file = f.read()
+            file_name = os.path.basename(file_without_ein_path)
             parsed_xml = bs4.BeautifulSoup(file, "xml")
-            ein_extractor = irs_field_extractor.EINEXtractor(
-                os.path.basename(file_without_ein_path), parsed_xml
-            )
+            ein_extractor = irs_field_extractor.EINEXtractor(file_name, parsed_xml)
             with pytest.raises(custom_exceptions.MissingEINException) as excinfo:
                 ein_extractor.extract()
-            assert "EIN missing from IRS form" in str(excinfo)
+            assert f"EIN missing from file {file_name}" in str(excinfo)
