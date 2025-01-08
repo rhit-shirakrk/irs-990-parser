@@ -81,3 +81,6 @@ class TestIRSFieldExtractor:
             org_name_extractor = irs_field_extractor.OrgNameExtractor(
                 file_name, parsed_xml
             )
+            assert (
+                org_name_extractor.extract() == "HABITAT_FOR_HUMANITY_OF_METRO_DENVER"
+            )
