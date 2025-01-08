@@ -13,3 +13,7 @@ class MissingFilerException(Exception):
 
 class MissingEINException(Exception):
     """Thrown when an IRS form does not contain an EIN field"""
+
+
+class MissingOrganizationNameException(Exception):
+    """Thrown when an IRS form does not contain an organization name"""

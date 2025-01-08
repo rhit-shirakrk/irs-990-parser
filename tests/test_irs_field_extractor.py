@@ -130,4 +130,4 @@ class TestIRSFieldExtractor:
                 custom_exceptions.MissingOrganizationNameException
             ) as excinfo:
                 org_name_extractor.extract()
-            assert f"Organization name mising from file {file_name}" in str(excinfo)
+            assert f"Organization name missing from file {file_name}" in str(excinfo)
