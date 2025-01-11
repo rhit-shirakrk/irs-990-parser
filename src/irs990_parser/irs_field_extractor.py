@@ -46,9 +46,14 @@ class OrgNameExtractor:
         :return: Organization name
         :rtype: str
         """
-        organization_name_xml_object = self.parsed_xml.find("Filer").find(
-            "BusinessName"
-        )
+        filer_xml_object = self.parsed_xml.find("Filer")
+        if filer_xml_object is None:
+            raise custom_exceptions.MissingFilerException(
+                f"Filer section missing from file {self.file_name}"
+            )
+
+        organization_name_xml_object = filer_xml_object.find("BusinessName")
+
         if organization_name_xml_object is None:
             raise custom_exceptions.MissingOrganizationNameException(
                 f"Organization name missing from file {self.file_name}"

@@ -116,7 +116,7 @@ class TestIRSFieldExtractor:
             os.path.join(
                 TestIRSFieldExtractor.SAMPLE_FILES_DIR,
                 "org_name",
-                "missing_filer.xml",
+                "missing_name.xml",
             )
         )
         with open(missing_org_name_path, "r", encoding="utf-8") as f:
