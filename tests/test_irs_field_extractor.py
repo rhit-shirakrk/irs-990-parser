@@ -108,7 +108,7 @@ class TestIRSFieldExtractor:
                 == "HABITAT FOR HUMANITY OF METRO DENVER INC"
             )
 
-    def test_org_name_extractor_missing_field_expected_missing_org_name_error(
+    def test_org_name_extractor_missing_name_expected_missing_org_name_error(
         self,
     ) -> None:
         """Tests for an error when an organization name is missing from an IRS form"""
@@ -116,7 +116,7 @@ class TestIRSFieldExtractor:
             os.path.join(
                 TestIRSFieldExtractor.SAMPLE_FILES_DIR,
                 "org_name",
-                "missing_name.xml",
+                "missing_filer.xml",
             )
         )
         with open(missing_org_name_path, "r", encoding="utf-8") as f:
@@ -131,3 +131,25 @@ class TestIRSFieldExtractor:
             ) as excinfo:
                 org_name_extractor.extract()
             assert f"Organization name missing from file {file_name}" in str(excinfo)
+
+    def test_org_name_extractor_missing_filer_expected_missing_filer_error(
+        self,
+    ) -> None:
+        """Tests for an error when the filer section is missing from an IRS form"""
+        missing_filer_path = pathlib.Path(
+            os.path.join(
+                TestIRSFieldExtractor.SAMPLE_FILES_DIR,
+                "org_name",
+                "missing_filer.xml",
+            )
+        )
+        with open(missing_filer_path, "r", encoding="utf-8") as f:
+            file = f.read()
+            file_name = os.path.basename(missing_filer_path)
+            parsed_xml = bs4.BeautifulSoup(file, "xml")
+            org_name_extractor = irs_field_extractor.OrgNameExtractor(
+                file_name, parsed_xml
+            )
+            with pytest.raises(custom_exceptions.MissingFilerException) as excinfo:
+                org_name_extractor.extract()
+            assert f"Filer section missing from file {file_name}" in str(excinfo)
