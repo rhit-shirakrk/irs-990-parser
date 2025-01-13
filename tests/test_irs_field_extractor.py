@@ -303,3 +303,4 @@ class TestIRSFieldExtractor:
                     file_name, parsed_xml
                 )
             )
+            assert ceo_compensation_policy.extract() is True
