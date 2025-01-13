@@ -6,7 +6,7 @@ from typing import Optional
 
 import bs4
 
-from irs990_parser import custom_exceptions
+from irs990_parser import custom_exceptions, gender_guesser
 
 
 class EINEXtractor:
@@ -181,9 +181,15 @@ class OtherCompensationReviewExtractor:
 
 
 class TrusteeExtractor:
-    def __init__(self, file_name: str, parsed_xml: bs4.BeautifulSoup) -> None:
+    def __init__(
+        self,
+        file_name: str,
+        parsed_xml: bs4.BeautifulSoup,
+        guesser: gender_guesser.GenderGuesser,
+    ) -> None:
         self.file_name = file_name
         self.parsed_xml = parsed_xml
+        self.guesser = guesser
 
     def calculate_trustee_male_to_female_ratio(self) -> Optional[float]:
         """Calculate male to female ratio of trustees
@@ -192,4 +198,16 @@ class TrusteeExtractor:
         female trustees, return None
         :rtype: Optional[float]
         """
-        return 0.0
+        stakeholder_xml_objects = self.parsed_xml.find_all("Form990PartVIISectionAGrp")
+        male = 0
+        female = 0
+        for stakeholder_xml_object in stakeholder_xml_objects:
+            first_name = stakeholder_xml_object.find("PersonNm").text.split()[0].lower()
+            guess = self.guesser.guess(first_name)
+
+            if guess == "F":
+                female += 1
+            else:
+                male += 1
+
+        return male / female if female > 0 else None
