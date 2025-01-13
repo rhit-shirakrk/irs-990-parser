@@ -184,3 +184,12 @@ class TrusteeExtractor:
     def __init__(self, file_name: str, parsed_xml: bs4.BeautifulSoup) -> None:
         self.file_name = file_name
         self.parsed_xml = parsed_xml
+
+    def calculate_trustee_male_to_female_ratio(self) -> Optional[float]:
+        """Calculate male to female ratio of trustees
+
+        :return: Ratio of male to female trustees. If there are no
+        female trustees, return None
+        :rtype: Optional[float]
+        """
+        return 0.0
