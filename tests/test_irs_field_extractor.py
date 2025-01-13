@@ -208,3 +208,4 @@ class TestIRSFieldExtractor:
             total_employees_extractor = irs_field_extractor.TotalEmployeesExtractor(
                 file_name, parsed_xml
             )
+            assert total_employees_extractor.extract() == 38
