@@ -413,3 +413,12 @@ class TestIRSFieldExtractor:
                 )
             )
             assert other_compensation_policy.extract() is None
+
+    def test_trustee_extractor_male_to_female_ratio_no_male_expected_0(self) -> None:
+        """Tests case where there are no male trustees"""
+        no_male_path = pathlib.Path(
+            os.path.join(
+                TestIRSFieldExtractor.SAMPLE_FILES_DIR, "trustees", "no_male.xml"
+            )
+        )
+        trustee_extractor = irs_field_extractor.TrusteeExtractor()
