@@ -99,3 +99,9 @@ class TotalEmployeesExtractor:
             return None
 
         return int(total_employees_xml_object.text)
+
+
+class WhistleblowerPolicyExtractor:
+    def __init__(self, file_name: str, parsed_xml: bs4.BeautifulSoup) -> None:
+        self.file_name = file_name
+        self.parsed_xml = parsed_xml
