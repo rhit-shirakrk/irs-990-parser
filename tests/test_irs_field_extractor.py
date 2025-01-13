@@ -421,4 +421,10 @@ class TestIRSFieldExtractor:
                 TestIRSFieldExtractor.SAMPLE_FILES_DIR, "trustees", "no_male.xml"
             )
         )
-        trustee_extractor = irs_field_extractor.TrusteeExtractor()
+        with open(no_male_path, "r", encoding="utf-8") as f:
+            file = f.read()
+            file_name = os.path.basename(no_male_path)
+            parsed_xml = bs4.BeautifulSoup(file, "xml")
+            trustee_extractor = irs_field_extractor.TrusteeExtractor(
+                file_name, parsed_xml
+            )
