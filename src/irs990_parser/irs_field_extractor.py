@@ -74,7 +74,7 @@ class TotalCompensationExtractor:
         """Extract total compensation from IRS 990 form
 
         :return: Total compensation
-        :rtype: float
+        :rtype: Optional[float]
         """
         compensation_xml_object = self.parsed_xml.find("CYSalariesCompEmpBnftPaidAmt")
         if compensation_xml_object is None:
@@ -92,7 +92,7 @@ class TotalEmployeesExtractor:
         """Extract number of employees from IRS 990 form
 
         :return: Number of employees
-        :rtype: int
+        :rtype: Optional[int]
         """
         total_employees_xml_object = self.parsed_xml.find("EmployeeCnt")
         if total_employees_xml_object is None:
@@ -112,7 +112,7 @@ class WhistleblowerPolicyExtractor:
         """Extract whistleblower policy from IRS 990 form
 
         :return: Whether a whistleblower policy is present
-        :rtype: bool
+        :rtype: Optional[bool]
         """
         whistleblower_policy_xml_object = self.parsed_xml.find("WhistleblowerPolicyInd")
         if whistleblower_policy_xml_object is None:
@@ -124,3 +124,57 @@ class WhistleblowerPolicyExtractor:
 
     def _implemented_whisteblower_policy(self, checked: int) -> bool:
         return checked == WhistleblowerPolicyExtractor.PRESENT
+
+
+class CEOCompensationReviewExtractor:
+    PRESENT = 1
+
+    def __init__(self, file_name: str, parsed_xml: bs4.BeautifulSoup) -> None:
+        self.file_name = file_name
+        self.parsed_xml = parsed_xml
+
+    def extract(self) -> Optional[bool]:
+        """Extract CEO compensation review policy from IRS 990 form
+
+        :return: CEO compensation review policy
+        :rtype: Optional[bool]
+        """
+        ceo_compensation_review_xml_object = self.parsed_xml.find(
+            "CompensationProcessCEOInd"
+        )
+        if ceo_compensation_review_xml_object is None:
+            return None
+
+        return self._ceo_reviewed_compensation(
+            int(ceo_compensation_review_xml_object.text)
+        )
+
+    def _ceo_reviewed_compensation(self, checked: int) -> bool:
+        return checked == WhistleblowerPolicyExtractor.PRESENT
+
+
+class OtherCompensationReviewExtractor:
+    PRESENT = 1
+
+    def __init__(self, file_name: str, parsed_xml: bs4.BeautifulSoup) -> None:
+        self.file_name = file_name
+        self.parsed_xml = parsed_xml
+
+    def extract(self) -> bool:
+        """Extract Other compensation review policy from IRS 990 form
+
+        :return: Other compensation review policy
+        :rtype: bool
+        """
+        other_compensation_review_xml_object = self.parsed_xml.find(
+            "CompensationProcessOtherInd"
+        )
+        if other_compensation_review_xml_object is None:
+            return None
+
+        return self._other_reviewed_compensation(
+            int(other_compensation_review_xml_object.text)
+        )
+
+    def _other_reviewed_compensation(self, checked: int) -> bool:
+        return checked == OtherCompensationReviewExtractor.PRESENT

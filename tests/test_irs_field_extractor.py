@@ -283,3 +283,133 @@ class TestIRSFieldExtractor:
                 file_name, parsed_xml
             )
             assert whistleblower_policy.extract() is None
+
+    def test_ceo_compensation_review_extraction_expected_true(self) -> None:
+        """Tests for proper extraction of CEO compensation review field"""
+        true_ceo_compensation_path = pathlib.Path(
+            os.path.join(
+                TestIRSFieldExtractor.SAMPLE_FILES_DIR,
+                "compensation_review",
+                "ceo",
+                "true.xml",
+            )
+        )
+        with open(true_ceo_compensation_path, "r", encoding="utf-8") as f:
+            file = f.read()
+            file_name = os.path.basename(true_ceo_compensation_path)
+            parsed_xml = bs4.BeautifulSoup(file, "xml")
+            ceo_compensation_policy = (
+                irs_field_extractor.CEOCompensationReviewExtractor(
+                    file_name, parsed_xml
+                )
+            )
+            assert ceo_compensation_policy.extract() is True
+
+    def test_ceo_compensation_review_extraction_expected_false(self) -> None:
+        """Tests for proper extraction of CEO compensation review field"""
+        false_ceo_compensation_path = pathlib.Path(
+            os.path.join(
+                TestIRSFieldExtractor.SAMPLE_FILES_DIR,
+                "compensation_review",
+                "ceo",
+                "false.xml",
+            )
+        )
+        with open(false_ceo_compensation_path, "r", encoding="utf-8") as f:
+            file = f.read()
+            file_name = os.path.basename(false_ceo_compensation_path)
+            parsed_xml = bs4.BeautifulSoup(file, "xml")
+            ceo_compensation_policy = (
+                irs_field_extractor.CEOCompensationReviewExtractor(
+                    file_name, parsed_xml
+                )
+            )
+            assert ceo_compensation_policy.extract() is False
+
+    def test_ceo_compensation_review_extraction_missing_field_expected_none(
+        self,
+    ) -> None:
+        """Tests for missing CEO compensation review"""
+        missing_ceo_compensation_path = pathlib.Path(
+            os.path.join(
+                TestIRSFieldExtractor.SAMPLE_FILES_DIR,
+                "compensation_review",
+                "ceo",
+                "missing.xml",
+            )
+        )
+        with open(missing_ceo_compensation_path, "r", encoding="utf-8") as f:
+            file = f.read()
+            file_name = os.path.basename(missing_ceo_compensation_path)
+            parsed_xml = bs4.BeautifulSoup(file, "xml")
+            ceo_compensation_policy = (
+                irs_field_extractor.CEOCompensationReviewExtractor(
+                    file_name, parsed_xml
+                )
+            )
+            assert ceo_compensation_policy.extract() is None
+
+    def test_other_compensation_review_extraction_expected_true(self) -> None:
+        """Tests for proper extraction of Other compensation review field"""
+        true_other_compensation_path = pathlib.Path(
+            os.path.join(
+                TestIRSFieldExtractor.SAMPLE_FILES_DIR,
+                "compensation_review",
+                "other",
+                "true.xml",
+            )
+        )
+        with open(true_other_compensation_path, "r", encoding="utf-8") as f:
+            file = f.read()
+            file_name = os.path.basename(true_other_compensation_path)
+            parsed_xml = bs4.BeautifulSoup(file, "xml")
+            other_compensation_policy = (
+                irs_field_extractor.OtherCompensationReviewExtractor(
+                    file_name, parsed_xml
+                )
+            )
+            assert other_compensation_policy.extract() is True
+
+    def test_other_compensation_review_extraction_expected_false(self) -> None:
+        """Tests for proper extraction of Other compensation review field"""
+        false_other_compensation_path = pathlib.Path(
+            os.path.join(
+                TestIRSFieldExtractor.SAMPLE_FILES_DIR,
+                "compensation_review",
+                "other",
+                "false.xml",
+            )
+        )
+        with open(false_other_compensation_path, "r", encoding="utf-8") as f:
+            file = f.read()
+            file_name = os.path.basename(false_other_compensation_path)
+            parsed_xml = bs4.BeautifulSoup(file, "xml")
+            other_compensation_policy = (
+                irs_field_extractor.OtherCompensationReviewExtractor(
+                    file_name, parsed_xml
+                )
+            )
+            assert other_compensation_policy.extract() is False
+
+    def test_other_compensation_review_extraction_missing_field_expected_non(
+        self,
+    ) -> None:
+        """Tests for missing Other compensation review field"""
+        missing_other_compensation_path = pathlib.Path(
+            os.path.join(
+                TestIRSFieldExtractor.SAMPLE_FILES_DIR,
+                "compensation_review",
+                "other",
+                "missing.xml",
+            )
+        )
+        with open(missing_other_compensation_path, "r", encoding="utf-8") as f:
+            file = f.read()
+            file_name = os.path.basename(missing_other_compensation_path)
+            parsed_xml = bs4.BeautifulSoup(file, "xml")
+            other_compensation_policy = (
+                irs_field_extractor.OtherCompensationReviewExtractor(
+                    file_name, parsed_xml
+                )
+            )
+            assert other_compensation_policy.extract() is None

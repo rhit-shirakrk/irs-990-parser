@@ -1,0 +1,837 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Return xmlns="http://www.irs.gov/efile" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.irs.gov/efile" returnVersion="2022v5.0">
+  <ReturnHeader binaryAttachmentCnt="0">
+    <ReturnTs>2024-01-23T09:14:35-06:00</ReturnTs>
+    <TaxPeriodEndDt>2023-06-30</TaxPeriodEndDt>
+    <PreparerFirmGrp>
+      <PreparerFirmEIN>351750664</PreparerFirmEIN>
+      <PreparerFirmName>
+        <BusinessNameLine1Txt>DAUBY O'CONNOR &amp; ZALESKI LLC</BusinessNameLine1Txt>
+      </PreparerFirmName>
+      <PreparerUSAddress>
+        <AddressLine1Txt>501 CONGRESSIONAL BLVD 300</AddressLine1Txt>
+        <CityNm>CARMEL</CityNm>
+        <StateAbbreviationCd>IN</StateAbbreviationCd>
+        <ZIPCd>46032</ZIPCd>
+      </PreparerUSAddress>
+    </PreparerFirmGrp>
+    <ReturnTypeCd>990</ReturnTypeCd>
+    <TaxPeriodBeginDt>2022-07-01</TaxPeriodBeginDt>
+    <Filer>
+      <EIN>742465160</EIN>
+      <BusinessName>
+        <BusinessNameLine1Txt>CAUSA COMMUNITY DEVELOPMENT INC</BusinessNameLine1Txt>
+      </BusinessName>
+      <BusinessNameControlTxt>CAUS</BusinessNameControlTxt>
+      <PhoneNum>6022520482</PhoneNum>
+      <USAddress>
+        <AddressLine1Txt>1112 EAST BUCKEYE ROAD</AddressLine1Txt>
+        <CityNm>PHOENIX</CityNm>
+        <StateAbbreviationCd>AZ</StateAbbreviationCd>
+        <ZIPCd>85034</ZIPCd>
+      </USAddress>
+    </Filer>
+    <BusinessOfficerGrp>
+      <PersonNm>JESSE SATTERLEE</PersonNm>
+      <PersonTitleTxt>CHIEF FINANCIAL OFFICER</PersonTitleTxt>
+      <PhoneNum>6022520482</PhoneNum>
+      <SignatureDt>2024-01-22</SignatureDt>
+      <DiscussWithPaidPreparerInd>1</DiscussWithPaidPreparerInd>
+    </BusinessOfficerGrp>
+    <SigningOfficerGrp>
+      <PersonFullName>
+        <PersonFirstNm>JESSE</PersonFirstNm>
+        <PersonLastNm>SATTERLEE</PersonLastNm>
+      </PersonFullName>
+      <SSN>999009999</SSN>
+    </SigningOfficerGrp>
+    <IRSResponsiblePrtyInfoCurrInd>0</IRSResponsiblePrtyInfoCurrInd>
+    <PreparerPersonGrp>
+      <PreparerPersonNm>ROBERT JOHNSON</PreparerPersonNm>
+      <PTIN>P01081675</PTIN>
+      <PhoneNum>3178485700</PhoneNum>
+    </PreparerPersonGrp>
+    <AdditionalFilerInformation>
+      <TrustedCustomerGrp>
+        <TrustedCustomerCd>2</TrustedCustomerCd>
+        <AuthenticationAssuranceLevelCd>AAL1</AuthenticationAssuranceLevelCd>
+        <IdentityAssuranceLevelCd>IAL1</IdentityAssuranceLevelCd>
+      </TrustedCustomerGrp>
+    </AdditionalFilerInformation>
+    <TaxYr>2022</TaxYr>
+    <BuildTS>2023-04-26 12:10:37Z</BuildTS>
+  </ReturnHeader>
+  <ReturnData documentCnt="7">
+    <IRS990 documentId="RetDoc1038000001" referenceDocumentId="RetDoc1044400001">
+      <DoingBusinessAsName>
+        <BusinessNameLine1Txt>GUADALUPE BARRIO NUEVO</BusinessNameLine1Txt>
+      </DoingBusinessAsName>
+      <PrincipalOfficerNm>DAVID ADAME</PrincipalOfficerNm>
+      <USAddress>
+        <AddressLine1Txt>1112 EAST BUCKEYE ROAD</AddressLine1Txt>
+        <CityNm>PHOENIX</CityNm>
+        <StateAbbreviationCd>AZ</StateAbbreviationCd>
+        <ZIPCd>85034</ZIPCd>
+      </USAddress>
+      <GrossReceiptsAmt>758368</GrossReceiptsAmt>
+      <GroupReturnForAffiliatesInd>0</GroupReturnForAffiliatesInd>
+      <Organization501c3Ind>X</Organization501c3Ind>
+      <WebsiteAddressTxt>N/A</WebsiteAddressTxt>
+      <TypeOfOrganizationCorpInd>X</TypeOfOrganizationCorpInd>
+      <FormationYr>1987</FormationYr>
+      <LegalDomicileStateCd>AZ</LegalDomicileStateCd>
+      <ActivityOrMissionDesc>CAUSA COMMUNITY DEVELOPMENT, INC., AN ARIZONA NOT-FOR-PROFIT CORPORATION, WAS ORGANIZED TO CONSTRUCT, OWN, AND OPERATE A 60 UNIT APARTMENT COMMUNITY IN GUADALUPE, ARIZONA, KNOWN AS GUADALUPE BARRIO NUEVO APARTMENTS. THE PROJECT OPERATES UNDER SECTION 223(A)(7) OF THE NATIONAL HOUSING ACT AS AMENDED. THE CORPORATION HAS ENTERED INTO THE STANDARD FHA REGULATORY AGREEMENT GOVERNING THE OPERATION OF THE PROJECT WITH THE FEDERAL HOUSING ADMINISTRATION SECTION OF HUD. CAUSA COMMUNITY DEVELOPMENT, INC. HAS ALSO ENTERED INTO A HOUSING ASSISTANCE PAYMENTS CONTRACT.</ActivityOrMissionDesc>
+      <VotingMembersGoverningBodyCnt>7</VotingMembersGoverningBodyCnt>
+      <VotingMembersIndependentCnt>4</VotingMembersIndependentCnt>
+      <TotalEmployeeCnt>0</TotalEmployeeCnt>
+      <TotalVolunteersCnt>0</TotalVolunteersCnt>
+      <TotalGrossUBIAmt>0</TotalGrossUBIAmt>
+      <NetUnrelatedBusTxblIncmAmt>0</NetUnrelatedBusTxblIncmAmt>
+      <PYContributionsGrantsAmt>488606</PYContributionsGrantsAmt>
+      <CYContributionsGrantsAmt>443075</CYContributionsGrantsAmt>
+      <PYProgramServiceRevenueAmt>236506</PYProgramServiceRevenueAmt>
+      <CYProgramServiceRevenueAmt>311870</CYProgramServiceRevenueAmt>
+      <PYInvestmentIncomeAmt>53</PYInvestmentIncomeAmt>
+      <CYInvestmentIncomeAmt>238</CYInvestmentIncomeAmt>
+      <PYOtherRevenueAmt>540</PYOtherRevenueAmt>
+      <CYOtherRevenueAmt>3185</CYOtherRevenueAmt>
+      <PYTotalRevenueAmt>725705</PYTotalRevenueAmt>
+      <CYTotalRevenueAmt>758368</CYTotalRevenueAmt>
+      <PYGrantsAndSimilarPaidAmt>0</PYGrantsAndSimilarPaidAmt>
+      <CYGrantsAndSimilarPaidAmt>0</CYGrantsAndSimilarPaidAmt>
+      <PYBenefitsPaidToMembersAmt>0</PYBenefitsPaidToMembersAmt>
+      <CYBenefitsPaidToMembersAmt>0</CYBenefitsPaidToMembersAmt>
+      <PYSalariesCompEmpBnftPaidAmt>151012</PYSalariesCompEmpBnftPaidAmt>
+      <CYSalariesCompEmpBnftPaidAmt>150279</CYSalariesCompEmpBnftPaidAmt>
+      <PYTotalProfFndrsngExpnsAmt>0</PYTotalProfFndrsngExpnsAmt>
+      <CYTotalProfFndrsngExpnsAmt>0</CYTotalProfFndrsngExpnsAmt>
+      <CYTotalFundraisingExpenseAmt>0</CYTotalFundraisingExpenseAmt>
+      <PYOtherExpensesAmt>704629</PYOtherExpensesAmt>
+      <CYOtherExpensesAmt>707499</CYOtherExpensesAmt>
+      <PYTotalExpensesAmt>855641</PYTotalExpensesAmt>
+      <CYTotalExpensesAmt>857778</CYTotalExpensesAmt>
+      <PYRevenuesLessExpensesAmt>-129936</PYRevenuesLessExpensesAmt>
+      <CYRevenuesLessExpensesAmt>-99410</CYRevenuesLessExpensesAmt>
+      <TotalAssetsBOYAmt>2433916</TotalAssetsBOYAmt>
+      <TotalAssetsEOYAmt>2415452</TotalAssetsEOYAmt>
+      <TotalLiabilitiesBOYAmt>4163171</TotalLiabilitiesBOYAmt>
+      <TotalLiabilitiesEOYAmt>4244117</TotalLiabilitiesEOYAmt>
+      <NetAssetsOrFundBalancesBOYAmt>-1729255</NetAssetsOrFundBalancesBOYAmt>
+      <NetAssetsOrFundBalancesEOYAmt>-1828665</NetAssetsOrFundBalancesEOYAmt>
+      <InfoInScheduleOPartIIIInd>X</InfoInScheduleOPartIIIInd>
+      <MissionDesc>CAUSA COMMUNITY DEVELOPMENT, INC., AN ARIZONA NOT-FOR-PROFIT CORPORATION, WAS ORGANIZED TO CONSTRUCT, OWN, AND OPERATE A 60 UNIT APARTMENT COMMUNITY IN GUADALUPE, ARIZONA, KNOWN AS GUADALUPE BARRIO NUEVO APARTMENTS. THE PROJECT OPERATES UNDER SECTION 223(A)(7) OF THE NATIONAL HOUSING ACT AS AMENDED. THE CORPORATION HAS ENTERED INTO THE STANDARD FHA REGULATORY AGREEMENT GOVERNING THE OPERATION OF THE PROJECT WITH THE FEDERAL HOUSING ADMINISTRATION SECTION OF HUD. CAUSA COMMUNITY DEVELOPMENT, INC. HAS ALSO ENTERED INTO A HOUSING ASSISTANCE PAYMENTS CONTRACT.</MissionDesc>
+      <SignificantNewProgramSrvcInd>0</SignificantNewProgramSrvcInd>
+      <SignificantChangeInd>0</SignificantChangeInd>
+      <ExpenseAmt>799115</ExpenseAmt>
+      <RevenueAmt>311870</RevenueAmt>
+      <Desc>CAUSA COMMUNITY DEVELOPMENT, INC., AN ARIZONA NOT-FOR-PROFIT CORPORATION, WAS ORGANIZED TO CONSTRUCT, OWN, AND OPERATE A 60 UNIT APARTMENT COMMUNITY IN GUADALUPE, ARIZONA, KNOWN AS GUADALUPE BARRIO NUEVO APARTMENTS. THE PROJECT OPERATES UNDER SECTION 223(A)(7) OF THE NATIONAL HOUSING ACT AS AMENDED. THE CORPORATION HAS ENTERED INTO THE STANDARD FHA REGULATORY AGREEMENT GOVERNING THE OPERATION OF THE PROJECT WITH THE FEDERAL HOUSING ADMINISTRATION SECTION OF HUD. CAUSA COMMUNITY DEVELOPMENT, INC. HAS ALSO ENTERED INTO A HOUSING ASSISTANCE PAYMENTS CONTRACT.</Desc>
+      <TotalProgramServiceExpensesAmt>799115</TotalProgramServiceExpensesAmt>
+      <DescribedInSection501c3Ind referenceDocumentId="RetDoc1039100001">1</DescribedInSection501c3Ind>
+      <ScheduleBRequiredInd referenceDocumentId="RetDoc1234500001">1</ScheduleBRequiredInd>
+      <PoliticalCampaignActyInd>0</PoliticalCampaignActyInd>
+      <LobbyingActivitiesInd>0</LobbyingActivitiesInd>
+      <SubjectToProxyTaxInd>0</SubjectToProxyTaxInd>
+      <DonorAdvisedFundInd referenceDocumentId="RetDoc1040000001">0</DonorAdvisedFundInd>
+      <ConservationEasementsInd referenceDocumentId="RetDoc1040000001">0</ConservationEasementsInd>
+      <CollectionsOfArtInd referenceDocumentId="RetDoc1040000001">0</CollectionsOfArtInd>
+      <CreditCounselingInd referenceDocumentId="RetDoc1040000001">0</CreditCounselingInd>
+      <DonorRstrOrQuasiEndowmentsInd>0</DonorRstrOrQuasiEndowmentsInd>
+      <ReportLandBuildingEquipmentInd referenceDocumentId="RetDoc1040000001">1</ReportLandBuildingEquipmentInd>
+      <ReportInvestmentsOtherSecInd referenceDocumentId="RetDoc1040000001">0</ReportInvestmentsOtherSecInd>
+      <ReportProgramRelatedInvstInd referenceDocumentId="RetDoc1040000001">0</ReportProgramRelatedInvstInd>
+      <ReportOtherAssetsInd referenceDocumentId="RetDoc1040000001">0</ReportOtherAssetsInd>
+      <ReportOtherLiabilitiesInd referenceDocumentId="RetDoc1040000001">1</ReportOtherLiabilitiesInd>
+      <IncludeFIN48FootnoteInd referenceDocumentId="RetDoc1040000001">1</IncludeFIN48FootnoteInd>
+      <IndependentAuditFinclStmtInd referenceDocumentId="RetDoc1040000001">1</IndependentAuditFinclStmtInd>
+      <ConsolidatedAuditFinclStmtInd referenceDocumentId="RetDoc1040000001">1</ConsolidatedAuditFinclStmtInd>
+      <SchoolOperatingInd>0</SchoolOperatingInd>
+      <ForeignOfficeInd>0</ForeignOfficeInd>
+      <ForeignActivitiesInd>0</ForeignActivitiesInd>
+      <MoreThan5000KToOrgInd>0</MoreThan5000KToOrgInd>
+      <MoreThan5000KToIndividualsInd>0</MoreThan5000KToIndividualsInd>
+      <ProfessionalFundraisingInd>0</ProfessionalFundraisingInd>
+      <FundraisingActivitiesInd>0</FundraisingActivitiesInd>
+      <GamingActivitiesInd>0</GamingActivitiesInd>
+      <OperateHospitalInd>0</OperateHospitalInd>
+      <GrantsToOrganizationsInd>0</GrantsToOrganizationsInd>
+      <GrantsToIndividualsInd>0</GrantsToIndividualsInd>
+      <ScheduleJRequiredInd referenceDocumentId="RetDoc1042400001">1</ScheduleJRequiredInd>
+      <TaxExemptBondsInd>0</TaxExemptBondsInd>
+      <EngagedInExcessBenefitTransInd>0</EngagedInExcessBenefitTransInd>
+      <PYExcessBenefitTransInd>0</PYExcessBenefitTransInd>
+      <LoanOutstandingInd>0</LoanOutstandingInd>
+      <GrantToRelatedPersonInd>0</GrantToRelatedPersonInd>
+      <BusinessRlnWithOrgMemInd>0</BusinessRlnWithOrgMemInd>
+      <BusinessRlnWithFamMemInd>0</BusinessRlnWithFamMemInd>
+      <BusinessRlnWith35CtrlEntInd>0</BusinessRlnWith35CtrlEntInd>
+      <DeductibleNonCashContriInd>0</DeductibleNonCashContriInd>
+      <DeductibleArtContributionInd>0</DeductibleArtContributionInd>
+      <TerminateOperationsInd>0</TerminateOperationsInd>
+      <PartialLiquidationInd>0</PartialLiquidationInd>
+      <DisregardedEntityInd referenceDocumentId="RetDoc1043400001">0</DisregardedEntityInd>
+      <RelatedEntityInd referenceDocumentId="RetDoc1043400001">1</RelatedEntityInd>
+      <RelatedOrganizationCtrlEntInd>0</RelatedOrganizationCtrlEntInd>
+      <TrnsfrExmptNonChrtblRltdOrgInd referenceDocumentId="RetDoc1043400001">0</TrnsfrExmptNonChrtblRltdOrgInd>
+      <ActivitiesConductedPrtshpInd referenceDocumentId="RetDoc1043400001">0</ActivitiesConductedPrtshpInd>
+      <ScheduleORequiredInd>1</ScheduleORequiredInd>
+      <IRPDocumentCnt>13</IRPDocumentCnt>
+      <IRPDocumentW2GCnt>0</IRPDocumentW2GCnt>
+      <BackupWthldComplianceInd>1</BackupWthldComplianceInd>
+      <EmployeeCnt>0</EmployeeCnt>
+      <UnrelatedBusIncmOverLimitInd>0</UnrelatedBusIncmOverLimitInd>
+      <ForeignFinancialAccountInd>0</ForeignFinancialAccountInd>
+      <ProhibitedTaxShelterTransInd>0</ProhibitedTaxShelterTransInd>
+      <TaxablePartyNotificationInd>0</TaxablePartyNotificationInd>
+      <NondeductibleContributionsInd>0</NondeductibleContributionsInd>
+      <QuidProQuoContributionsInd>0</QuidProQuoContributionsInd>
+      <Form8282PropertyDisposedOfInd>0</Form8282PropertyDisposedOfInd>
+      <RcvFndsToPayPrsnlBnftCntrctInd>0</RcvFndsToPayPrsnlBnftCntrctInd>
+      <PayPremiumsPrsnlBnftCntrctInd>0</PayPremiumsPrsnlBnftCntrctInd>
+      <IndoorTanningServicesInd>0</IndoorTanningServicesInd>
+      <SubjToTaxRmnrtnExPrchtPymtInd>0</SubjToTaxRmnrtnExPrchtPymtInd>
+      <SubjectToExcsTaxNetInvstIncInd>0</SubjectToExcsTaxNetInvstIncInd>
+      <InfoInScheduleOPartVIInd>X</InfoInScheduleOPartVIInd>
+      <GoverningBodyVotingMembersCnt>7</GoverningBodyVotingMembersCnt>
+      <IndependentVotingMemberCnt>4</IndependentVotingMemberCnt>
+      <FamilyOrBusinessRlnInd>0</FamilyOrBusinessRlnInd>
+      <DelegationOfMgmtDutiesInd>1</DelegationOfMgmtDutiesInd>
+      <ChangeToOrgDocumentsInd>0</ChangeToOrgDocumentsInd>
+      <MaterialDiversionOrMisuseInd>0</MaterialDiversionOrMisuseInd>
+      <MembersOrStockholdersInd>0</MembersOrStockholdersInd>
+      <ElectionOfBoardMembersInd>0</ElectionOfBoardMembersInd>
+      <DecisionsSubjectToApprovaInd>1</DecisionsSubjectToApprovaInd>
+      <MinutesOfGoverningBodyInd>1</MinutesOfGoverningBodyInd>
+      <MinutesOfCommitteesInd>1</MinutesOfCommitteesInd>
+      <OfficerMailingAddressInd>0</OfficerMailingAddressInd>
+      <LocalChaptersInd>0</LocalChaptersInd>
+      <Form990ProvidedToGvrnBodyInd>1</Form990ProvidedToGvrnBodyInd>
+      <ConflictOfInterestPolicyInd>1</ConflictOfInterestPolicyInd>
+      <AnnualDisclosureCoveredPrsnInd>1</AnnualDisclosureCoveredPrsnInd>
+      <RegularMonitoringEnfrcInd>1</RegularMonitoringEnfrcInd>
+      <WhistleblowerPolicyInd>1</WhistleblowerPolicyInd>
+      <DocumentRetentionPolicyInd>1</DocumentRetentionPolicyInd>
+      <CompensationProcessCEOInd>0</CompensationProcessCEOInd>
+      <CompensationProcessOtherInd>0</CompensationProcessOtherInd>
+      <InvestmentInJointVentureInd>0</InvestmentInJointVentureInd>
+      <UponRequestInd>X</UponRequestInd>
+      <BooksInCareOfDetail>
+        <PersonNm>QING CHEN</PersonNm>
+        <PhoneNum>6022570700</PhoneNum>
+        <USAddress>
+          <AddressLine1Txt>1112 EAST BUCKEYE ROAD</AddressLine1Txt>
+          <CityNm>PHOENIX</CityNm>
+          <StateAbbreviationCd>AZ</StateAbbreviationCd>
+          <ZIPCd>85034</ZIPCd>
+        </USAddress>
+      </BooksInCareOfDetail>
+      <InfoInScheduleOPartVIIInd>X</InfoInScheduleOPartVIIInd>
+      <Form990PartVIISectionAGrp>
+        <PersonNm>DAVID ADAME</PersonNm>
+        <TitleTxt>CHAIRMAN</TitleTxt>
+        <AverageHoursPerWeekRt>0.50</AverageHoursPerWeekRt>
+        <AverageHoursPerWeekRltdOrgRt>40.00</AverageHoursPerWeekRltdOrgRt>
+        <IndividualTrusteeOrDirectorInd>X</IndividualTrusteeOrDirectorInd>
+        <OfficerInd>X</OfficerInd>
+        <ReportableCompFromOrgAmt>0</ReportableCompFromOrgAmt>
+        <ReportableCompFromRltdOrgAmt>809241</ReportableCompFromRltdOrgAmt>
+        <OtherCompensationAmt>20934</OtherCompensationAmt>
+      </Form990PartVIISectionAGrp>
+      <Form990PartVIISectionAGrp>
+        <PersonNm>ALICIA NUNEZ</PersonNm>
+        <TitleTxt>CFO</TitleTxt>
+        <AverageHoursPerWeekRt>0.50</AverageHoursPerWeekRt>
+        <AverageHoursPerWeekRltdOrgRt>40.00</AverageHoursPerWeekRltdOrgRt>
+        <IndividualTrusteeOrDirectorInd>X</IndividualTrusteeOrDirectorInd>
+        <OfficerInd>X</OfficerInd>
+        <ReportableCompFromOrgAmt>0</ReportableCompFromOrgAmt>
+        <ReportableCompFromRltdOrgAmt>374101</ReportableCompFromRltdOrgAmt>
+        <OtherCompensationAmt>27532</OtherCompensationAmt>
+      </Form990PartVIISectionAGrp>
+      <Form990PartVIISectionAGrp>
+        <PersonNm>MAX GONZALES</PersonNm>
+        <TitleTxt>DIRECTOR</TitleTxt>
+        <AverageHoursPerWeekRt>0.50</AverageHoursPerWeekRt>
+        <AverageHoursPerWeekRltdOrgRt>40.00</AverageHoursPerWeekRltdOrgRt>
+        <IndividualTrusteeOrDirectorInd>X</IndividualTrusteeOrDirectorInd>
+        <ReportableCompFromOrgAmt>0</ReportableCompFromOrgAmt>
+        <ReportableCompFromRltdOrgAmt>404377</ReportableCompFromRltdOrgAmt>
+        <OtherCompensationAmt>22507</OtherCompensationAmt>
+      </Form990PartVIISectionAGrp>
+      <Form990PartVIISectionAGrp>
+        <PersonNm>ANTONIO MOYA</PersonNm>
+        <TitleTxt>DIRECTOR</TitleTxt>
+        <AverageHoursPerWeekRt>0.50</AverageHoursPerWeekRt>
+        <AverageHoursPerWeekRltdOrgRt>2.50</AverageHoursPerWeekRltdOrgRt>
+        <IndividualTrusteeOrDirectorInd>X</IndividualTrusteeOrDirectorInd>
+        <ReportableCompFromOrgAmt>0</ReportableCompFromOrgAmt>
+        <ReportableCompFromRltdOrgAmt>0</ReportableCompFromRltdOrgAmt>
+        <OtherCompensationAmt>0</OtherCompensationAmt>
+      </Form990PartVIISectionAGrp>
+      <Form990PartVIISectionAGrp>
+        <PersonNm>DELMA HERRERA</PersonNm>
+        <TitleTxt>SECRETARY</TitleTxt>
+        <AverageHoursPerWeekRt>0.50</AverageHoursPerWeekRt>
+        <AverageHoursPerWeekRltdOrgRt>2.50</AverageHoursPerWeekRltdOrgRt>
+        <IndividualTrusteeOrDirectorInd>X</IndividualTrusteeOrDirectorInd>
+        <OfficerInd>X</OfficerInd>
+        <ReportableCompFromOrgAmt>0</ReportableCompFromOrgAmt>
+        <ReportableCompFromRltdOrgAmt>0</ReportableCompFromRltdOrgAmt>
+        <OtherCompensationAmt>0</OtherCompensationAmt>
+      </Form990PartVIISectionAGrp>
+      <Form990PartVIISectionAGrp>
+        <PersonNm>ALEX VARELA</PersonNm>
+        <TitleTxt>TREASURER</TitleTxt>
+        <AverageHoursPerWeekRt>0.50</AverageHoursPerWeekRt>
+        <AverageHoursPerWeekRltdOrgRt>2.50</AverageHoursPerWeekRltdOrgRt>
+        <IndividualTrusteeOrDirectorInd>X</IndividualTrusteeOrDirectorInd>
+        <OfficerInd>X</OfficerInd>
+        <ReportableCompFromOrgAmt>0</ReportableCompFromOrgAmt>
+        <ReportableCompFromRltdOrgAmt>0</ReportableCompFromRltdOrgAmt>
+        <OtherCompensationAmt>0</OtherCompensationAmt>
+      </Form990PartVIISectionAGrp>
+      <Form990PartVIISectionAGrp>
+        <PersonNm>STEPHANIE ACOSTA</PersonNm>
+        <TitleTxt>DIRECTOR</TitleTxt>
+        <AverageHoursPerWeekRt>0.50</AverageHoursPerWeekRt>
+        <AverageHoursPerWeekRltdOrgRt>2.50</AverageHoursPerWeekRltdOrgRt>
+        <IndividualTrusteeOrDirectorInd>X</IndividualTrusteeOrDirectorInd>
+        <ReportableCompFromOrgAmt>0</ReportableCompFromOrgAmt>
+        <ReportableCompFromRltdOrgAmt>0</ReportableCompFromRltdOrgAmt>
+        <OtherCompensationAmt>0</OtherCompensationAmt>
+      </Form990PartVIISectionAGrp>
+      <TotalReportableCompFromOrgAmt>0</TotalReportableCompFromOrgAmt>
+      <TotReportableCompRltdOrgAmt>1587719</TotReportableCompRltdOrgAmt>
+      <TotalOtherCompensationAmt>70973</TotalOtherCompensationAmt>
+      <IndivRcvdGreaterThan100KCnt>0</IndivRcvdGreaterThan100KCnt>
+      <FormerOfcrEmployeesListedInd>0</FormerOfcrEmployeesListedInd>
+      <TotalCompGreaterThan150KInd>1</TotalCompGreaterThan150KInd>
+      <CompensationFromOtherSrcsInd>0</CompensationFromOtherSrcsInd>
+      <CntrctRcvdGreaterThan100KCnt>0</CntrctRcvdGreaterThan100KCnt>
+      <GovernmentGrantsAmt>443075</GovernmentGrantsAmt>
+      <TotalContributionsAmt>443075</TotalContributionsAmt>
+      <ProgramServiceRevenueGrp>
+        <Desc>RENTAL INCOME</Desc>
+        <BusinessCd>531110</BusinessCd>
+        <TotalRevenueColumnAmt>311870</TotalRevenueColumnAmt>
+        <RelatedOrExemptFuncIncomeAmt>311870</RelatedOrExemptFuncIncomeAmt>
+      </ProgramServiceRevenueGrp>
+      <TotalProgramServiceRevenueAmt>311870</TotalProgramServiceRevenueAmt>
+      <InvestmentIncomeGrp>
+        <TotalRevenueColumnAmt>238</TotalRevenueColumnAmt>
+        <ExclusionAmt>238</ExclusionAmt>
+      </InvestmentIncomeGrp>
+      <OtherRevenueMiscGrp>
+        <Desc>TENANT CHARGES</Desc>
+        <BusinessCd>531110</BusinessCd>
+        <TotalRevenueColumnAmt>3185</TotalRevenueColumnAmt>
+        <ExclusionAmt>3185</ExclusionAmt>
+      </OtherRevenueMiscGrp>
+      <OtherRevenueTotalAmt>3185</OtherRevenueTotalAmt>
+      <TotalRevenueGrp>
+        <TotalRevenueColumnAmt>758368</TotalRevenueColumnAmt>
+        <RelatedOrExemptFuncIncomeAmt>311870</RelatedOrExemptFuncIncomeAmt>
+        <UnrelatedBusinessRevenueAmt>0</UnrelatedBusinessRevenueAmt>
+        <ExclusionAmt>3423</ExclusionAmt>
+      </TotalRevenueGrp>
+      <OtherSalariesAndWagesGrp>
+        <TotalAmt>111229</TotalAmt>
+        <ProgramServicesAmt>111229</ProgramServicesAmt>
+      </OtherSalariesAndWagesGrp>
+      <PensionPlanContributionsGrp>
+        <TotalAmt>3036</TotalAmt>
+        <ProgramServicesAmt>3036</ProgramServicesAmt>
+      </PensionPlanContributionsGrp>
+      <OtherEmployeeBenefitsGrp>
+        <TotalAmt>27663</TotalAmt>
+        <ProgramServicesAmt>27663</ProgramServicesAmt>
+      </OtherEmployeeBenefitsGrp>
+      <PayrollTaxesGrp>
+        <TotalAmt>8351</TotalAmt>
+        <ProgramServicesAmt>8351</ProgramServicesAmt>
+      </PayrollTaxesGrp>
+      <FeesForServicesManagementGrp>
+        <TotalAmt>29526</TotalAmt>
+        <ManagementAndGeneralAmt>29526</ManagementAndGeneralAmt>
+      </FeesForServicesManagementGrp>
+      <FeesForServicesLegalGrp>
+        <TotalAmt>2515</TotalAmt>
+        <ManagementAndGeneralAmt>2515</ManagementAndGeneralAmt>
+      </FeesForServicesLegalGrp>
+      <FeesForServicesAccountingGrp>
+        <TotalAmt>6320</TotalAmt>
+        <ManagementAndGeneralAmt>6320</ManagementAndGeneralAmt>
+      </FeesForServicesAccountingGrp>
+      <FeesForServicesOtherGrp>
+        <TotalAmt>125</TotalAmt>
+        <ManagementAndGeneralAmt>125</ManagementAndGeneralAmt>
+      </FeesForServicesOtherGrp>
+      <AdvertisingGrp>
+        <TotalAmt>610</TotalAmt>
+        <ManagementAndGeneralAmt>610</ManagementAndGeneralAmt>
+      </AdvertisingGrp>
+      <OfficeExpensesGrp>
+        <TotalAmt>10162</TotalAmt>
+        <ManagementAndGeneralAmt>10162</ManagementAndGeneralAmt>
+      </OfficeExpensesGrp>
+      <InformationTechnologyGrp>
+        <TotalAmt>5616</TotalAmt>
+        <ManagementAndGeneralAmt>5616</ManagementAndGeneralAmt>
+      </InformationTechnologyGrp>
+      <OccupancyGrp>
+        <TotalAmt>523018</TotalAmt>
+        <ProgramServicesAmt>523018</ProgramServicesAmt>
+      </OccupancyGrp>
+      <TravelGrp>
+        <TotalAmt>1964</TotalAmt>
+        <ManagementAndGeneralAmt>1964</ManagementAndGeneralAmt>
+      </TravelGrp>
+      <ConferencesMeetingsGrp>
+        <TotalAmt>1825</TotalAmt>
+        <ManagementAndGeneralAmt>1825</ManagementAndGeneralAmt>
+      </ConferencesMeetingsGrp>
+      <DepreciationDepletionGrp>
+        <TotalAmt>125818</TotalAmt>
+        <ProgramServicesAmt>125818</ProgramServicesAmt>
+      </DepreciationDepletionGrp>
+      <TotalFunctionalExpensesGrp>
+        <TotalAmt>857778</TotalAmt>
+        <ProgramServicesAmt>799115</ProgramServicesAmt>
+        <ManagementAndGeneralAmt>58663</ManagementAndGeneralAmt>
+        <FundraisingAmt>0</FundraisingAmt>
+      </TotalFunctionalExpensesGrp>
+      <CashNonInterestBearingGrp>
+        <BOYAmt>28764</BOYAmt>
+        <EOYAmt>38675</EOYAmt>
+      </CashNonInterestBearingGrp>
+      <AccountsReceivableGrp>
+        <EOYAmt>4142</EOYAmt>
+      </AccountsReceivableGrp>
+      <PrepaidExpensesDefrdChargesGrp>
+        <BOYAmt>7590</BOYAmt>
+        <EOYAmt>23447</EOYAmt>
+      </PrepaidExpensesDefrdChargesGrp>
+      <LandBldgEquipCostOrOtherBssAmt>6663894</LandBldgEquipCostOrOtherBssAmt>
+      <LandBldgEquipAccumDeprecAmt>4677402</LandBldgEquipAccumDeprecAmt>
+      <LandBldgEquipBasisNetGrp>
+        <BOYAmt>2091991</BOYAmt>
+        <EOYAmt>1986492</EOYAmt>
+      </LandBldgEquipBasisNetGrp>
+      <InvestmentsProgramRelatedGrp>
+        <BOYAmt>70579</BOYAmt>
+        <EOYAmt>72711</EOYAmt>
+      </InvestmentsProgramRelatedGrp>
+      <IntangibleAssetsGrp>
+        <BOYAmt>178038</BOYAmt>
+        <EOYAmt>172279</EOYAmt>
+      </IntangibleAssetsGrp>
+      <OtherAssetsTotalGrp>
+        <BOYAmt>56954</BOYAmt>
+        <EOYAmt>117706</EOYAmt>
+      </OtherAssetsTotalGrp>
+      <TotalAssetsGrp>
+        <BOYAmt>2433916</BOYAmt>
+        <EOYAmt>2415452</EOYAmt>
+      </TotalAssetsGrp>
+      <AccountsPayableAccrExpnssGrp>
+        <BOYAmt>121596</BOYAmt>
+        <EOYAmt>221190</EOYAmt>
+      </AccountsPayableAccrExpnssGrp>
+      <DeferredRevenueGrp>
+        <BOYAmt>28662</BOYAmt>
+        <EOYAmt>20081</EOYAmt>
+      </DeferredRevenueGrp>
+      <MortgNotesPyblScrdInvstPropGrp>
+        <BOYAmt>3985022</BOYAmt>
+        <EOYAmt>3929478</EOYAmt>
+      </MortgNotesPyblScrdInvstPropGrp>
+      <OtherLiabilitiesGrp>
+        <BOYAmt>27891</BOYAmt>
+        <EOYAmt>73368</EOYAmt>
+      </OtherLiabilitiesGrp>
+      <TotalLiabilitiesGrp>
+        <BOYAmt>4163171</BOYAmt>
+        <EOYAmt>4244117</EOYAmt>
+      </TotalLiabilitiesGrp>
+      <OrganizationFollowsFASB117Ind>X</OrganizationFollowsFASB117Ind>
+      <NoDonorRestrictionNetAssetsGrp>
+        <BOYAmt>-1729255</BOYAmt>
+        <EOYAmt>-1828665</EOYAmt>
+      </NoDonorRestrictionNetAssetsGrp>
+      <TotalNetAssetsFundBalanceGrp>
+        <BOYAmt>-1729255</BOYAmt>
+        <EOYAmt>-1828665</EOYAmt>
+      </TotalNetAssetsFundBalanceGrp>
+      <TotLiabNetAssetsFundBalanceGrp>
+        <BOYAmt>2433916</BOYAmt>
+        <EOYAmt>2415452</EOYAmt>
+      </TotLiabNetAssetsFundBalanceGrp>
+      <ReconcilationRevenueExpnssAmt>-99410</ReconcilationRevenueExpnssAmt>
+      <OtherChangesInNetAssetsAmt>0</OtherChangesInNetAssetsAmt>
+      <InfoInScheduleOPartXIIInd>X</InfoInScheduleOPartXIIInd>
+      <MethodOfAccountingAccrualInd>X</MethodOfAccountingAccrualInd>
+      <AccountantCompileOrReviewInd>0</AccountantCompileOrReviewInd>
+      <FSAuditedInd>1</FSAuditedInd>
+      <FSAuditedBasisGrp>
+        <ConsolAndSepBasisFinclStmtInd>X</ConsolAndSepBasisFinclStmtInd>
+      </FSAuditedBasisGrp>
+      <AuditCommitteeInd>1</AuditCommitteeInd>
+      <FederalGrantAuditRequiredInd>1</FederalGrantAuditRequiredInd>
+      <FederalGrantAuditPerformedInd>1</FederalGrantAuditPerformedInd>
+    </IRS990>
+    <IRS990ScheduleA documentId="RetDoc1039100001">
+      <PubliclySupportedOrg509a2Ind>X</PubliclySupportedOrg509a2Ind>
+      <GiftsGrantsContrisRcvd509Grp>
+        <CurrentTaxYearMinus4YearsAmt>601388</CurrentTaxYearMinus4YearsAmt>
+        <CurrentTaxYearMinus3YearsAmt>553970</CurrentTaxYearMinus3YearsAmt>
+        <CurrentTaxYearMinus2YearsAmt>527413</CurrentTaxYearMinus2YearsAmt>
+        <CurrentTaxYearMinus1YearAmt>488606</CurrentTaxYearMinus1YearAmt>
+        <CurrentTaxYearAmt>443075</CurrentTaxYearAmt>
+        <TotalAmt>2614452</TotalAmt>
+      </GiftsGrantsContrisRcvd509Grp>
+      <GrossReceiptsAdmissionsGrp>
+        <CurrentTaxYearMinus4YearsAmt>100418</CurrentTaxYearMinus4YearsAmt>
+        <CurrentTaxYearMinus3YearsAmt>171736</CurrentTaxYearMinus3YearsAmt>
+        <CurrentTaxYearMinus2YearsAmt>189350</CurrentTaxYearMinus2YearsAmt>
+        <CurrentTaxYearMinus1YearAmt>236506</CurrentTaxYearMinus1YearAmt>
+        <CurrentTaxYearAmt>311870</CurrentTaxYearAmt>
+        <TotalAmt>1009880</TotalAmt>
+      </GrossReceiptsAdmissionsGrp>
+      <Total509Grp>
+        <CurrentTaxYearMinus4YearsAmt>701806</CurrentTaxYearMinus4YearsAmt>
+        <CurrentTaxYearMinus3YearsAmt>725706</CurrentTaxYearMinus3YearsAmt>
+        <CurrentTaxYearMinus2YearsAmt>716763</CurrentTaxYearMinus2YearsAmt>
+        <CurrentTaxYearMinus1YearAmt>725112</CurrentTaxYearMinus1YearAmt>
+        <CurrentTaxYearAmt>754945</CurrentTaxYearAmt>
+        <TotalAmt>3624332</TotalAmt>
+      </Total509Grp>
+      <AmountsRcvdDsqlfyPersonGrp>
+        <TotalAmt>0</TotalAmt>
+      </AmountsRcvdDsqlfyPersonGrp>
+      <SubstantialContributorsAmtGrp>
+        <TotalAmt>0</TotalAmt>
+      </SubstantialContributorsAmtGrp>
+      <SubstAndDsqlfyPrsnsTotGrp>
+        <TotalAmt>0</TotalAmt>
+      </SubstAndDsqlfyPrsnsTotGrp>
+      <PublicSupportTotal509Amt>3624332</PublicSupportTotal509Amt>
+      <GrossInvestmentIncome509Grp>
+        <CurrentTaxYearMinus4YearsAmt>2062</CurrentTaxYearMinus4YearsAmt>
+        <CurrentTaxYearMinus3YearsAmt>164</CurrentTaxYearMinus3YearsAmt>
+        <CurrentTaxYearMinus2YearsAmt>56</CurrentTaxYearMinus2YearsAmt>
+        <CurrentTaxYearMinus1YearAmt>53</CurrentTaxYearMinus1YearAmt>
+        <CurrentTaxYearAmt>238</CurrentTaxYearAmt>
+        <TotalAmt>2573</TotalAmt>
+      </GrossInvestmentIncome509Grp>
+      <InvestmentIncomeAndUBTIGrp>
+        <CurrentTaxYearMinus4YearsAmt>2062</CurrentTaxYearMinus4YearsAmt>
+        <CurrentTaxYearMinus3YearsAmt>164</CurrentTaxYearMinus3YearsAmt>
+        <CurrentTaxYearMinus2YearsAmt>56</CurrentTaxYearMinus2YearsAmt>
+        <CurrentTaxYearMinus1YearAmt>53</CurrentTaxYearMinus1YearAmt>
+        <CurrentTaxYearAmt>238</CurrentTaxYearAmt>
+        <TotalAmt>2573</TotalAmt>
+      </InvestmentIncomeAndUBTIGrp>
+      <OtherIncome509Grp>
+        <CurrentTaxYearMinus4YearsAmt>1993</CurrentTaxYearMinus4YearsAmt>
+        <CurrentTaxYearMinus3YearsAmt>1153</CurrentTaxYearMinus3YearsAmt>
+        <CurrentTaxYearMinus2YearsAmt>8383</CurrentTaxYearMinus2YearsAmt>
+        <CurrentTaxYearMinus1YearAmt>540</CurrentTaxYearMinus1YearAmt>
+        <CurrentTaxYearAmt>3185</CurrentTaxYearAmt>
+        <TotalAmt>15254</TotalAmt>
+      </OtherIncome509Grp>
+      <TotalSupportCalendarYearGrp>
+        <CurrentTaxYearMinus4YearsAmt>705861</CurrentTaxYearMinus4YearsAmt>
+        <CurrentTaxYearMinus3YearsAmt>727023</CurrentTaxYearMinus3YearsAmt>
+        <CurrentTaxYearMinus2YearsAmt>725202</CurrentTaxYearMinus2YearsAmt>
+        <CurrentTaxYearMinus1YearAmt>725705</CurrentTaxYearMinus1YearAmt>
+        <CurrentTaxYearAmt>758368</CurrentTaxYearAmt>
+        <TotalAmt>3642159</TotalAmt>
+      </TotalSupportCalendarYearGrp>
+      <PublicSupportCY509Pct>0.99510</PublicSupportCY509Pct>
+      <PublicSupportPY509Pct>0.99520</PublicSupportPY509Pct>
+      <InvestmentIncomeCYPct>0.00070</InvestmentIncomeCYPct>
+      <InvestmentIncomePYPct>0.00070</InvestmentIncomePYPct>
+      <ThirtyThrPctSuprtTestsCY509Ind>X</ThirtyThrPctSuprtTestsCY509Ind>
+      <Form990ScheduleAPartVIGrp>
+        <FormAndLineReferenceDesc>SCHEDULE A, PART III, LINE 12:</FormAndLineReferenceDesc>
+        <ExplanationTxt>MISCELLANEOUS INCOME CONSISTS OF TENANT CHARGES, LAUNDRY AND VENDING CHARGES AND OTHER INCOME ITEMS FOR SERVICES PROVIDED FOR THE CONVENIENCE OF THE TENANTS.</ExplanationTxt>
+      </Form990ScheduleAPartVIGrp>
+    </IRS990ScheduleA>
+    <IRS990ScheduleB documentId="RetDoc1234500001">
+      <ContributorInformationGrp>
+        <ContributorNum>RESTRICTED</ContributorNum>
+        <ContributorBusinessName>
+          <BusinessNameLine1>RESTRICTED</BusinessNameLine1>
+        </ContributorBusinessName>
+        <ContributorUSAddress>
+          <AddressLine1>RESTRICTED</AddressLine1>
+          <AddressLine2>RESTRICTED</AddressLine2>
+          <City>RESTRICTED</City>
+          <State>RESTRICTED</State>
+          <ZIPCode>RESTRICTED</ZIPCode>
+        </ContributorUSAddress>
+        <TotalContributionsAmt>RESTRICTED</TotalContributionsAmt>
+      </ContributorInformationGrp>
+    </IRS990ScheduleB>
+    <IRS990ScheduleD documentId="RetDoc1040000001">
+      <LandGrp>
+        <OtherCostOrOtherBasisAmt>312245</OtherCostOrOtherBasisAmt>
+        <BookValueAmt>312245</BookValueAmt>
+      </LandGrp>
+      <BuildingsGrp>
+        <OtherCostOrOtherBasisAmt>5243723</OtherCostOrOtherBasisAmt>
+        <DepreciationAmt>4024564</DepreciationAmt>
+        <BookValueAmt>1219159</BookValueAmt>
+      </BuildingsGrp>
+      <EquipmentGrp>
+        <OtherCostOrOtherBasisAmt>1020939</OtherCostOrOtherBasisAmt>
+        <DepreciationAmt>597112</DepreciationAmt>
+        <BookValueAmt>423827</BookValueAmt>
+      </EquipmentGrp>
+      <OtherLandBuildingsGrp>
+        <OtherCostOrOtherBasisAmt>86987</OtherCostOrOtherBasisAmt>
+        <DepreciationAmt>55726</DepreciationAmt>
+        <BookValueAmt>31261</BookValueAmt>
+      </OtherLandBuildingsGrp>
+      <TotalBookValueLandBuildingsAmt>1986492</TotalBookValueLandBuildingsAmt>
+      <OtherLiabilitiesOrgGrp>
+        <Desc>TENANT SECURITY DEPOSITS</Desc>
+        <Amt>22061</Amt>
+      </OtherLiabilitiesOrgGrp>
+      <OtherLiabilitiesOrgGrp>
+        <Desc>DUE TO CPLC</Desc>
+        <Amt>51307</Amt>
+      </OtherLiabilitiesOrgGrp>
+      <TotalLiabilityAmt>73368</TotalLiabilityAmt>
+      <FootnoteTextInd>X</FootnoteTextInd>
+      <TotalRevEtcAuditedFinclStmtAmt>758368</TotalRevEtcAuditedFinclStmtAmt>
+      <RevenueNotReportedAmt>0</RevenueNotReportedAmt>
+      <RevenueSubtotalAmt>758368</RevenueSubtotalAmt>
+      <RevenueNotReportedFinclStmtAmt>0</RevenueNotReportedFinclStmtAmt>
+      <TotalRevenuePerForm990Amt>758368</TotalRevenuePerForm990Amt>
+      <TotExpnsEtcAuditedFinclStmtAmt>914692</TotExpnsEtcAuditedFinclStmtAmt>
+      <OtherExpensesIncludedAmt>56914</OtherExpensesIncludedAmt>
+      <ExpensesNotReportedAmt>56914</ExpensesNotReportedAmt>
+      <ExpensesSubtotalAmt>857778</ExpensesSubtotalAmt>
+      <ExpensesNotRptFinclStmtAmt>0</ExpensesNotRptFinclStmtAmt>
+      <TotalExpensesPerForm990Amt>857778</TotalExpensesPerForm990Amt>
+      <SupplementalInformationDetail>
+        <FormAndLineReferenceDesc>PART X, LINE 2:</FormAndLineReferenceDesc>
+        <ExplanationTxt>THE CORPORATION IS EXEMPT FROM FEDERAL INCOME TAX UNDER SECTION 501(C)(3) OF THE INTERNAL REVENUE CODE AND STATE INCOME TAX AND HAS BEEN CLASSIFIED AS AN OTHER THAN PRIVATE FOUNDATION. ACCORDINGLY, NO PROVISION FOR FEDERAL AND STATE TAXES ON REVENUE AND INCOME HAS BEEN RECOGNIZED IN THE ACCOMPANYING FINANCIAL STATEMENTS. GENERALLY, THE FEDERAL AND STATE TAX RETURNS ARE SUBJECT TO EXAMINATIONS FOR THREE YEARS AFTER THE LATER OF THE ORIGINAL OR EXTENDED DUE DATE OR THE DATE FILED WITH THE APPLICABLE TAX AUTHORITIES.</ExplanationTxt>
+      </SupplementalInformationDetail>
+      <SupplementalInformationDetail>
+        <FormAndLineReferenceDesc>PART XII, LINE 2D - OTHER ADJUSTMENTS:</FormAndLineReferenceDesc>
+        <ExplanationTxt>BOOK/TAX DEPRECIATION EXPENSE DIFFERENCE 56,914.</ExplanationTxt>
+      </SupplementalInformationDetail>
+    </IRS990ScheduleD>
+    <IRS990ScheduleJ documentId="RetDoc1042400001">
+      <SeverancePaymentInd>0</SeverancePaymentInd>
+      <SupplementalNonqualRtrPlanInd>0</SupplementalNonqualRtrPlanInd>
+      <EquityBasedCompArrngmInd>0</EquityBasedCompArrngmInd>
+      <CompBasedOnRevenueOfFlngOrgInd>0</CompBasedOnRevenueOfFlngOrgInd>
+      <CompBsdOnRevRelatedOrgsInd>0</CompBsdOnRevRelatedOrgsInd>
+      <CompBsdNetEarnsFlngOrgInd>0</CompBsdNetEarnsFlngOrgInd>
+      <CompBsdNetEarnsRltdOrgsInd>0</CompBsdNetEarnsRltdOrgsInd>
+      <AnyNonFixedPaymentsInd>0</AnyNonFixedPaymentsInd>
+      <InitialContractExceptionInd>0</InitialContractExceptionInd>
+      <RltdOrgOfficerTrstKeyEmplGrp>
+        <PersonNm>DAVID ADAME</PersonNm>
+        <TitleTxt>CHAIRMAN</TitleTxt>
+        <BaseCompensationFilingOrgAmt>0</BaseCompensationFilingOrgAmt>
+        <CompensationBasedOnRltdOrgsAmt>809241</CompensationBasedOnRltdOrgsAmt>
+        <BonusFilingOrganizationAmount>0</BonusFilingOrganizationAmount>
+        <BonusRelatedOrganizationsAmt>0</BonusRelatedOrganizationsAmt>
+        <OtherCompensationFilingOrgAmt>0</OtherCompensationFilingOrgAmt>
+        <OtherCompensationRltdOrgsAmt>0</OtherCompensationRltdOrgsAmt>
+        <DeferredCompensationFlngOrgAmt>0</DeferredCompensationFlngOrgAmt>
+        <DeferredCompRltdOrgsAmt>2885</DeferredCompRltdOrgsAmt>
+        <NontaxableBenefitsFilingOrgAmt>0</NontaxableBenefitsFilingOrgAmt>
+        <NontaxableBenefitsRltdOrgsAmt>18049</NontaxableBenefitsRltdOrgsAmt>
+        <TotalCompensationFilingOrgAmt>0</TotalCompensationFilingOrgAmt>
+        <TotalCompensationRltdOrgsAmt>830175</TotalCompensationRltdOrgsAmt>
+        <CompReportPrior990FilingOrgAmt>0</CompReportPrior990FilingOrgAmt>
+        <CompReportPrior990RltdOrgsAmt>0</CompReportPrior990RltdOrgsAmt>
+      </RltdOrgOfficerTrstKeyEmplGrp>
+      <RltdOrgOfficerTrstKeyEmplGrp>
+        <PersonNm>MAX GONZALES</PersonNm>
+        <TitleTxt>DIRECTOR</TitleTxt>
+        <BaseCompensationFilingOrgAmt>0</BaseCompensationFilingOrgAmt>
+        <CompensationBasedOnRltdOrgsAmt>404377</CompensationBasedOnRltdOrgsAmt>
+        <BonusFilingOrganizationAmount>0</BonusFilingOrganizationAmount>
+        <BonusRelatedOrganizationsAmt>0</BonusRelatedOrganizationsAmt>
+        <OtherCompensationFilingOrgAmt>0</OtherCompensationFilingOrgAmt>
+        <OtherCompensationRltdOrgsAmt>0</OtherCompensationRltdOrgsAmt>
+        <DeferredCompensationFlngOrgAmt>0</DeferredCompensationFlngOrgAmt>
+        <DeferredCompRltdOrgsAmt>5123</DeferredCompRltdOrgsAmt>
+        <NontaxableBenefitsFilingOrgAmt>0</NontaxableBenefitsFilingOrgAmt>
+        <NontaxableBenefitsRltdOrgsAmt>17384</NontaxableBenefitsRltdOrgsAmt>
+        <TotalCompensationFilingOrgAmt>0</TotalCompensationFilingOrgAmt>
+        <TotalCompensationRltdOrgsAmt>426884</TotalCompensationRltdOrgsAmt>
+        <CompReportPrior990FilingOrgAmt>0</CompReportPrior990FilingOrgAmt>
+        <CompReportPrior990RltdOrgsAmt>0</CompReportPrior990RltdOrgsAmt>
+      </RltdOrgOfficerTrstKeyEmplGrp>
+      <RltdOrgOfficerTrstKeyEmplGrp>
+        <PersonNm>ALICIA NUNEZ</PersonNm>
+        <TitleTxt>CFO</TitleTxt>
+        <BaseCompensationFilingOrgAmt>0</BaseCompensationFilingOrgAmt>
+        <CompensationBasedOnRltdOrgsAmt>374101</CompensationBasedOnRltdOrgsAmt>
+        <BonusFilingOrganizationAmount>0</BonusFilingOrganizationAmount>
+        <BonusRelatedOrganizationsAmt>0</BonusRelatedOrganizationsAmt>
+        <OtherCompensationFilingOrgAmt>0</OtherCompensationFilingOrgAmt>
+        <OtherCompensationRltdOrgsAmt>0</OtherCompensationRltdOrgsAmt>
+        <DeferredCompensationFlngOrgAmt>0</DeferredCompensationFlngOrgAmt>
+        <DeferredCompRltdOrgsAmt>6262</DeferredCompRltdOrgsAmt>
+        <NontaxableBenefitsFilingOrgAmt>0</NontaxableBenefitsFilingOrgAmt>
+        <NontaxableBenefitsRltdOrgsAmt>21270</NontaxableBenefitsRltdOrgsAmt>
+        <TotalCompensationFilingOrgAmt>0</TotalCompensationFilingOrgAmt>
+        <TotalCompensationRltdOrgsAmt>401633</TotalCompensationRltdOrgsAmt>
+        <CompReportPrior990FilingOrgAmt>0</CompReportPrior990FilingOrgAmt>
+        <CompReportPrior990RltdOrgsAmt>0</CompReportPrior990RltdOrgsAmt>
+      </RltdOrgOfficerTrstKeyEmplGrp>
+      <SupplementalInformationDetail>
+        <FormAndLineReferenceDesc>SCH J, PART II:</FormAndLineReferenceDesc>
+        <ExplanationTxt>THE COMPENSATION LISTED ON SCHEDULE J AND ELSEWHERE IN THIS RETURN IS FOR SEVICES PROVIDED TO AND PAID BY CHICANOS POR LA CAUSA, INC. WHICH IS A RELATED ORGANIZATION THROUGH COMMON BOARD OF DIRECTORS WITH THE ORGANIZATION.</ExplanationTxt>
+      </SupplementalInformationDetail>
+    </IRS990ScheduleJ>
+    <IRS990ScheduleO documentId="RetDoc1044400001">
+      <SupplementalInformationDetail>
+        <FormAndLineReferenceDesc>FORM 990, PART VI, SECTION A, LINE 3</FormAndLineReferenceDesc>
+        <ExplanationTxt>CAUSA COMMUNITY DEVELOPMENT, INC. IS MANAGED BY TIEMPO, INC., A PROFESSIONAL PROPERTY MANAGEMENT COMPANY. TIEMPO, INC. HAS A PROJECT OWNER'S AND MANAGEMENTS AGENT'S CERTIFICATION FOR MULTIFAMILY HOUSING PROJECTS WITH THE U.S. DEPARTMENT OF HOUSING &amp; URBAN DEVELOPMENT. UNDER THIS CERTIFICATION, HUD HAS APPROVED TIEMPO, INC. TO MANAGE THE CAUSA COMMUNITY DEVELOPMENT, INC. APARTMENT COMMUNITY. THE MANAGEMENT CONTRACT ENCOMPASSES THE DAY TO DAY OPERATIONS OF THE PROJECT INCLUDING, BUT NOT LIMITED TO, COLLECTION OF RENTS, MAINTENANCE OF FACILITIES, SUPERVISION OF STAFF, AND ONGOING SUPPORT FOR BOTH THE OWNERS AND TENANTS AS NEEDED IN ORDER TO ESTABLISH A SAFE, SANITARY AND AFFORDABLE ENVIRONMENT.</ExplanationTxt>
+      </SupplementalInformationDetail>
+      <SupplementalInformationDetail>
+        <FormAndLineReferenceDesc>FORM 990, PART VI, SECTION A, LINE 7B</FormAndLineReferenceDesc>
+        <ExplanationTxt>NOTWITHSTANDING ANY TERM, CONDITION, OR PROVISION OF THE ARTICLES OF INCORPORATION TO THE CONTRARY, SO LONG AS A MORTGAGE OR DEED OF TRUST UPON THE CORPORATION'S PROPERTY IS INSURED OR HELD BY THE SECRETARY OF HOUSING AND URBAN DEVELOPMENT TO SECURE REPAYMENT OF THE INSURED LOAN UNDER SECTION 221(D)(3) OF THE NATIONAL HOUSING ACT OF 1934, AS AMENDED, THE CORPORATION, WITHOUT PRIOR WRITTEN CONSENT AND APPROVAL OF SAID SECRETARY, SHALL NOT ENGAGE IN ANY OTHER BUSINESS OR ACTIVITY, INCLUDING THE OPERATION OF ANY OTHER RENTAL PROJECT, NOR INCUR ANY LIABILITY OR OBLIGATION NOT IN CONNECTION WITH THE HOUSING PROJECT WHICH IS THE SUBJECT OF THE INSURED 221(D)(3) LOAN FROM SAID SECRETARY BEING ASSUMED BY THE CORPORATION.</ExplanationTxt>
+      </SupplementalInformationDetail>
+      <SupplementalInformationDetail>
+        <FormAndLineReferenceDesc>FORM 990, PART VI, SECTION B, LINE 11B</FormAndLineReferenceDesc>
+        <ExplanationTxt>THE AUDITING FIRM SENDS A DRAFT OF THE RETURN TO THE MANAGEMENT COMPANY. THE MANAGEMENT COMPANY FORWARDS A COPY OF THE RETURN TO EACH BOARD MEMBER FOR THEIR COMMENTS PRIOR TO FILING.</ExplanationTxt>
+      </SupplementalInformationDetail>
+      <SupplementalInformationDetail>
+        <FormAndLineReferenceDesc>FORM 990, PART VI, SECTION B, LINE 12C</FormAndLineReferenceDesc>
+        <ExplanationTxt>THE CONFLICT OF INTEREST POLICY REQUIRES AN ANNUAL DECLARATION BY ALL BOARD MEMBERS AND KEY STAFF. THE ORGANIZATION ADHERES TO THE CODE OF CONFLICT GUIDELINES IN THE OMB A110 CIRCULAR. ALL POTENTIAL CONFLICTS ARE REVIEWED BY THE BOARD OF DIRECTORS. ANY BOARD MEMBER WHO HAS A POTENTIAL CONFLICT OF INTEREST IN A SPECIFIC ACTION OF THE BOARD UNDER CONSIDERATION AT A MEETING IS EXPECTED TO EXCUSE THEMSELVES FROM ANY INFLUENCE ON SUCH ACTION, REQUEST THE MINUTES OF THE MEETING, NOTE THEIR ABSTENTION AND, WHERE APPROPRIATE, LEAVE THE ROOM DURING DISCUSSION OF THE ACTION. SINCE EVERY SITUATION AND CIRCUMSTANCE CANNOT BE ANTICIPATED OR DISCLOSED IN ADVANCE, THE ORGANIZATION RELIES UPON THE HONESTY AND INTEGRITY OF EACH INDIVIDUAL TO COMPLY WITH THIS PROTOCOL.</ExplanationTxt>
+      </SupplementalInformationDetail>
+      <SupplementalInformationDetail>
+        <FormAndLineReferenceDesc>FORM 990, PART VI, SECTION C, LINE 19</FormAndLineReferenceDesc>
+        <ExplanationTxt>THE FORM 990 AND ALL RELATED FINANCIAL AND POLICY INFORMATION ARE MADE AVAILABLE TO THE PUBLIC UPON WRITTEN REQUEST.</ExplanationTxt>
+      </SupplementalInformationDetail>
+      <SupplementalInformationDetail>
+        <FormAndLineReferenceDesc>FORM 990, PART VII, SECTION A AND SCHEDULE J, PART II:</FormAndLineReferenceDesc>
+        <ExplanationTxt>THE COMPENSATION LISTED ON SCHEDULE J AND ELSEWHERE IN THIS RETURN IS FOR SERVICES PROVIDED TO AND PAID BY CHICANOS POR LA CAUSA, INC. WHICH IS A RELATED ORGANIZATION THROUGH COMMON BOARD OF DIRECTORS WITH THE ORGANIZATION.</ExplanationTxt>
+      </SupplementalInformationDetail>
+      <SupplementalInformationDetail>
+        <FormAndLineReferenceDesc>FORM 990, PART XII, LINE 2C:</FormAndLineReferenceDesc>
+        <ExplanationTxt>THE MANAGEMENT COMPANY RECEIVES A COPY OF THE AUDIT. PRIOR TO THE FINALIZATION OF THE AUDIT, A COPY OF THE AUDIT IS GIVEN TO ALL OF THE BOARD MEMBERS FOR THEIR COMMENTS. WHEN THE AUDIT IS UP FOR BID, THE BOARD DISCUSSES THE RELATIONSHIP WITH THE CURRENT AUDITORS AND MAKES A DETERMINATION AS TO WHETHER TO MAINTAIN THIS RELATIONSHIP OR CHANGE TO A NEW AUDITING FIRM.</ExplanationTxt>
+      </SupplementalInformationDetail>
+    </IRS990ScheduleO>
+    <IRS990ScheduleR documentId="RetDoc1043400001">
+      <IdRelatedTaxExemptOrgGrp>
+        <DisregardedEntityName>
+          <BusinessNameLine1Txt>CHICANOS POR LA CAUSA INC</BusinessNameLine1Txt>
+        </DisregardedEntityName>
+        <USAddress>
+          <AddressLine1Txt>1112 EAST BUCKEYE ROAD</AddressLine1Txt>
+          <CityNm>PHOENIX</CityNm>
+          <StateAbbreviationCd>AZ</StateAbbreviationCd>
+          <ZIPCd>85034</ZIPCd>
+        </USAddress>
+        <EIN>860227210</EIN>
+        <PrimaryActivitiesTxt>COMMUNITY ECONOMIC DEVELOPMENT</PrimaryActivitiesTxt>
+        <LegalDomicileStateCd>AZ</LegalDomicileStateCd>
+        <ExemptCodeSectionTxt>501(C)(3)</ExemptCodeSectionTxt>
+        <PublicCharityStatusTxt>LINE 7</PublicCharityStatusTxt>
+        <DirectControllingNACd>N/A</DirectControllingNACd>
+        <ControlledOrganizationInd>0</ControlledOrganizationInd>
+      </IdRelatedTaxExemptOrgGrp>
+      <IdRelatedTaxExemptOrgGrp>
+        <DisregardedEntityName>
+          <BusinessNameLine1Txt>PUEBLO SENIOR HOUSING INC</BusinessNameLine1Txt>
+        </DisregardedEntityName>
+        <USAddress>
+          <AddressLine1Txt>1112 EAST BUCKEYE ROAD</AddressLine1Txt>
+          <CityNm>PHOENIX</CityNm>
+          <StateAbbreviationCd>AZ</StateAbbreviationCd>
+          <ZIPCd>85034</ZIPCd>
+        </USAddress>
+        <EIN>860757227</EIN>
+        <PrimaryActivitiesTxt>LOW INCOME HOUSING</PrimaryActivitiesTxt>
+        <LegalDomicileStateCd>AZ</LegalDomicileStateCd>
+        <ExemptCodeSectionTxt>501(C)(3)</ExemptCodeSectionTxt>
+        <PublicCharityStatusTxt>LINE 10</PublicCharityStatusTxt>
+        <DirectControllingNACd>N/A</DirectControllingNACd>
+        <ControlledOrganizationInd>0</ControlledOrganizationInd>
+      </IdRelatedTaxExemptOrgGrp>
+      <IdRelatedTaxExemptOrgGrp>
+        <DisregardedEntityName>
+          <BusinessNameLine1Txt>CASA MIA SENIOR APARTMENTS INC</BusinessNameLine1Txt>
+        </DisregardedEntityName>
+        <USAddress>
+          <AddressLine1Txt>1112 EAST BUCKEYE ROAD</AddressLine1Txt>
+          <CityNm>PHOENIX</CityNm>
+          <StateAbbreviationCd>AZ</StateAbbreviationCd>
+          <ZIPCd>85034</ZIPCd>
+        </USAddress>
+        <EIN>742465161</EIN>
+        <PrimaryActivitiesTxt>LOW INCOME HOUSING</PrimaryActivitiesTxt>
+        <LegalDomicileStateCd>AZ</LegalDomicileStateCd>
+        <ExemptCodeSectionTxt>501(C)(3)</ExemptCodeSectionTxt>
+        <PublicCharityStatusTxt>LINE 10</PublicCharityStatusTxt>
+        <DirectControllingNACd>N/A</DirectControllingNACd>
+        <ControlledOrganizationInd>0</ControlledOrganizationInd>
+      </IdRelatedTaxExemptOrgGrp>
+      <IdRelatedTaxExemptOrgGrp>
+        <DisregardedEntityName>
+          <BusinessNameLine1Txt>CASA DEL PUEBLO II</BusinessNameLine1Txt>
+        </DisregardedEntityName>
+        <USAddress>
+          <AddressLine1Txt>1112 EAST BUCKEYE ROAD</AddressLine1Txt>
+          <CityNm>PHOENIX</CityNm>
+          <StateAbbreviationCd>AZ</StateAbbreviationCd>
+          <ZIPCd>85034</ZIPCd>
+        </USAddress>
+        <EIN>392075488</EIN>
+        <PrimaryActivitiesTxt>LOW INCOME HOUSING</PrimaryActivitiesTxt>
+        <LegalDomicileStateCd>AZ</LegalDomicileStateCd>
+        <ExemptCodeSectionTxt>501(C)(3)</ExemptCodeSectionTxt>
+        <PublicCharityStatusTxt>LINE 7</PublicCharityStatusTxt>
+        <DirectControllingNACd>N/A</DirectControllingNACd>
+        <ControlledOrganizationInd>0</ControlledOrganizationInd>
+      </IdRelatedTaxExemptOrgGrp>
+      <IdRelatedTaxExemptOrgGrp>
+        <DisregardedEntityName>
+          <BusinessNameLine1Txt>SANTA CRUZ APARTMENTS INC</BusinessNameLine1Txt>
+        </DisregardedEntityName>
+        <USAddress>
+          <AddressLine1Txt>1112 EAST BUCKEYE ROAD</AddressLine1Txt>
+          <CityNm>PHOENIX</CityNm>
+          <StateAbbreviationCd>AZ</StateAbbreviationCd>
+          <ZIPCd>85034</ZIPCd>
+        </USAddress>
+        <EIN>860712873</EIN>
+        <PrimaryActivitiesTxt>LOW INCOME HOUSING</PrimaryActivitiesTxt>
+        <LegalDomicileStateCd>AZ</LegalDomicileStateCd>
+        <ExemptCodeSectionTxt>501(C)(3)</ExemptCodeSectionTxt>
+        <PublicCharityStatusTxt>LINE 10</PublicCharityStatusTxt>
+        <DirectControllingNACd>N/A</DirectControllingNACd>
+        <ControlledOrganizationInd>0</ControlledOrganizationInd>
+      </IdRelatedTaxExemptOrgGrp>
+      <ReceiptOfIntAnntsRntsRyltsInd>0</ReceiptOfIntAnntsRntsRyltsInd>
+      <GiftGrntOrCapContriToOthOrgInd>0</GiftGrntOrCapContriToOthOrgInd>
+      <GiftGrntCapContriFromOthOrgInd>0</GiftGrntCapContriFromOthOrgInd>
+      <LoansOrGuaranteesToOtherOrgInd>0</LoansOrGuaranteesToOtherOrgInd>
+      <LoansOrGuaranteesFromOthOrgInd>0</LoansOrGuaranteesFromOthOrgInd>
+      <DivRelatedOrganizationInd>0</DivRelatedOrganizationInd>
+      <AssetSaleToOtherOrgInd>0</AssetSaleToOtherOrgInd>
+      <AssetPurchaseFromOtherOrgInd>0</AssetPurchaseFromOtherOrgInd>
+      <AssetExchangeInd>0</AssetExchangeInd>
+      <RentalOfFacilitiesToOthOrgInd>0</RentalOfFacilitiesToOthOrgInd>
+      <RentalOfFcltsFromOthOrgInd>0</RentalOfFcltsFromOthOrgInd>
+      <PerformOfServicesForOthOrgInd>0</PerformOfServicesForOthOrgInd>
+      <PerformOfServicesByOtherOrgInd>1</PerformOfServicesByOtherOrgInd>
+      <SharingOfFacilitiesInd>0</SharingOfFacilitiesInd>
+      <PaidEmployeesSharingInd>1</PaidEmployeesSharingInd>
+      <ReimbursementPaidToOtherOrgInd>1</ReimbursementPaidToOtherOrgInd>
+      <ReimbursementPaidByOtherOrgInd>0</ReimbursementPaidByOtherOrgInd>
+      <TransferToOtherOrgInd>0</TransferToOtherOrgInd>
+      <TransferFromOtherOrgInd>1</TransferFromOtherOrgInd>
+    </IRS990ScheduleR>
+  </ReturnData>
+</Return>
