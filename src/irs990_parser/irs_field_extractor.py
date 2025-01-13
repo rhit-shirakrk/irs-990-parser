@@ -108,14 +108,19 @@ class WhistleblowerPolicyExtractor:
         self.file_name = file_name
         self.parsed_xml = parsed_xml
 
-    def extract(self) -> bool:
+    def extract(self) -> Optional[bool]:
         """Extract whistleblower policy from IRS 990 form
 
         :return: Whether a whistleblower policy is present
         :rtype: bool
         """
         whistleblower_policy_xml_object = self.parsed_xml.find("WhistleblowerPolicyInd")
-        return (
+        if whistleblower_policy_xml_object is None:
+            return None
+
+        return self._implemented_whisteblower_policy(
             int(whistleblower_policy_xml_object.text)
-            == WhistleblowerPolicyExtractor.PRESENT
         )
+
+    def _implemented_whisteblower_policy(self, checked: int) -> bool:
+        return checked == WhistleblowerPolicyExtractor.PRESENT
