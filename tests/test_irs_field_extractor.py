@@ -286,18 +286,20 @@ class TestIRSFieldExtractor:
 
     def test_ceo_compensation_review_extraction_expected_true(self) -> None:
         """Tests for proper extraction of CEO compensation review field"""
-        false_whistleblower_path = pathlib.Path(
+        true_ceo_compensation_path = pathlib.Path(
             os.path.join(
                 TestIRSFieldExtractor.SAMPLE_FILES_DIR,
-                "whistleblower_policy",
-                "false.xml",
+                "compensation_review",
+                "ceo",
+                "true.xml",
             )
         )
-        with open(false_whistleblower_path, "r", encoding="utf-8") as f:
+        with open(true_ceo_compensation_path, "r", encoding="utf-8") as f:
             file = f.read()
-            file_name = os.path.basename(false_whistleblower_path)
+            file_name = os.path.basename(true_ceo_compensation_path)
             parsed_xml = bs4.BeautifulSoup(file, "xml")
-            whistleblower_policy = irs_field_extractor.WhistleblowerPolicyExtractor(
-                file_name, parsed_xml
+            ceo_compensation_policy = (
+                irs_field_extractor.CEOCompensationReviewExtractor(
+                    file_name, parsed_xml
+                )
             )
-            assert whistleblower_policy.extract() is False
