@@ -23,3 +23,10 @@ class TestGenderGuesser:
         """Tests proper guessing of male name"""
         guesser = gender_guesser.GenderGuesser(TestGenderGuesser.PROBABILITY_CSV)
         assert guesser.guess("abigail") == "F"
+
+    def test_gender_guesser_unrecognized_name_expected_random(self, mocker) -> None:
+        """Tests proper guessing of male name"""
+        guesser = gender_guesser.GenderGuesser(TestGenderGuesser.PROBABILITY_CSV)
+        mock_random = mocker.patch("random.random")
+        mock_random = 0.5
+        assert guesser.guess("notinthefile") == "F"
