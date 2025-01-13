@@ -17,3 +17,4 @@ class TestGenderGuesser:
     def test_gender_guesser_expected_male(self) -> None:
         """Tests proper guessing of male name"""
         guesser = gender_guesser.GenderGuesser(TestGenderGuesser.PROBABILITY_CSV)
+        assert guesser.guess("Brad") == "M"
