@@ -81,3 +81,21 @@ class TotalCompensationExtractor:
             return None
 
         return float(compensation_xml_object.text)
+
+
+class TotalEmployeesExtractor:
+    def __init__(self, file_name: str, parsed_xml: bs4.BeautifulSoup) -> None:
+        self.file_name = file_name
+        self.parsed_xml = parsed_xml
+
+    def extract(self) -> Optional[int]:
+        """Extract number of employees from IRS 990 form
+
+        :return: Number of employees
+        :rtype: int
+        """
+        total_employees_xml_object = self.parsed_xml.find("EmployeeCnt")
+        if total_employees_xml_object is None:
+            return None
+
+        return int(total_employees_xml_object.text)
