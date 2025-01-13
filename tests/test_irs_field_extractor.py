@@ -304,3 +304,24 @@ class TestIRSFieldExtractor:
                 )
             )
             assert ceo_compensation_policy.extract() is True
+
+    def test_ceo_compensation_review_extraction_expected_false(self) -> None:
+        """Tests for proper extraction of CEO compensation review field"""
+        false_ceo_compensation_path = pathlib.Path(
+            os.path.join(
+                TestIRSFieldExtractor.SAMPLE_FILES_DIR,
+                "compensation_review",
+                "ceo",
+                "false.xml",
+            )
+        )
+        with open(false_ceo_compensation_path, "r", encoding="utf-8") as f:
+            file = f.read()
+            file_name = os.path.basename(false_ceo_compensation_path)
+            parsed_xml = bs4.BeautifulSoup(file, "xml")
+            ceo_compensation_policy = (
+                irs_field_extractor.CEOCompensationReviewExtractor(
+                    file_name, parsed_xml
+                )
+            )
+            assert ceo_compensation_policy.extract() is False
