@@ -170,3 +170,4 @@ class TestIRSFieldExtractor:
             total_compensation_extractor = (
                 irs_field_extractor.TotalCompensationExtractor(file_name, parsed_xml)
             )
+            assert total_compensation_extractor.extract() == 122207.0
