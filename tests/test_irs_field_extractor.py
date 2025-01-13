@@ -190,4 +190,21 @@ class TestIRSFieldExtractor:
             total_compensation_extractor = (
                 irs_field_extractor.TotalCompensationExtractor(file_name, parsed_xml)
             )
-            assert total_compensation_extractor.extract() == None
+            assert total_compensation_extractor.extract() is None
+
+    def test_total_employees_extractor_expected_38(self) -> None:
+        """Tests for proper extraction of total employees"""
+        total_compensation_path = pathlib.Path(
+            os.path.join(
+                TestIRSFieldExtractor.SAMPLE_FILES_DIR,
+                "total_employees",
+                "multiple_employees.xml",
+            )
+        )
+        with open(total_compensation_path, "r", encoding="utf-8") as f:
+            file = f.read()
+            file_name = os.path.basename(total_compensation_path)
+            parsed_xml = bs4.BeautifulSoup(file, "xml")
+            total_employees_extractor = irs_field_extractor.TotalEmployeesExtractor(
+                file_name, parsed_xml
+            )
