@@ -124,3 +124,9 @@ class WhistleblowerPolicyExtractor:
 
     def _implemented_whisteblower_policy(self, checked: int) -> bool:
         return checked == WhistleblowerPolicyExtractor.PRESENT
+
+
+class CEOCompensationReviewExtractor:
+    def __init__(self, file_name: str, parsed_xml: bs4.BeautifulSoup) -> None:
+        self.file_name = file_name
+        self.parsed_xml = parsed_xml
