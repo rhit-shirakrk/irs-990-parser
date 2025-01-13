@@ -390,3 +390,26 @@ class TestIRSFieldExtractor:
                 )
             )
             assert other_compensation_policy.extract() is False
+
+    def test_other_compensation_review_extraction_missing_field_expected_non(
+        self,
+    ) -> None:
+        """Tests for missing Other compensation review field"""
+        missing_other_compensation_path = pathlib.Path(
+            os.path.join(
+                TestIRSFieldExtractor.SAMPLE_FILES_DIR,
+                "compensation_review",
+                "other",
+                "missing.xml",
+            )
+        )
+        with open(missing_other_compensation_path, "r", encoding="utf-8") as f:
+            file = f.read()
+            file_name = os.path.basename(missing_other_compensation_path)
+            parsed_xml = bs4.BeautifulSoup(file, "xml")
+            other_compensation_policy = (
+                irs_field_extractor.OtherCompensationReviewExtractor(
+                    file_name, parsed_xml
+                )
+            )
+            assert other_compensation_policy.extract() is None
