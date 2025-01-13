@@ -61,3 +61,8 @@ class OrgNameExtractor:
         return " ".join(
             [line.text for line in organization_name_xml_object if line.text != "\n"]
         )
+
+
+class TotalCompensationExtractor:
+    def __init__(self, file_name: str, parsed_xml: bs4.BeautifulSoup) -> None:
+        pass
