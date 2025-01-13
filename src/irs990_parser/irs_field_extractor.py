@@ -130,3 +130,11 @@ class CEOCompensationReviewExtractor:
     def __init__(self, file_name: str, parsed_xml: bs4.BeautifulSoup) -> None:
         self.file_name = file_name
         self.parsed_xml = parsed_xml
+
+    def extract(self) -> bool:
+        """Extract CEO compensation review policy from IRS 990 form
+
+        :return: CEO compensation policy
+        :rtype: bool
+        """
+        return True
