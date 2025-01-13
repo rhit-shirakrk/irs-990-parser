@@ -246,3 +246,4 @@ class TestIRSFieldExtractor:
             whistleblower_policy = irs_field_extractor.WhistleblowerPolicyExtractor(
                 file_name, parsed_xml
             )
+            assert whistleblower_policy.extract() is True
