@@ -169,6 +169,9 @@ class OtherCompensationReviewExtractor:
         other_compensation_review_xml_object = self.parsed_xml.find(
             "CompensationProcessOtherInd"
         )
+        if other_compensation_review_xml_object is None:
+            return None
+
         return self._other_reviewed_compensation(
             int(other_compensation_review_xml_object.text)
         )
