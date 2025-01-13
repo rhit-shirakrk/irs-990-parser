@@ -368,3 +368,4 @@ class TestIRSFieldExtractor:
                     file_name, parsed_xml
                 )
             )
+            assert other_compensation_policy.extract() is True
