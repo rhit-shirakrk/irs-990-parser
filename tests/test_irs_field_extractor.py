@@ -229,3 +229,20 @@ class TestIRSFieldExtractor:
                 file_name, parsed_xml
             )
             assert total_employees_extractor.extract() is None
+
+    def test_whistleblower_policy_extraction_expected_true(self) -> None:
+        """Tests for proper extraction of an implemented whistleblower policy"""
+        true_whistleblower_path = pathlib.Path(
+            os.path.join(
+                TestIRSFieldExtractor.SAMPLE_FILES_DIR,
+                "whistleblower_policy",
+                "true.xml",
+            )
+        )
+        with open(true_whistleblower_path, "r", encoding="utf-8") as f:
+            file = f.read()
+            file_name = os.path.basename(true_whistleblower_path)
+            parsed_xml = bs4.BeautifulSoup(file, "xml")
+            whistleblower_policy = irs_field_extractor.WhistleblowerPolicyExtractor(
+                file_name, parsed_xml
+            )
