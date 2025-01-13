@@ -65,4 +65,14 @@ class OrgNameExtractor:
 
 class TotalCompensationExtractor:
     def __init__(self, file_name: str, parsed_xml: bs4.BeautifulSoup) -> None:
-        pass
+        self.file_name = file_name
+        self.parsed_xml = parsed_xml
+
+    def extract(self) -> float:
+        """Extract total compensation from IRS 990 form
+
+        :return: Total compensation
+        :rtype: flaot
+        """
+        compensation_xml_object = self.parsed_xml.find("CYSalariesCompEmpBnftPaidAmt")
+        return float(compensation_xml_object.text)
