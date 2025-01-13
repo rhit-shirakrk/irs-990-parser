@@ -64,3 +64,92 @@ class TestIRSFieldExtractor:
             with pytest.raises(custom_exceptions.MissingEINException) as excinfo:
                 ein_extractor.extract()
             assert f"EIN missing from file {file_name}" in str(excinfo)
+
+    def test_org_name_extractor_one_line_field_expected_HABITAT_FOR_HUMANITY_OF_METRO_DENVER(
+        self,
+    ) -> None:
+        """Tests for extracting an organization's name which only uses one line in the form"""
+        one_line_org_name_path = pathlib.Path(
+            os.path.join(
+                TestIRSFieldExtractor.SAMPLE_FILES_DIR, "org_name", "one_line_name.xml"
+            )
+        )
+        with open(one_line_org_name_path, "r", encoding="utf-8") as f:
+            file = f.read()
+            file_name = os.path.basename(one_line_org_name_path)
+            parsed_xml = bs4.BeautifulSoup(file, "xml")
+            org_name_extractor = irs_field_extractor.OrgNameExtractor(
+                file_name, parsed_xml
+            )
+            assert (
+                org_name_extractor.extract() == "HABITAT FOR HUMANITY OF METRO DENVER"
+            )
+
+    def test_org_name_extractor_multiple_line_field_expected_HABITAT_FOR_HUMANITY_OF_METRO_DENVER_INC(
+        self,
+    ) -> None:
+        """Tests for extracting an organization's name which only uses one line in the form"""
+        multiple_line_org_name_path = pathlib.Path(
+            os.path.join(
+                TestIRSFieldExtractor.SAMPLE_FILES_DIR,
+                "org_name",
+                "multiple_line_name.xml",
+            )
+        )
+        with open(multiple_line_org_name_path, "r", encoding="utf-8") as f:
+            file = f.read()
+            file_name = os.path.basename(multiple_line_org_name_path)
+            parsed_xml = bs4.BeautifulSoup(file, "xml")
+            org_name_extractor = irs_field_extractor.OrgNameExtractor(
+                file_name, parsed_xml
+            )
+            assert (
+                org_name_extractor.extract()
+                == "HABITAT FOR HUMANITY OF METRO DENVER INC"
+            )
+
+    def test_org_name_extractor_missing_name_expected_missing_org_name_error(
+        self,
+    ) -> None:
+        """Tests for an error when an organization name is missing from an IRS form"""
+        missing_org_name_path = pathlib.Path(
+            os.path.join(
+                TestIRSFieldExtractor.SAMPLE_FILES_DIR,
+                "org_name",
+                "missing_name.xml",
+            )
+        )
+        with open(missing_org_name_path, "r", encoding="utf-8") as f:
+            file = f.read()
+            file_name = os.path.basename(missing_org_name_path)
+            parsed_xml = bs4.BeautifulSoup(file, "xml")
+            org_name_extractor = irs_field_extractor.OrgNameExtractor(
+                file_name, parsed_xml
+            )
+            with pytest.raises(
+                custom_exceptions.MissingOrganizationNameException
+            ) as excinfo:
+                org_name_extractor.extract()
+            assert f"Organization name missing from file {file_name}" in str(excinfo)
+
+    def test_org_name_extractor_missing_filer_expected_missing_filer_error(
+        self,
+    ) -> None:
+        """Tests for an error when the filer section is missing from an IRS form"""
+        missing_filer_path = pathlib.Path(
+            os.path.join(
+                TestIRSFieldExtractor.SAMPLE_FILES_DIR,
+                "org_name",
+                "missing_filer.xml",
+            )
+        )
+        with open(missing_filer_path, "r", encoding="utf-8") as f:
+            file = f.read()
+            file_name = os.path.basename(missing_filer_path)
+            parsed_xml = bs4.BeautifulSoup(file, "xml")
+            org_name_extractor = irs_field_extractor.OrgNameExtractor(
+                file_name, parsed_xml
+            )
+            with pytest.raises(custom_exceptions.MissingFilerException) as excinfo:
+                org_name_extractor.extract()
+            assert f"Filer section missing from file {file_name}" in str(excinfo)
