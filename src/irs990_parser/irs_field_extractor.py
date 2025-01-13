@@ -81,3 +81,9 @@ class TotalCompensationExtractor:
             return None
 
         return float(compensation_xml_object.text)
+
+
+class TotalEmployeesExtractor:
+    def __init__(self, file_name: str, parsed_xml: bs4.BeautifulSoup) -> None:
+        self.file_name = file_name
+        self.parsed_xml = parsed_xml
