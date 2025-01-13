@@ -348,3 +348,23 @@ class TestIRSFieldExtractor:
                 )
             )
             assert ceo_compensation_policy.extract() is None
+
+    def test_other_compensation_review_extraction_expected_true(self) -> None:
+        """Tests for proper extraction of Other compensation review field"""
+        true_other_compensation_path = pathlib.Path(
+            os.path.join(
+                TestIRSFieldExtractor.SAMPLE_FILES_DIR,
+                "compensation_review",
+                "other",
+                "true.xml",
+            )
+        )
+        with open(true_other_compensation_path, "r", encoding="utf-8") as f:
+            file = f.read()
+            file_name = os.path.basename(true_other_compensation_path)
+            parsed_xml = bs4.BeautifulSoup(file, "xml")
+            other_compensation_policy = (
+                irs_field_extractor.OtherCompensationReviewExtractor(
+                    file_name, parsed_xml
+                )
+            )
