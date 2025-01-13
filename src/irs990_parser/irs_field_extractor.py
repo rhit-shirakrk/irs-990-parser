@@ -102,6 +102,8 @@ class TotalEmployeesExtractor:
 
 
 class WhistleblowerPolicyExtractor:
+    PRESENT = 1
+
     def __init__(self, file_name: str, parsed_xml: bs4.BeautifulSoup) -> None:
         self.file_name = file_name
         self.parsed_xml = parsed_xml
@@ -112,4 +114,8 @@ class WhistleblowerPolicyExtractor:
         :return: Whether a whistleblower policy is present
         :rtype: bool
         """
-        return True
+        whistleblower_policy_xml_object = self.parsed_xml.find("WhistleblowerPolicyInd")
+        return (
+            int(whistleblower_policy_xml_object.text)
+            == WhistleblowerPolicyExtractor.PRESENT
+        )
