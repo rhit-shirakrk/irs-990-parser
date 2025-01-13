@@ -133,15 +133,18 @@ class CEOCompensationReviewExtractor:
         self.file_name = file_name
         self.parsed_xml = parsed_xml
 
-    def extract(self) -> bool:
+    def extract(self) -> Optional[bool]:
         """Extract CEO compensation review policy from IRS 990 form
 
         :return: CEO compensation review policy
-        :rtype: bool
+        :rtype: Optional[bool]
         """
         ceo_compensation_review_xml_object = self.parsed_xml.find(
             "CompensationProcessCEOInd"
         )
+        if ceo_compensation_review_xml_object is None:
+            return None
+
         return self._ceo_reviewed_compensation(
             int(ceo_compensation_review_xml_object.text)
         )
