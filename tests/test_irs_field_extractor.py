@@ -171,3 +171,23 @@ class TestIRSFieldExtractor:
                 irs_field_extractor.TotalCompensationExtractor(file_name, parsed_xml)
             )
             assert total_compensation_extractor.extract() == 122207.0
+
+    def test_total_compensation_extractor_missing_compensation_field_expected_none(
+        self,
+    ) -> None:
+        """Tests for a null return value when the compensation field is missing"""
+        missing_total_compensation_path = pathlib.Path(
+            os.path.join(
+                TestIRSFieldExtractor.SAMPLE_FILES_DIR,
+                "total_compensation",
+                "no_compensation.xml",
+            )
+        )
+        with open(missing_total_compensation_path, "r", encoding="utf-8") as f:
+            file = f.read()
+            file_name = os.path.basename(missing_total_compensation_path)
+            parsed_xml = bs4.BeautifulSoup(file, "xml")
+            total_compensation_extractor = (
+                irs_field_extractor.TotalCompensationExtractor(file_name, parsed_xml)
+            )
+            assert total_compensation_extractor.extract() == None

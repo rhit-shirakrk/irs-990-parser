@@ -2,6 +2,8 @@
 Implementation of various field extractor classes
 """
 
+from typing import Optional
+
 import bs4
 
 from irs990_parser import custom_exceptions
@@ -68,11 +70,14 @@ class TotalCompensationExtractor:
         self.file_name = file_name
         self.parsed_xml = parsed_xml
 
-    def extract(self) -> float:
+    def extract(self) -> Optional[float]:
         """Extract total compensation from IRS 990 form
 
         :return: Total compensation
-        :rtype: flaot
+        :rtype: float
         """
         compensation_xml_object = self.parsed_xml.find("CYSalariesCompEmpBnftPaidAmt")
+        if compensation_xml_object is None:
+            return None
+
         return float(compensation_xml_object.text)
