@@ -428,3 +428,4 @@ class TestIRSFieldExtractor:
             trustee_extractor = irs_field_extractor.TrusteeExtractor(
                 file_name, parsed_xml
             )
+            assert trustee_extractor.calculate_trustee_male_to_female_ratio() == 0.0
