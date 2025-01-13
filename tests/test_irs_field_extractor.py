@@ -429,3 +429,21 @@ class TestIRSFieldExtractor:
                 file_name, parsed_xml
             )
             assert trustee_extractor.calculate_trustee_male_to_female_ratio() == 0.0
+
+    def test_trustee_extractor_male_to_female_ratio_no_female_expected_none(
+        self,
+    ) -> None:
+        """Tests case where there are no female trustees"""
+        no_female_path = pathlib.Path(
+            os.path.join(
+                TestIRSFieldExtractor.SAMPLE_FILES_DIR, "trustees", "no_female.xml"
+            )
+        )
+        with open(no_female_path, "r", encoding="utf-8") as f:
+            file = f.read()
+            file_name = os.path.basename(no_female_path)
+            parsed_xml = bs4.BeautifulSoup(file, "xml")
+            trustee_extractor = irs_field_extractor.TrusteeExtractor(
+                file_name, parsed_xml
+            )
+            assert trustee_extractor.calculate_trustee_male_to_female_ratio() is None
