@@ -154,6 +154,8 @@ class CEOCompensationReviewExtractor:
 
 
 class OtherCompensationReviewExtractor:
+    PRESENT = 1
+
     def __init__(self, file_name: str, parsed_xml: bs4.BeautifulSoup) -> None:
         self.file_name = file_name
         self.parsed_xml = parsed_xml
@@ -164,4 +166,12 @@ class OtherCompensationReviewExtractor:
         :return: Other compensation review policy
         :rtype: bool
         """
-        return True
+        other_compensation_review_xml_object = self.parsed_xml.find(
+            "CompensationProcessOtherInd"
+        )
+        return self._other_reviewed_compensation(
+            int(other_compensation_review_xml_object.text)
+        )
+
+    def _other_reviewed_compensation(self, checked: int) -> bool:
+        return checked == OtherCompensationReviewExtractor.PRESENT
