@@ -95,4 +95,7 @@ class TotalEmployeesExtractor:
         :rtype: int
         """
         total_employees_xml_object = self.parsed_xml.find("EmployeeCnt")
+        if total_employees_xml_object is None:
+            return None
+
         return int(total_employees_xml_object.text)
