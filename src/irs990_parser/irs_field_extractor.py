@@ -74,7 +74,7 @@ class TotalCompensationExtractor:
         """Extract total compensation from IRS 990 form
 
         :return: Total compensation
-        :rtype: float
+        :rtype: Optional[float]
         """
         compensation_xml_object = self.parsed_xml.find("CYSalariesCompEmpBnftPaidAmt")
         if compensation_xml_object is None:
@@ -92,7 +92,7 @@ class TotalEmployeesExtractor:
         """Extract number of employees from IRS 990 form
 
         :return: Number of employees
-        :rtype: int
+        :rtype: Optional[int]
         """
         total_employees_xml_object = self.parsed_xml.find("EmployeeCnt")
         if total_employees_xml_object is None:
@@ -112,7 +112,7 @@ class WhistleblowerPolicyExtractor:
         """Extract whistleblower policy from IRS 990 form
 
         :return: Whether a whistleblower policy is present
-        :rtype: bool
+        :rtype: Optional[bool]
         """
         whistleblower_policy_xml_object = self.parsed_xml.find("WhistleblowerPolicyInd")
         if whistleblower_policy_xml_object is None:
