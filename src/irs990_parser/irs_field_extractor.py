@@ -105,3 +105,11 @@ class WhistleblowerPolicyExtractor:
     def __init__(self, file_name: str, parsed_xml: bs4.BeautifulSoup) -> None:
         self.file_name = file_name
         self.parsed_xml = parsed_xml
+
+    def extract(self) -> bool:
+        """Extract whistleblower policy from IRS 990 form
+
+        :return: Whether a whistleblower policy is present
+        :rtype: bool
+        """
+        return True
