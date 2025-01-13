@@ -99,3 +99,28 @@ class TotalEmployeesExtractor:
             return None
 
         return int(total_employees_xml_object.text)
+
+
+class WhistleblowerPolicyExtractor:
+    PRESENT = 1
+
+    def __init__(self, file_name: str, parsed_xml: bs4.BeautifulSoup) -> None:
+        self.file_name = file_name
+        self.parsed_xml = parsed_xml
+
+    def extract(self) -> Optional[bool]:
+        """Extract whistleblower policy from IRS 990 form
+
+        :return: Whether a whistleblower policy is present
+        :rtype: bool
+        """
+        whistleblower_policy_xml_object = self.parsed_xml.find("WhistleblowerPolicyInd")
+        if whistleblower_policy_xml_object is None:
+            return None
+
+        return self._implemented_whisteblower_policy(
+            int(whistleblower_policy_xml_object.text)
+        )
+
+    def _implemented_whisteblower_policy(self, checked: int) -> bool:
+        return checked == WhistleblowerPolicyExtractor.PRESENT
