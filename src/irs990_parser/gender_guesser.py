@@ -1,4 +1,5 @@
 import pathlib
+import random
 
 import pandas as pd
 
@@ -22,7 +23,20 @@ class GenderGuesser:
         :return: M if male, F if female
         :rtype: str
         """
-        prob = self._gender_df[self._gender_df[GenderGuesser.NAME_COL] == first_name][
-            GenderGuesser.PROB_COL
-        ].values[0]
-        return "F" if prob >= 0.5 else "M"
+        prob_in_df = self._gender_df[
+            self._gender_df[GenderGuesser.NAME_COL] == first_name
+        ][GenderGuesser.PROB_COL].values
+        if prob_in_df.size == 0:
+            return self._guess_using_threshold(0.5)
+
+        return self._guess_using_threshold(prob_in_df[0])
+
+    def _guess_using_threshold(self, threshold: float) -> str:
+        """Guess gender based on probability threshold
+
+        :param threshold: Minimum threshold
+        :type threshold: float
+        :return: M if male, F if female
+        :rtype: str
+        """
+        return "F" if random.random() < threshold else "M"
