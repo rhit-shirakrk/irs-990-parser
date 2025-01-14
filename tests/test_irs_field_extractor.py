@@ -425,7 +425,7 @@ class TestIRSFieldExtractor:
             )
             assert other_compensation_policy.extract() is None
 
-    def test_trustee_extractor_male_to_female_ratio_no_male_expected_0(
+    def test_trustee_extractor_female_percentage_no_male_expected_1(
         self,
         gender_guesser_singleton: gender_guesser.GenderGuesser,
         mocker: pytest_mock.MockerFixture,
@@ -454,7 +454,7 @@ class TestIRSFieldExtractor:
             )
             assert trustee_extractor.calculate_trustee_female_percentage() == 1.0
 
-    def test_trustee_extractor_male_to_female_ratio_no_female_expected_zero(
+    def test_trustee_extractor_female_percentage_no_female_expected_zero(
         self,
         gender_guesser_singleton: gender_guesser.GenderGuesser,
         mocker: pytest_mock.MockerFixture,
@@ -483,7 +483,7 @@ class TestIRSFieldExtractor:
             )
             assert trustee_extractor.calculate_trustee_female_percentage() == 0.0
 
-    def test_trustee_extractor_no_trustees_expected_none(
+    def test_trustee_extractor_female_percentage_no_trustees_expected_none(
         self,
         gender_guesser_singleton: gender_guesser.GenderGuesser,
     ) -> None:
@@ -506,7 +506,7 @@ class TestIRSFieldExtractor:
             )
             assert trustee_extractor.calculate_trustee_female_percentage() is None
 
-    def test_trustee_extractor_missing_trustees_section_expected_none(
+    def test_trustee_extractor_female_percentage_missing_trustees_section_expected_none(
         self, gender_guesser_singleton: gender_guesser.GenderGuesser
     ) -> None:
         """Tests case where Part VII Section A is missing
@@ -528,7 +528,7 @@ class TestIRSFieldExtractor:
             )
             assert trustee_extractor.calculate_trustee_female_percentage() is None
 
-    def test_key_employee_extractor_male_to_female_ratio_no_male_expected_0(
+    def test_key_employee_extractor_female_percentage_no_male_expected_1(
         self, gender_guesser_singleton: gender_guesser.GenderGuesser
     ) -> None:
         """Tests case where there are no male key employees
@@ -547,4 +547,7 @@ class TestIRSFieldExtractor:
             parsed_xml = bs4.BeautifulSoup(file, "xml")
             key_employee_extractor = irs_field_extractor.KeyEmployeeExtractor(
                 file_name, parsed_xml, gender_guesser_singleton
+            )
+            assert (
+                key_employee_extractor.calculate_key_employee_female_percentage() == 1.0
             )
