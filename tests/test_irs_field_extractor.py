@@ -602,3 +602,30 @@ class TestIRSFieldExtractor:
                 key_employee_extractor.calculate_key_employee_female_percentage()
                 is None
             )
+
+    def test_key_employee_extractor_female_percentage_missing_key_employees_expected_none(
+        self, gender_guesser_singleton: gender_guesser.GenderGuesser
+    ) -> None:
+        """Tests case where there the key employees section is missing
+
+        :param gender_guesser_singleton: Gender guesser object
+        :type gender_guesser_singleton: gender_guesser.GenderGuesser
+        """
+        missing_path = pathlib.Path(
+            os.path.join(
+                TestIRSFieldExtractor.SAMPLE_FILES_DIR,
+                "key_employees",
+                "missing.xml",
+            )
+        )
+        with open(missing_path, "r", encoding="utf-8") as f:
+            file = f.read()
+            file_name = os.path.basename(missing_path)
+            parsed_xml = bs4.BeautifulSoup(file, "xml")
+            key_employee_extractor = irs_field_extractor.KeyEmployeeExtractor(
+                file_name, parsed_xml, gender_guesser_singleton
+            )
+            assert (
+                key_employee_extractor.calculate_key_employee_female_percentage()
+                is None
+            )
