@@ -446,7 +446,9 @@ class TestIRSFieldExtractor:
             file = f.read()
             file_name = os.path.basename(no_male_path)
             parsed_xml = bs4.BeautifulSoup(file, "xml")
-            mocker.patch("gender_guesser.guess", return_value="F")
+            mocker.patch(
+                "irs990_parser.gender_guesser.GenderGuesser.guess", return_value="F"
+            )
             trustee_extractor = irs_field_extractor.TrusteeExtractor(
                 file_name, parsed_xml, gender_guesser_singleton
             )
@@ -473,7 +475,9 @@ class TestIRSFieldExtractor:
             file = f.read()
             file_name = os.path.basename(no_female_path)
             parsed_xml = bs4.BeautifulSoup(file, "xml")
-            mocker.patch("gender_guesser.guess", return_value="M")
+            mocker.patch(
+                "irs990_parser.gender_guesser.GenderGuesser.guess", return_value="M"
+            )
             trustee_extractor = irs_field_extractor.TrusteeExtractor(
                 file_name, parsed_xml, gender_guesser_singleton
             )
