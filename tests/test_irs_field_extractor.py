@@ -652,3 +652,25 @@ class TestIRSFieldExtractor:
                 key_employee_extractor.calculate_key_employee_female_percentage()
                 is None
             )
+
+    def test_key_employee_extractor_male_to_female_pay_ratio_no_male_expected_0(
+        self, gender_guesser_singleton: gender_guesser.GenderGuesser
+    ) -> None:
+        """Tests case where there are no male key employees
+
+        :param gender_guesser_singleton: Gender guesser object
+        :type gender_guesser_singleton: gender_guesser.GenderGuesser
+        """
+        no_male_path = pathlib.Path(
+            os.path.join(
+                TestIRSFieldExtractor.SAMPLE_FILES_DIR, "key_employees", "no_male.xml"
+            )
+        )
+        with open(no_male_path, "r", encoding="utf-8") as f:
+            file = f.read()
+            file_name = os.path.basename(no_male_path)
+            parsed_xml = bs4.BeautifulSoup(file, "xml")
+            key_employee_extractor = irs_field_extractor.KeyEmployeeExtractor(
+                file_name, parsed_xml, gender_guesser_singleton
+            )
+            assert key_employee_extractor.calculate_male_to_female_pay_ratio() == 0.0
