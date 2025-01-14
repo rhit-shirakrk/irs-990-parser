@@ -377,3 +377,108 @@ class KeyEmployeeExtractor:
                 male_pay += compensation
 
         return male_pay / female_pay if female_pay > 0 else None
+
+    def calculate_president_to_average_pay_ratio(self) -> Optional[float]:
+        """Calculate president (highest salary) to average wage ratio
+
+        :return: Highest salary to average wage ratio
+        :rtype: Optional[float]
+        """
+        highest_key_employee_salary = self._get_highest_key_employee_salary()
+        if highest_key_employee_salary is None:
+            return None
+
+        average_salary = self._calculate_average_salary()
+        if average_salary is None:
+            return None
+
+        return highest_key_employee_salary / average_salary
+
+    def _get_highest_key_employee_salary(self) -> Optional[float]:
+        """Get highest salary of key employees
+
+        :return: Highest salary
+        :rtype: Optional[float]
+        """
+        schedule_j = self.parsed_xml.find("IRS990ScheduleJ")
+        if schedule_j is None:
+            return None
+
+        key_employee_xml_objects = schedule_j.find_all("RltdOrgOfficerTrstKeyEmplGrp")
+        if key_employee_xml_objects is None:
+            return None
+
+        max_pay = 0
+        for key_employee_xml_object in key_employee_xml_objects:
+            compensation = float(
+                key_employee_xml_object.find("TotalCompensationFilingOrgAmt").text
+            )
+            max_pay = max(max_pay, compensation)
+
+        return max_pay
+
+    def _calculate_average_salary(self) -> Optional[float]:
+        """Calculate the average salary of employees in an organization
+
+        :return: Average salary
+        :rtype: Optional[float]
+        """
+        total_salary = float(self.parsed_xml.find("CYSalariesCompEmpBnftPaidAmt").text)
+        if total_salary is None:
+            return None
+
+        total_salary_of_key_employees = self._calculate_total_salary_of_key_employees()
+        if total_salary_of_key_employees is None:
+            return None
+
+        total_employees = int(self.parsed_xml.find("EmployeeCnt").text)
+        total_key_employees = self._get_total_key_employees()
+
+        print(f"Total employees: {total_employees}")
+        print(f"Total key employees: {total_key_employees}")
+
+        return (
+            (total_salary - total_salary_of_key_employees)
+            / (total_employees - total_key_employees)
+            if (total_employees - total_key_employees) > 0
+            else None
+        )
+
+    def _calculate_total_salary_of_key_employees(self) -> Optional[float]:
+        """Calculate total salary of all key employees
+
+        :return: Total salary of all key employees
+        :rtype: Optional[float]
+        """
+        schedule_j = self.parsed_xml.find("IRS990ScheduleJ")
+        if schedule_j is None:
+            return None
+
+        key_employee_xml_objects = schedule_j.find_all("RltdOrgOfficerTrstKeyEmplGrp")
+        if key_employee_xml_objects is None:
+            return None
+
+        total_salary = 0
+        for key_employee_xml_object in key_employee_xml_objects:
+            compensation = float(
+                key_employee_xml_object.find("TotalCompensationFilingOrgAmt").text
+            )
+            total_salary += compensation
+
+        return total_salary
+
+    def _get_total_key_employees(self) -> int:
+        """Return the number of total key employees
+
+        :return: Number of key employees
+        :rtype: int
+        """
+        schedule_j = self.parsed_xml.find("IRS990ScheduleJ")
+        if schedule_j is None:
+            return 0
+
+        key_employee_xml_objects = schedule_j.find_all("RltdOrgOfficerTrstKeyEmplGrp")
+        if key_employee_xml_objects is None:
+            return 0
+
+        return len(key_employee_xml_objects)
