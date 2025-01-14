@@ -319,35 +319,31 @@ class KeyEmployeeExtractor:
         :return: Female percentage of key employees
         :rtype: Optional[float]
         """
-        key_employee_xml_objects = self.parsed_xml.find_all("Form990PartVIISectionAGrp")
+        schedule_j = self.parsed_xml.find("IRS990ScheduleJ")
+        if schedule_j is None:
+            return None
+
+        key_employee_xml_objects = schedule_j.find_all("RltdOrgOfficerTrstKeyEmplGrp")
+
         female = 0
         total = 0
         for key_employee_xml_object in key_employee_xml_objects:
-            first_name = (
-                key_employee_xml_object.find("PersonNm").text.split()[0].lower()
-            )
-            guess = self.guesser.guess(first_name)
-            if not self._is_key_employee(key_employee_xml_object):
-                continue
-
-            if guess == "F":
+            if (
+                self.guesser.guess(self._get_name_to_guess(key_employee_xml_object))
+                == "F"
+            ):
                 female += 1
             total += 1
 
         return female / total if total > 0 else None
 
-    def _is_key_employee(self, key_employee_xml_object: bs4.element.Tag) -> bool:
-        """Verify an employee is a key employee
+    def _get_name_to_guess(self, key_employee_xml_object: bs4.element.Tag) -> str:
+        """Return the name used to guess gender
 
-        :param key_employee_xml_object: The XML representation of an employee
+        :param key_employee_xml_object: XML reprsentation of an employee
         :type key_employee_xml_object: bs4.element.Tag
-        :return: True if the employee is a key employee, False otherwise
-        :rtype: bool
+        :return: The name used to guess gender
+        :rtype: str
         """
-        key_employee_checkbox_xml_object = key_employee_xml_object.find(
-            "KeyEmployeeInd"
-        )
-        return (
-            key_employee_checkbox_xml_object is not None
-            and key_employee_checkbox_xml_object.text == "X"
-        )
+        full_name = key_employee_xml_object.find("PersonNm").text.lower().split()
+        return full_name[0] if len(full_name) == 2 else full_name[1]
