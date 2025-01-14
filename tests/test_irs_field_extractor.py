@@ -505,3 +505,25 @@ class TestIRSFieldExtractor:
                 file_name, parsed_xml, gender_guesser_singleton
             )
             assert trustee_extractor.calculate_trustee_male_to_female_ratio() is None
+
+    def test_trustee_extractor_missing_trustees_section_expected_none(
+        self, gender_guesser_singleton: gender_guesser.GenderGuesser
+    ) -> None:
+        """Tests case where Part VII Section A is missing
+
+        :param gender_guesser_singleton: Gender guesser object
+        :type gender_guesser_singleton: gender_guesser.GenderGuesser
+        """
+        missing_trustees_path = pathlib.Path(
+            os.path.join(
+                TestIRSFieldExtractor.SAMPLE_FILES_DIR, "trustees", "missing.xml"
+            )
+        )
+        with open(missing_trustees_path, "r", encoding="utf-8") as f:
+            file = f.read()
+            file_name = os.path.basename(missing_trustees_path)
+            parsed_xml = bs4.BeautifulSoup(file, "xml")
+            trustee_extractor = irs_field_extractor.TrusteeExtractor(
+                file_name, parsed_xml, gender_guesser_singleton
+            )
+            assert trustee_extractor.calculate_trustee_male_to_female_ratio() is None
