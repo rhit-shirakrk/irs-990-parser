@@ -355,8 +355,12 @@ class KeyEmployeeExtractor:
         :rtype: float
         """
         schedule_j = self.parsed_xml.find("IRS990ScheduleJ")
+        if schedule_j is None:
+            return None
 
         key_employee_xml_objects = schedule_j.find_all("RltdOrgOfficerTrstKeyEmplGrp")
+        if key_employee_xml_objects is None:
+            return None
 
         male_pay = 0
         female_pay = 0
