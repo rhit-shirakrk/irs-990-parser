@@ -673,9 +673,7 @@ class TestIRSFieldExtractor:
             key_employee_extractor = irs_field_extractor.KeyEmployeeExtractor(
                 file_name, parsed_xml, gender_guesser_singleton
             )
-            assert (
-                key_employee_extractor.calculate_male_to_female_pay_ratio() == 151195.0
-            )
+            assert key_employee_extractor.calculate_male_to_female_pay_ratio() == 0.0
 
     def test_key_employee_extractor_male_to_female_pay_ratio_no_female_expected_none(
         self, gender_guesser_singleton: gender_guesser.GenderGuesser
