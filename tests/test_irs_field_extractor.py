@@ -7,8 +7,19 @@ import pathlib
 
 import bs4
 import pytest
+import pytest_mock
 
-from irs990_parser import custom_exceptions, irs_field_extractor
+from irs990_parser import custom_exceptions, gender_guesser, irs_field_extractor
+
+
+@pytest.fixture(scope="session")
+def gender_guesser_singleton() -> gender_guesser.GenderGuesser:
+    PROB_CSV_FILE = pathlib.Path(
+        os.path.join(
+            "..", "src", "irs990_parser", "first_name_gender_probabilities.csv"
+        )
+    )
+    return gender_guesser.GenderGuesser(PROB_CSV_FILE)
 
 
 class TestIRSFieldExtractor:
@@ -413,3 +424,106 @@ class TestIRSFieldExtractor:
                 )
             )
             assert other_compensation_policy.extract() is None
+
+    def test_trustee_extractor_male_to_female_ratio_no_male_expected_0(
+        self,
+        gender_guesser_singleton: gender_guesser.GenderGuesser,
+        mocker: pytest_mock.MockerFixture,
+    ) -> None:
+        """Tests case where there are no male trustees
+
+        :param gender_guesser_singleton: Gender guesser object
+        :type gender_guesser_singleton: gender_guesser.GenderGuesser
+        :param mocker: Mock fixture
+        :type mocker: pytest_mock.MockerFixture
+        """
+        no_male_path = pathlib.Path(
+            os.path.join(
+                TestIRSFieldExtractor.SAMPLE_FILES_DIR, "trustees", "no_male.xml"
+            )
+        )
+        with open(no_male_path, "r", encoding="utf-8") as f:
+            file = f.read()
+            file_name = os.path.basename(no_male_path)
+            parsed_xml = bs4.BeautifulSoup(file, "xml")
+            mocker.patch(
+                "irs990_parser.gender_guesser.GenderGuesser.guess", return_value="F"
+            )
+            trustee_extractor = irs_field_extractor.TrusteeExtractor(
+                file_name, parsed_xml, gender_guesser_singleton
+            )
+            assert trustee_extractor.calculate_trustee_male_to_female_ratio() == 0.0
+
+    def test_trustee_extractor_male_to_female_ratio_no_female_expected_none(
+        self,
+        gender_guesser_singleton: gender_guesser.GenderGuesser,
+        mocker: pytest_mock.MockerFixture,
+    ) -> None:
+        """Tests case where there are no female trustees
+
+        :param gender_guesser_singleton: Gender guesser object
+        :type gender_guesser_singleton: gender_guesser.GenderGuesser
+        :param mocker: Mock fixture
+        :type mocker: pytest_mock.MockerFixture
+        """
+        no_female_path = pathlib.Path(
+            os.path.join(
+                TestIRSFieldExtractor.SAMPLE_FILES_DIR, "trustees", "no_female.xml"
+            )
+        )
+        with open(no_female_path, "r", encoding="utf-8") as f:
+            file = f.read()
+            file_name = os.path.basename(no_female_path)
+            parsed_xml = bs4.BeautifulSoup(file, "xml")
+            mocker.patch(
+                "irs990_parser.gender_guesser.GenderGuesser.guess", return_value="M"
+            )
+            trustee_extractor = irs_field_extractor.TrusteeExtractor(
+                file_name, parsed_xml, gender_guesser_singleton
+            )
+            assert trustee_extractor.calculate_trustee_male_to_female_ratio() is None
+
+    def test_trustee_extractor_no_trustees_expected_none(
+        self,
+        gender_guesser_singleton: gender_guesser.GenderGuesser,
+    ) -> None:
+        """Tests case where there are no trustees
+
+        :param gender_guesser_singleton: Gender guesser object
+        :type gender_guesser_singleton: gender_guesser.GenderGuesser
+        """
+        no_trustees_path = pathlib.Path(
+            os.path.join(
+                TestIRSFieldExtractor.SAMPLE_FILES_DIR, "trustees", "no_trustees.xml"
+            )
+        )
+        with open(no_trustees_path, "r", encoding="utf-8") as f:
+            file = f.read()
+            file_name = os.path.basename(no_trustees_path)
+            parsed_xml = bs4.BeautifulSoup(file, "xml")
+            trustee_extractor = irs_field_extractor.TrusteeExtractor(
+                file_name, parsed_xml, gender_guesser_singleton
+            )
+            assert trustee_extractor.calculate_trustee_male_to_female_ratio() is None
+
+    def test_trustee_extractor_missing_trustees_section_expected_none(
+        self, gender_guesser_singleton: gender_guesser.GenderGuesser
+    ) -> None:
+        """Tests case where Part VII Section A is missing
+
+        :param gender_guesser_singleton: Gender guesser object
+        :type gender_guesser_singleton: gender_guesser.GenderGuesser
+        """
+        missing_trustees_path = pathlib.Path(
+            os.path.join(
+                TestIRSFieldExtractor.SAMPLE_FILES_DIR, "trustees", "missing.xml"
+            )
+        )
+        with open(missing_trustees_path, "r", encoding="utf-8") as f:
+            file = f.read()
+            file_name = os.path.basename(missing_trustees_path)
+            parsed_xml = bs4.BeautifulSoup(file, "xml")
+            trustee_extractor = irs_field_extractor.TrusteeExtractor(
+                file_name, parsed_xml, gender_guesser_singleton
+            )
+            assert trustee_extractor.calculate_trustee_male_to_female_ratio() is None

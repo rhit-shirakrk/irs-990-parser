@@ -1,0 +1,512 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Return returnVersion="2022v5.0" xmlns="http://www.irs.gov/efile" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <ReturnHeader binaryAttachmentCnt="0">
+    <ReturnTs>2023-12-22T14:36:19-05:00</ReturnTs>
+    <TaxPeriodEndDt>2023-06-30</TaxPeriodEndDt>
+    <PreparerFirmGrp>
+      <PreparerFirmEIN>473123679</PreparerFirmEIN>
+      <PreparerFirmName>
+        <BusinessNameLine1Txt>SAM BROWN CPA INC</BusinessNameLine1Txt>
+      </PreparerFirmName>
+      <PreparerUSAddress>
+        <AddressLine1Txt>PO BOX 1027</AddressLine1Txt>
+        <CityNm>TROY</CityNm>
+        <StateAbbreviationCd>OH</StateAbbreviationCd>
+        <ZIPCd>453738027</ZIPCd>
+      </PreparerUSAddress>
+    </PreparerFirmGrp>
+    <ReturnTypeCd>990</ReturnTypeCd>
+    <TaxPeriodBeginDt>2022-07-01</TaxPeriodBeginDt>
+    <Filer>
+      <EIN>010779327</EIN>
+      <BusinessName>
+        <BusinessNameLine1Txt>ISAIAH'S PLACE</BusinessNameLine1Txt>
+      </BusinessName>
+      <BusinessNameControlTxt>ISAI</BusinessNameControlTxt>
+      <PhoneNum>9373353701</PhoneNum>
+      <USAddress>
+        <AddressLine1Txt>61 STANFIELD RD</AddressLine1Txt>
+        <CityNm>TROY</CityNm>
+        <StateAbbreviationCd>OH</StateAbbreviationCd>
+        <ZIPCd>45373</ZIPCd>
+      </USAddress>
+    </Filer>
+    <BusinessOfficerGrp>
+      <PersonNm>ROBERT LYBARGER II</PersonNm>
+      <PersonTitleTxt>EXECUTIVE DIRECTOR</PersonTitleTxt>
+      <PhoneNum>9373353701</PhoneNum>
+      <SignatureDt>2023-12-21</SignatureDt>
+    </BusinessOfficerGrp>
+    <SigningOfficerGrp>
+      <PersonFullName>
+        <PersonFirstNm>ROBERT</PersonFirstNm>
+        <PersonLastNm>LYBARGER II</PersonLastNm>
+      </PersonFullName>
+      <SSN>999009999</SSN>
+    </SigningOfficerGrp>
+    <IRSResponsiblePrtyInfoCurrInd>false</IRSResponsiblePrtyInfoCurrInd>
+    <PreparerPersonGrp>
+      <PreparerPersonNm>SAM B BROWN</PreparerPersonNm>
+      <PTIN>P00178037</PTIN>
+      <PhoneNum>9378759510</PhoneNum>
+      <PreparationDt>2023-12-21</PreparationDt>
+    </PreparerPersonGrp>
+    <TaxYr>2022</TaxYr>
+    <BuildTS>2023-04-26 12:10:37Z</BuildTS>
+  </ReturnHeader>
+  <ReturnData documentCnt="6">
+    <IRS990 documentId="RetDoc3" referenceDocumentId="RetDoc6">
+      <PrincipalOfficerNm>ROBERT LYBARGER II</PrincipalOfficerNm>
+      <GrossReceiptsAmt>2854467</GrossReceiptsAmt>
+      <GroupReturnForAffiliatesInd>false</GroupReturnForAffiliatesInd>
+      <Organization501c3Ind>X</Organization501c3Ind>
+      <TypeOfOrganizationCorpInd>X</TypeOfOrganizationCorpInd>
+      <FormationYr>2002</FormationYr>
+      <LegalDomicileStateCd>OH</LegalDomicileStateCd>
+      <ActivityOrMissionDesc>WE AIM TO CONNECT, NURTURE, AND RESTORE CHILDREN AND FAMILIES IN THE COMMUNITIES WE SERVE THROUGH FOSTER CARE, ADOPTION SUPPORT, AND TRAUMA FOCUSED BEHAVIORAL &amp; MENTAL HEALTH SERVICES.</ActivityOrMissionDesc>
+      <VotingMembersGoverningBodyCnt>7</VotingMembersGoverningBodyCnt>
+      <VotingMembersIndependentCnt>7</VotingMembersIndependentCnt>
+      <TotalEmployeeCnt>19</TotalEmployeeCnt>
+      <TotalGrossUBIAmt>0</TotalGrossUBIAmt>
+      <PYContributionsGrantsAmt>189167</PYContributionsGrantsAmt>
+      <CYContributionsGrantsAmt>599274</CYContributionsGrantsAmt>
+      <PYProgramServiceRevenueAmt>1682818</PYProgramServiceRevenueAmt>
+      <CYProgramServiceRevenueAmt>2252750</CYProgramServiceRevenueAmt>
+      <PYInvestmentIncomeAmt>451</PYInvestmentIncomeAmt>
+      <CYInvestmentIncomeAmt>1258</CYInvestmentIncomeAmt>
+      <PYOtherRevenueAmt>33766</PYOtherRevenueAmt>
+      <CYOtherRevenueAmt>1185</CYOtherRevenueAmt>
+      <PYTotalRevenueAmt>1906202</PYTotalRevenueAmt>
+      <CYTotalRevenueAmt>2854467</CYTotalRevenueAmt>
+      <CYGrantsAndSimilarPaidAmt>0</CYGrantsAndSimilarPaidAmt>
+      <CYBenefitsPaidToMembersAmt>0</CYBenefitsPaidToMembersAmt>
+      <PYSalariesCompEmpBnftPaidAmt>709198</PYSalariesCompEmpBnftPaidAmt>
+      <CYSalariesCompEmpBnftPaidAmt>975757</CYSalariesCompEmpBnftPaidAmt>
+      <CYTotalProfFndrsngExpnsAmt>0</CYTotalProfFndrsngExpnsAmt>
+      <CYTotalFundraisingExpenseAmt>0</CYTotalFundraisingExpenseAmt>
+      <PYOtherExpensesAmt>1330243</PYOtherExpensesAmt>
+      <CYOtherExpensesAmt>1389184</CYOtherExpensesAmt>
+      <PYTotalExpensesAmt>2039441</PYTotalExpensesAmt>
+      <CYTotalExpensesAmt>2364941</CYTotalExpensesAmt>
+      <PYRevenuesLessExpensesAmt>-133239</PYRevenuesLessExpensesAmt>
+      <CYRevenuesLessExpensesAmt>489526</CYRevenuesLessExpensesAmt>
+      <TotalAssetsBOYAmt>1239355</TotalAssetsBOYAmt>
+      <TotalAssetsEOYAmt>1677369</TotalAssetsEOYAmt>
+      <TotalLiabilitiesBOYAmt>1088773</TotalLiabilitiesBOYAmt>
+      <TotalLiabilitiesEOYAmt>1037261</TotalLiabilitiesEOYAmt>
+      <NetAssetsOrFundBalancesBOYAmt>150582</NetAssetsOrFundBalancesBOYAmt>
+      <NetAssetsOrFundBalancesEOYAmt>640108</NetAssetsOrFundBalancesEOYAmt>
+      <MissionDesc>WE AIM TO CONNECT, NURTURE, AND RESTORE CHILDREN AND FAMILIES IN THE COMMUNITIES WE SERVE THROUGH FOSTER CARE, ADOPTION SUPPORT, AND TRAUMA FOCUSED BEHAVIORAL &amp; MENTAL HEALTH SERVICES.</MissionDesc>
+      <SignificantNewProgramSrvcInd>false</SignificantNewProgramSrvcInd>
+      <SignificantChangeInd>false</SignificantChangeInd>
+      <ExpenseAmt>1777787</ExpenseAmt>
+      <Desc>PROVIDE PRIVATE FOSTER CARE SERVICES IN THE MIAMI VALLEY AREA.</Desc>
+      <ProgSrvcAccomActy2Grp>
+        <ExpenseAmt>57573</ExpenseAmt>
+        <Desc>CHILD ADVOCACY CENTER</Desc>
+      </ProgSrvcAccomActy2Grp>
+      <TotalProgramServiceExpensesAmt>1835360</TotalProgramServiceExpensesAmt>
+      <DescribedInSection501c3Ind referenceDocumentId="RetDoc7">true</DescribedInSection501c3Ind>
+      <ScheduleBRequiredInd referenceDocumentId="RetDoc1">true</ScheduleBRequiredInd>
+      <PoliticalCampaignActyInd>false</PoliticalCampaignActyInd>
+      <LobbyingActivitiesInd>false</LobbyingActivitiesInd>
+      <SubjectToProxyTaxInd>false</SubjectToProxyTaxInd>
+      <DonorAdvisedFundInd referenceDocumentId="RetDoc4">false</DonorAdvisedFundInd>
+      <ConservationEasementsInd referenceDocumentId="RetDoc4">false</ConservationEasementsInd>
+      <CollectionsOfArtInd referenceDocumentId="RetDoc4">false</CollectionsOfArtInd>
+      <CreditCounselingInd referenceDocumentId="RetDoc4">false</CreditCounselingInd>
+      <DonorRstrOrQuasiEndowmentsInd referenceDocumentId="RetDoc4">false</DonorRstrOrQuasiEndowmentsInd>
+      <ReportLandBuildingEquipmentInd referenceDocumentId="RetDoc4">true</ReportLandBuildingEquipmentInd>
+      <ReportInvestmentsOtherSecInd referenceDocumentId="RetDoc4">false</ReportInvestmentsOtherSecInd>
+      <ReportProgramRelatedInvstInd referenceDocumentId="RetDoc4">false</ReportProgramRelatedInvstInd>
+      <ReportOtherAssetsInd referenceDocumentId="RetDoc4">false</ReportOtherAssetsInd>
+      <ReportOtherLiabilitiesInd referenceDocumentId="RetDoc4">false</ReportOtherLiabilitiesInd>
+      <IncludeFIN48FootnoteInd referenceDocumentId="RetDoc4">false</IncludeFIN48FootnoteInd>
+      <IndependentAuditFinclStmtInd referenceDocumentId="RetDoc4">true</IndependentAuditFinclStmtInd>
+      <ConsolidatedAuditFinclStmtInd referenceDocumentId="RetDoc4">false</ConsolidatedAuditFinclStmtInd>
+      <SchoolOperatingInd>false</SchoolOperatingInd>
+      <ForeignOfficeInd>false</ForeignOfficeInd>
+      <ForeignActivitiesInd>false</ForeignActivitiesInd>
+      <MoreThan5000KToOrgInd>false</MoreThan5000KToOrgInd>
+      <MoreThan5000KToIndividualsInd>false</MoreThan5000KToIndividualsInd>
+      <ProfessionalFundraisingInd>false</ProfessionalFundraisingInd>
+      <FundraisingActivitiesInd>false</FundraisingActivitiesInd>
+      <GamingActivitiesInd>false</GamingActivitiesInd>
+      <OperateHospitalInd>false</OperateHospitalInd>
+      <GrantsToOrganizationsInd>false</GrantsToOrganizationsInd>
+      <GrantsToIndividualsInd>false</GrantsToIndividualsInd>
+      <ScheduleJRequiredInd referenceDocumentId="RetDoc5">true</ScheduleJRequiredInd>
+      <TaxExemptBondsInd>false</TaxExemptBondsInd>
+      <EngagedInExcessBenefitTransInd>false</EngagedInExcessBenefitTransInd>
+      <PYExcessBenefitTransInd>false</PYExcessBenefitTransInd>
+      <LoanOutstandingInd>false</LoanOutstandingInd>
+      <GrantToRelatedPersonInd>false</GrantToRelatedPersonInd>
+      <BusinessRlnWithOrgMemInd>false</BusinessRlnWithOrgMemInd>
+      <BusinessRlnWithFamMemInd>false</BusinessRlnWithFamMemInd>
+      <BusinessRlnWith35CtrlEntInd>false</BusinessRlnWith35CtrlEntInd>
+      <DeductibleNonCashContriInd>false</DeductibleNonCashContriInd>
+      <DeductibleArtContributionInd>false</DeductibleArtContributionInd>
+      <TerminateOperationsInd>false</TerminateOperationsInd>
+      <PartialLiquidationInd>false</PartialLiquidationInd>
+      <DisregardedEntityInd>false</DisregardedEntityInd>
+      <RelatedEntityInd>false</RelatedEntityInd>
+      <RelatedOrganizationCtrlEntInd>false</RelatedOrganizationCtrlEntInd>
+      <TrnsfrExmptNonChrtblRltdOrgInd>false</TrnsfrExmptNonChrtblRltdOrgInd>
+      <ActivitiesConductedPrtshpInd>false</ActivitiesConductedPrtshpInd>
+      <ScheduleORequiredInd>false</ScheduleORequiredInd>
+      <IRPDocumentCnt>4</IRPDocumentCnt>
+      <IRPDocumentW2GCnt>0</IRPDocumentW2GCnt>
+      <BackupWthldComplianceInd>false</BackupWthldComplianceInd>
+      <EmployeeCnt>19</EmployeeCnt>
+      <EmploymentTaxReturnsFiledInd>true</EmploymentTaxReturnsFiledInd>
+      <UnrelatedBusIncmOverLimitInd>false</UnrelatedBusIncmOverLimitInd>
+      <ForeignFinancialAccountInd>false</ForeignFinancialAccountInd>
+      <ProhibitedTaxShelterTransInd>false</ProhibitedTaxShelterTransInd>
+      <TaxablePartyNotificationInd>false</TaxablePartyNotificationInd>
+      <NondeductibleContributionsInd>false</NondeductibleContributionsInd>
+      <IndoorTanningServicesInd>false</IndoorTanningServicesInd>
+      <SubjToTaxRmnrtnExPrchtPymtInd>false</SubjToTaxRmnrtnExPrchtPymtInd>
+      <SubjectToExcsTaxNetInvstIncInd>false</SubjectToExcsTaxNetInvstIncInd>
+      <InfoInScheduleOPartVIInd>X</InfoInScheduleOPartVIInd>
+      <GoverningBodyVotingMembersCnt>7</GoverningBodyVotingMembersCnt>
+      <IndependentVotingMemberCnt>7</IndependentVotingMemberCnt>
+      <FamilyOrBusinessRlnInd>false</FamilyOrBusinessRlnInd>
+      <DelegationOfMgmtDutiesInd>false</DelegationOfMgmtDutiesInd>
+      <ChangeToOrgDocumentsInd>false</ChangeToOrgDocumentsInd>
+      <MaterialDiversionOrMisuseInd>false</MaterialDiversionOrMisuseInd>
+      <MembersOrStockholdersInd>false</MembersOrStockholdersInd>
+      <ElectionOfBoardMembersInd>false</ElectionOfBoardMembersInd>
+      <DecisionsSubjectToApprovaInd>false</DecisionsSubjectToApprovaInd>
+      <MinutesOfGoverningBodyInd>true</MinutesOfGoverningBodyInd>
+      <MinutesOfCommitteesInd>true</MinutesOfCommitteesInd>
+      <OfficerMailingAddressInd>false</OfficerMailingAddressInd>
+      <LocalChaptersInd>false</LocalChaptersInd>
+      <Form990ProvidedToGvrnBodyInd>false</Form990ProvidedToGvrnBodyInd>
+      <ConflictOfInterestPolicyInd>false</ConflictOfInterestPolicyInd>
+      <WhistleblowerPolicyInd>true</WhistleblowerPolicyInd>
+      <DocumentRetentionPolicyInd>true</DocumentRetentionPolicyInd>
+      <CompensationProcessCEOInd>false</CompensationProcessCEOInd>
+      <CompensationProcessOtherInd>false</CompensationProcessOtherInd>
+      <InvestmentInJointVentureInd>false</InvestmentInJointVentureInd>
+      <StatesWhereCopyOfReturnIsFldCd>OH</StatesWhereCopyOfReturnIsFldCd>
+      <UponRequestInd>X</UponRequestInd>
+      <BooksInCareOfDetail>
+        <PersonNm>MOLLY SNOW</PersonNm>
+        <PhoneNum>9373353701</PhoneNum>
+        <USAddress>
+          <AddressLine1Txt>1100 WAYNE AVE</AddressLine1Txt>
+          <CityNm>TROY</CityNm>
+          <StateAbbreviationCd>OH</StateAbbreviationCd>
+          <ZIPCd>45373</ZIPCd>
+        </USAddress>
+      </BooksInCareOfDetail>
+      <Form990PartVIISectionAGrp>
+        <PersonNm>ROBERT LYBARGER II</PersonNm>
+        <TitleTxt>EXECUTIVE DI</TitleTxt>
+        <AverageHoursPerWeekRt>40.00</AverageHoursPerWeekRt>
+        <OfficerInd>X</OfficerInd>
+        <ReportableCompFromOrgAmt>170000</ReportableCompFromOrgAmt>
+        <ReportableCompFromRltdOrgAmt>0</ReportableCompFromRltdOrgAmt>
+        <OtherCompensationAmt>0</OtherCompensationAmt>
+      </Form990PartVIISectionAGrp>
+      <Form990PartVIISectionAGrp>
+        <PersonNm>ABIGAIL LYBARGER II</PersonNm>
+        <TitleTxt>EXECUTIVE DI</TitleTxt>
+        <AverageHoursPerWeekRt>40.00</AverageHoursPerWeekRt>
+        <OfficerInd>X</OfficerInd>
+        <ReportableCompFromOrgAmt>170000</ReportableCompFromOrgAmt>
+        <ReportableCompFromRltdOrgAmt>0</ReportableCompFromRltdOrgAmt>
+        <OtherCompensationAmt>0</OtherCompensationAmt>
+      </Form990PartVIISectionAGrp>
+      <TotalReportableCompFromOrgAmt>170000</TotalReportableCompFromOrgAmt>
+      <IndivRcvdGreaterThan100KCnt>1</IndivRcvdGreaterThan100KCnt>
+      <FormerOfcrEmployeesListedInd>false</FormerOfcrEmployeesListedInd>
+      <TotalCompGreaterThan150KInd>true</TotalCompGreaterThan150KInd>
+      <CompensationFromOtherSrcsInd>false</CompensationFromOtherSrcsInd>
+      <GovernmentGrantsAmt>449414</GovernmentGrantsAmt>
+      <AllOtherContributionsAmt>149860</AllOtherContributionsAmt>
+      <TotalContributionsAmt>599274</TotalContributionsAmt>
+      <ProgramServiceRevenueGrp>
+        <Desc>FOSTER CARE PROGRAM</Desc>
+        <TotalRevenueColumnAmt>2252750</TotalRevenueColumnAmt>
+        <RelatedOrExemptFuncIncomeAmt>2252750</RelatedOrExemptFuncIncomeAmt>
+      </ProgramServiceRevenueGrp>
+      <TotalProgramServiceRevenueAmt>2252750</TotalProgramServiceRevenueAmt>
+      <InvestmentIncomeGrp>
+        <TotalRevenueColumnAmt>1258</TotalRevenueColumnAmt>
+        <RelatedOrExemptFuncIncomeAmt>1258</RelatedOrExemptFuncIncomeAmt>
+      </InvestmentIncomeGrp>
+      <OtherRevenueMiscGrp>
+        <Desc>OTHER REVENUE</Desc>
+        <TotalRevenueColumnAmt>1185</TotalRevenueColumnAmt>
+        <RelatedOrExemptFuncIncomeAmt>1185</RelatedOrExemptFuncIncomeAmt>
+      </OtherRevenueMiscGrp>
+      <OtherRevenueTotalAmt>1185</OtherRevenueTotalAmt>
+      <TotalRevenueGrp>
+        <TotalRevenueColumnAmt>2854467</TotalRevenueColumnAmt>
+        <RelatedOrExemptFuncIncomeAmt>2255193</RelatedOrExemptFuncIncomeAmt>
+      </TotalRevenueGrp>
+      <CompCurrentOfcrDirectorsGrp>
+        <TotalAmt>170000</TotalAmt>
+        <ManagementAndGeneralAmt>170000</ManagementAndGeneralAmt>
+      </CompCurrentOfcrDirectorsGrp>
+      <OtherSalariesAndWagesGrp>
+        <TotalAmt>613482</TotalAmt>
+        <ProgramServicesAmt>381790</ProgramServicesAmt>
+        <ManagementAndGeneralAmt>231692</ManagementAndGeneralAmt>
+      </OtherSalariesAndWagesGrp>
+      <OtherEmployeeBenefitsGrp>
+        <TotalAmt>61484</TotalAmt>
+        <ProgramServicesAmt>35042</ProgramServicesAmt>
+        <ManagementAndGeneralAmt>26442</ManagementAndGeneralAmt>
+      </OtherEmployeeBenefitsGrp>
+      <PayrollTaxesGrp>
+        <TotalAmt>130791</TotalAmt>
+        <ProgramServicesAmt>99494</ProgramServicesAmt>
+        <ManagementAndGeneralAmt>31297</ManagementAndGeneralAmt>
+      </PayrollTaxesGrp>
+      <AdvertisingGrp>
+        <TotalAmt>13079</TotalAmt>
+        <ProgramServicesAmt>13079</ProgramServicesAmt>
+      </AdvertisingGrp>
+      <OfficeExpensesGrp>
+        <TotalAmt>155990</TotalAmt>
+        <ProgramServicesAmt>126720</ProgramServicesAmt>
+        <ManagementAndGeneralAmt>29270</ManagementAndGeneralAmt>
+      </OfficeExpensesGrp>
+      <OccupancyGrp>
+        <TotalAmt>4334</TotalAmt>
+        <ProgramServicesAmt>4334</ProgramServicesAmt>
+      </OccupancyGrp>
+      <TravelGrp>
+        <TotalAmt>30725</TotalAmt>
+        <ProgramServicesAmt>30725</ProgramServicesAmt>
+      </TravelGrp>
+      <ConferencesMeetingsGrp>
+        <TotalAmt>46992</TotalAmt>
+        <ProgramServicesAmt>46992</ProgramServicesAmt>
+      </ConferencesMeetingsGrp>
+      <InterestGrp>
+        <TotalAmt>21134</TotalAmt>
+        <ManagementAndGeneralAmt>21134</ManagementAndGeneralAmt>
+      </InterestGrp>
+      <DepreciationDepletionGrp>
+        <TotalAmt>34444</TotalAmt>
+        <ProgramServicesAmt>34444</ProgramServicesAmt>
+      </DepreciationDepletionGrp>
+      <InsuranceGrp>
+        <TotalAmt>36627</TotalAmt>
+        <ProgramServicesAmt>36627</ProgramServicesAmt>
+      </InsuranceGrp>
+      <OtherExpensesGrp>
+        <Desc>FOSTER PARENT PAY</Desc>
+        <TotalAmt>970829</TotalAmt>
+        <ProgramServicesAmt>970829</ProgramServicesAmt>
+      </OtherExpensesGrp>
+      <OtherExpensesGrp>
+        <Desc>EQUIPMENT RENTAL &amp; MAINT.</Desc>
+        <TotalAmt>20642</TotalAmt>
+        <ProgramServicesAmt>20642</ProgramServicesAmt>
+      </OtherExpensesGrp>
+      <OtherExpensesGrp>
+        <Desc>TELEPHONE</Desc>
+        <TotalAmt>19330</TotalAmt>
+        <ProgramServicesAmt>19330</ProgramServicesAmt>
+      </OtherExpensesGrp>
+      <OtherExpensesGrp>
+        <Desc>MEMBERSHIP FEES</Desc>
+        <TotalAmt>13494</TotalAmt>
+        <ManagementAndGeneralAmt>13494</ManagementAndGeneralAmt>
+      </OtherExpensesGrp>
+      <AllOtherExpensesGrp>
+        <TotalAmt>21564</TotalAmt>
+        <ProgramServicesAmt>15312</ProgramServicesAmt>
+        <ManagementAndGeneralAmt>6252</ManagementAndGeneralAmt>
+      </AllOtherExpensesGrp>
+      <TotalFunctionalExpensesGrp>
+        <TotalAmt>2364941</TotalAmt>
+        <ProgramServicesAmt>1835360</ProgramServicesAmt>
+        <ManagementAndGeneralAmt>529581</ManagementAndGeneralAmt>
+        <FundraisingAmt>0</FundraisingAmt>
+      </TotalFunctionalExpensesGrp>
+      <CashNonInterestBearingGrp>
+        <BOYAmt>445560</BOYAmt>
+        <EOYAmt>803869</EOYAmt>
+      </CashNonInterestBearingGrp>
+      <AccountsReceivableGrp>
+        <BOYAmt>114895</BOYAmt>
+        <EOYAmt>128409</EOYAmt>
+      </AccountsReceivableGrp>
+      <PrepaidExpensesDefrdChargesGrp>
+        <BOYAmt>6179</BOYAmt>
+        <EOYAmt>1076</EOYAmt>
+      </PrepaidExpensesDefrdChargesGrp>
+      <LandBldgEquipCostOrOtherBssAmt>936640</LandBldgEquipCostOrOtherBssAmt>
+      <LandBldgEquipAccumDeprecAmt>192625</LandBldgEquipAccumDeprecAmt>
+      <LandBldgEquipBasisNetGrp>
+        <BOYAmt>672721</BOYAmt>
+        <EOYAmt>744015</EOYAmt>
+      </LandBldgEquipBasisNetGrp>
+      <TotalAssetsGrp>
+        <BOYAmt>1239355</BOYAmt>
+        <EOYAmt>1677369</EOYAmt>
+      </TotalAssetsGrp>
+      <AccountsPayableAccrExpnssGrp>
+        <BOYAmt>109233</BOYAmt>
+        <EOYAmt>80209</EOYAmt>
+      </AccountsPayableAccrExpnssGrp>
+      <MortgNotesPyblScrdInvstPropGrp>
+        <BOYAmt>979540</BOYAmt>
+        <EOYAmt>957052</EOYAmt>
+      </MortgNotesPyblScrdInvstPropGrp>
+      <TotalLiabilitiesGrp>
+        <BOYAmt>1088773</BOYAmt>
+        <EOYAmt>1037261</EOYAmt>
+      </TotalLiabilitiesGrp>
+      <OrganizationFollowsFASB117Ind>X</OrganizationFollowsFASB117Ind>
+      <NoDonorRestrictionNetAssetsGrp>
+        <BOYAmt>150582</BOYAmt>
+        <EOYAmt>211480</EOYAmt>
+      </NoDonorRestrictionNetAssetsGrp>
+      <DonorRestrictionNetAssetsGrp>
+        <EOYAmt>428628</EOYAmt>
+      </DonorRestrictionNetAssetsGrp>
+      <TotalNetAssetsFundBalanceGrp>
+        <BOYAmt>150582</BOYAmt>
+        <EOYAmt>640108</EOYAmt>
+      </TotalNetAssetsFundBalanceGrp>
+      <TotLiabNetAssetsFundBalanceGrp>
+        <BOYAmt>1239355</BOYAmt>
+        <EOYAmt>1677369</EOYAmt>
+      </TotLiabNetAssetsFundBalanceGrp>
+      <ReconcilationRevenueExpnssAmt>489526</ReconcilationRevenueExpnssAmt>
+      <MethodOfAccountingAccrualInd>X</MethodOfAccountingAccrualInd>
+      <AccountantCompileOrReviewInd>false</AccountantCompileOrReviewInd>
+      <FSAuditedInd>true</FSAuditedInd>
+      <FSAuditedBasisGrp>
+        <SeparateBasisFinclStmtInd>X</SeparateBasisFinclStmtInd>
+      </FSAuditedBasisGrp>
+      <AuditCommitteeInd>true</AuditCommitteeInd>
+    </IRS990>
+    <IRS990ScheduleA documentId="RetDoc7">
+      <PubliclySupportedOrg509a2Ind>X</PubliclySupportedOrg509a2Ind>
+      <GiftsGrantsContrisRcvd509Grp>
+        <CurrentTaxYearMinus4YearsAmt>66481</CurrentTaxYearMinus4YearsAmt>
+        <CurrentTaxYearMinus3YearsAmt>52103</CurrentTaxYearMinus3YearsAmt>
+        <CurrentTaxYearMinus2YearsAmt>141206</CurrentTaxYearMinus2YearsAmt>
+        <CurrentTaxYearMinus1YearAmt>189167</CurrentTaxYearMinus1YearAmt>
+        <CurrentTaxYearAmt>599274</CurrentTaxYearAmt>
+        <TotalAmt>1048231</TotalAmt>
+      </GiftsGrantsContrisRcvd509Grp>
+      <GrossReceiptsAdmissionsGrp>
+        <CurrentTaxYearMinus4YearsAmt>2153368</CurrentTaxYearMinus4YearsAmt>
+        <CurrentTaxYearMinus3YearsAmt>2057742</CurrentTaxYearMinus3YearsAmt>
+        <CurrentTaxYearMinus2YearsAmt>1938595</CurrentTaxYearMinus2YearsAmt>
+        <CurrentTaxYearMinus1YearAmt>1717035</CurrentTaxYearMinus1YearAmt>
+        <CurrentTaxYearAmt>2255193</CurrentTaxYearAmt>
+        <TotalAmt>10121933</TotalAmt>
+      </GrossReceiptsAdmissionsGrp>
+      <Total509Grp>
+        <CurrentTaxYearMinus4YearsAmt>2219849</CurrentTaxYearMinus4YearsAmt>
+        <CurrentTaxYearMinus3YearsAmt>2109845</CurrentTaxYearMinus3YearsAmt>
+        <CurrentTaxYearMinus2YearsAmt>2079801</CurrentTaxYearMinus2YearsAmt>
+        <CurrentTaxYearMinus1YearAmt>1906202</CurrentTaxYearMinus1YearAmt>
+        <CurrentTaxYearAmt>2854467</CurrentTaxYearAmt>
+        <TotalAmt>11170164</TotalAmt>
+      </Total509Grp>
+      <PublicSupportTotal509Amt>11170164</PublicSupportTotal509Amt>
+      <GrossInvestmentIncome509Grp>
+        <CurrentTaxYearMinus4YearsAmt>458</CurrentTaxYearMinus4YearsAmt>
+        <TotalAmt>458</TotalAmt>
+      </GrossInvestmentIncome509Grp>
+      <InvestmentIncomeAndUBTIGrp>
+        <CurrentTaxYearMinus4YearsAmt>458</CurrentTaxYearMinus4YearsAmt>
+        <TotalAmt>458</TotalAmt>
+      </InvestmentIncomeAndUBTIGrp>
+      <TotalSupportCalendarYearGrp>
+        <CurrentTaxYearMinus4YearsAmt>2220307</CurrentTaxYearMinus4YearsAmt>
+        <CurrentTaxYearMinus3YearsAmt>2109845</CurrentTaxYearMinus3YearsAmt>
+        <CurrentTaxYearMinus2YearsAmt>2079801</CurrentTaxYearMinus2YearsAmt>
+        <CurrentTaxYearMinus1YearAmt>1906202</CurrentTaxYearMinus1YearAmt>
+        <CurrentTaxYearAmt>2854467</CurrentTaxYearAmt>
+        <TotalAmt>11170622</TotalAmt>
+      </TotalSupportCalendarYearGrp>
+      <PublicSupportCY509Pct>1.00000</PublicSupportCY509Pct>
+      <PublicSupportPY509Pct>0.99990</PublicSupportPY509Pct>
+      <InvestmentIncomeCYPct>0.00000</InvestmentIncomeCYPct>
+      <InvestmentIncomePYPct>0.00000</InvestmentIncomePYPct>
+      <ThirtyThrPctSuprtTestsCY509Ind>X</ThirtyThrPctSuprtTestsCY509Ind>
+    </IRS990ScheduleA>
+    <IRS990ScheduleB documentId="RetDoc1">
+      <ContributorInformationGrp>
+        <ContributorNum>RESTRICTED</ContributorNum>
+        <ContributorBusinessName>
+          <BusinessNameLine1>RESTRICTED</BusinessNameLine1>
+        </ContributorBusinessName>
+        <ContributorUSAddress>
+          <AddressLine1>RESTRICTED</AddressLine1>
+          <AddressLine2>RESTRICTED</AddressLine2>
+          <City>RESTRICTED</City>
+          <State>RESTRICTED</State>
+          <ZIPCode>RESTRICTED</ZIPCode>
+        </ContributorUSAddress>
+        <TotalContributionsAmt>RESTRICTED</TotalContributionsAmt>
+      </ContributorInformationGrp>
+    </IRS990ScheduleB>
+    <IRS990ScheduleD documentId="RetDoc4">
+      <LandGrp>
+        <OtherCostOrOtherBasisAmt>92000</OtherCostOrOtherBasisAmt>
+        <BookValueAmt>92000</BookValueAmt>
+      </LandGrp>
+      <BuildingsGrp>
+        <OtherCostOrOtherBasisAmt>571849</OtherCostOrOtherBasisAmt>
+        <DepreciationAmt>45228</DepreciationAmt>
+        <BookValueAmt>526621</BookValueAmt>
+      </BuildingsGrp>
+      <EquipmentGrp>
+        <OtherCostOrOtherBasisAmt>236341</OtherCostOrOtherBasisAmt>
+        <DepreciationAmt>136996</DepreciationAmt>
+        <BookValueAmt>99345</BookValueAmt>
+      </EquipmentGrp>
+      <OtherLandBuildingsGrp>
+        <OtherCostOrOtherBasisAmt>36450</OtherCostOrOtherBasisAmt>
+        <DepreciationAmt>10401</DepreciationAmt>
+        <BookValueAmt>26049</BookValueAmt>
+      </OtherLandBuildingsGrp>
+      <TotalBookValueLandBuildingsAmt>744015</TotalBookValueLandBuildingsAmt>
+      <TotalRevEtcAuditedFinclStmtAmt>2854467</TotalRevEtcAuditedFinclStmtAmt>
+      <RevenueSubtotalAmt>2854467</RevenueSubtotalAmt>
+      <TotalRevenuePerForm990Amt>2854467</TotalRevenuePerForm990Amt>
+      <TotExpnsEtcAuditedFinclStmtAmt>2364941</TotExpnsEtcAuditedFinclStmtAmt>
+      <ExpensesSubtotalAmt>2364941</ExpensesSubtotalAmt>
+      <TotalExpensesPerForm990Amt>2364941</TotalExpensesPerForm990Amt>
+    </IRS990ScheduleD>
+    <IRS990ScheduleJ documentId="RetDoc5">
+      <SeverancePaymentInd>false</SeverancePaymentInd>
+      <SupplementalNonqualRtrPlanInd>false</SupplementalNonqualRtrPlanInd>
+      <EquityBasedCompArrngmInd>false</EquityBasedCompArrngmInd>
+      <CompBasedOnRevenueOfFlngOrgInd>false</CompBasedOnRevenueOfFlngOrgInd>
+      <CompBsdOnRevRelatedOrgsInd>false</CompBsdOnRevRelatedOrgsInd>
+      <CompBsdNetEarnsFlngOrgInd>false</CompBsdNetEarnsFlngOrgInd>
+      <CompBsdNetEarnsRltdOrgsInd>false</CompBsdNetEarnsRltdOrgsInd>
+      <AnyNonFixedPaymentsInd>false</AnyNonFixedPaymentsInd>
+      <InitialContractExceptionInd>false</InitialContractExceptionInd>
+      <RltdOrgOfficerTrstKeyEmplGrp>
+        <PersonNm>ROBERT LYBARGER II</PersonNm>
+        <TitleTxt>EXECUTIVE DIRECTOR</TitleTxt>
+        <BaseCompensationFilingOrgAmt>170000</BaseCompensationFilingOrgAmt>
+        <TotalCompensationFilingOrgAmt>170000</TotalCompensationFilingOrgAmt>
+      </RltdOrgOfficerTrstKeyEmplGrp>
+    </IRS990ScheduleJ>
+    <IRS990ScheduleO documentId="RetDoc6">
+      <SupplementalInformationDetail>
+        <FormAndLineReferenceDesc>FORM 990, PAGE 6, PART VI, LINE 11B</FormAndLineReferenceDesc>
+        <ExplanationTxt>NO REVIEW WAS OR WILL BE CONDUCTED.</ExplanationTxt>
+      </SupplementalInformationDetail>
+      <SupplementalInformationDetail>
+        <FormAndLineReferenceDesc>FORM 990, PAGE 6, PART VI, LINE 19</FormAndLineReferenceDesc>
+        <ExplanationTxt>AVAILABLE IN THE ORGANIZATION'S OFFICE IN ACCORDANCE WITH THE APPROVED POLICIES.</ExplanationTxt>
+      </SupplementalInformationDetail>
+    </IRS990ScheduleO>
+  </ReturnData>
+</Return>

@@ -23,6 +23,7 @@ class GenderGuesser:
         :return: M if male, F if female
         :rtype: str
         """
+        first_name = first_name.lower()
         prob_in_df = self._gender_df[
             self._gender_df[GenderGuesser.NAME_COL] == first_name
         ][GenderGuesser.PROB_COL].values

@@ -29,7 +29,11 @@ class TestGenderGuesser:
     def test_gender_guesser_unrecognized_name_expected_random(
         self, mocker: pytest_mock.MockerFixture
     ) -> None:
-        """Tests proper guessing of missing name"""
+        """Tests proper guessing of missing name
+
+        :param mocker: Mock fixture
+        :type mocker: pytest_mock.MockerFixture
+        """
         mocker.patch("random.random", return_value=0.5)
 
         guesser = gender_guesser.GenderGuesser(TestGenderGuesser.PROBABILITY_CSV)
