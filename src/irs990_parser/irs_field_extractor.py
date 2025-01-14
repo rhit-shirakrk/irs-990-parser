@@ -309,4 +309,17 @@ class KeyEmployeeExtractor:
         :return: Female percentage of key employees
         :rtype: float
         """
-        return 1.0
+        key_employee_xml_objects = self.parsed_xml.find_all("Form990PartVIISectionAGrp")
+        female = 0
+        total = 0
+        for key_employee_xml_object in key_employee_xml_objects:
+            first_name = (
+                key_employee_xml_object.find("PersonNm").text.split()[0].lower()
+            )
+            guess = self.guesser.guess(first_name)
+
+            if guess == "F":
+                female += 1
+            total += 1
+
+        return female / total
