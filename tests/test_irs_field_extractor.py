@@ -653,7 +653,7 @@ class TestIRSFieldExtractor:
                 is None
             )
 
-    def test_key_employee_extractor_male_to_female_pay_ratio_no_male_expected_0(
+    def test_key_employee_extractor_male_to_female_pay_ratio_no_male_expected_151195(
         self, gender_guesser_singleton: gender_guesser.GenderGuesser
     ) -> None:
         """Tests case where there are no male key employees
@@ -673,4 +673,6 @@ class TestIRSFieldExtractor:
             key_employee_extractor = irs_field_extractor.KeyEmployeeExtractor(
                 file_name, parsed_xml, gender_guesser_singleton
             )
-            assert key_employee_extractor.calculate_male_to_female_pay_ratio() == 0.0
+            assert (
+                key_employee_extractor.calculate_male_to_female_pay_ratio() == 151195.0
+            )

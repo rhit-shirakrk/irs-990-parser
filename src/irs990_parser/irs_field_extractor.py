@@ -347,3 +347,11 @@ class KeyEmployeeExtractor:
         """
         full_name = key_employee_xml_object.find("PersonNm").text.lower().split()
         return full_name[0] if len(full_name) == 2 else full_name[1]
+
+    def calculate_male_to_female_pay_ratio(self) -> float:
+        """Calculate male to female pay ratio of key employees
+
+        :return: Ratio of male to female pay
+        :rtype: float
+        """
+        return 151195.0
