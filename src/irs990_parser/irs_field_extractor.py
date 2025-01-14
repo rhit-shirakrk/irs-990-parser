@@ -217,6 +217,8 @@ class TrusteeExtractor:
     def _is_trustee(self, trustee_xml_object: bs4.element.Tag) -> bool:
         """Verify an employee is a trustee
 
+        :param trustee_xml_object: The XML representation of an employee
+        :type trustee_xml_object: bs4.element.Tag
         :return: True if the employee is a trustee, False otherwise
         :rtype: bool
         """
@@ -234,6 +236,8 @@ class TrusteeExtractor:
     ) -> bool:
         """Verify an employee is an individual trustee or director
 
+        :param trustee_xml_object: The XML representation of an employee
+        :type trustee_xml_object: bs4.element.Tag
         :return: True if the employee is an individual trustee or director, False otherwise
         :rtype: bool
         """
@@ -250,6 +254,8 @@ class TrusteeExtractor:
     ) -> bool:
         """Verify if the reportable compensation from their organization is 0
 
+        :param trustee_xml_object: The XML representation of an employee
+        :type trustee_xml_object: bs4.element.Tag
         :return: True if the amount is 0, False otherwise
         :rtype: bool
         """
@@ -266,6 +272,8 @@ class TrusteeExtractor:
     ) -> bool:
         """Verify if the reportable compensation from related organizations is 0
 
+        :param trustee_xml_object: The XML representation of an employee
+        :type trustee_xml_object: bs4.element.Tag
         :return: True if the amount is 0, False otherwise
         :rtype: bool
         """
@@ -282,6 +290,8 @@ class TrusteeExtractor:
     ) -> bool:
         """Verify if the estimated amount of other compensation is 0
 
+        :param trustee_xml_object: The XML representation of an employee
+        :type trustee_xml_object: bs4.element.Tag
         :return: True if the amount is 0, False otherwise
         :rtype: bool
         """
@@ -289,4 +299,55 @@ class TrusteeExtractor:
         return (
             other_compensation_xml_object is not None
             and int(other_compensation_xml_object.text) == 0
+        )
+
+
+class KeyEmployeeExtractor:
+    def __init__(
+        self,
+        file_name: str,
+        parsed_xml: bs4.BeautifulSoup,
+        guesser: gender_guesser.GenderGuesser,
+    ) -> None:
+        self.file_name = file_name
+        self.parsed_xml = parsed_xml
+        self.guesser = guesser
+
+    def calculate_key_employee_female_percentage(self) -> Optional[float]:
+        """Calculate female percentage of key employees
+
+        :return: Female percentage of key employees
+        :rtype: Optional[float]
+        """
+        key_employee_xml_objects = self.parsed_xml.find_all("Form990PartVIISectionAGrp")
+        female = 0
+        total = 0
+        for key_employee_xml_object in key_employee_xml_objects:
+            first_name = (
+                key_employee_xml_object.find("PersonNm").text.split()[0].lower()
+            )
+            guess = self.guesser.guess(first_name)
+            if not self._is_key_employee(key_employee_xml_object):
+                continue
+
+            if guess == "F":
+                female += 1
+            total += 1
+
+        return female / total if total > 0 else None
+
+    def _is_key_employee(self, key_employee_xml_object: bs4.element.Tag) -> bool:
+        """Verify an employee is a key employee
+
+        :param key_employee_xml_object: The XML representation of an employee
+        :type key_employee_xml_object: bs4.element.Tag
+        :return: True if the employee is a key employee, False otherwise
+        :rtype: bool
+        """
+        key_employee_checkbox_xml_object = key_employee_xml_object.find(
+            "KeyEmployeeInd"
+        )
+        return (
+            key_employee_checkbox_xml_object is not None
+            and key_employee_checkbox_xml_object.text == "X"
         )

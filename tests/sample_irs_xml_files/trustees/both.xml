@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Return xmlns="http://www.irs.gov/efile" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" returnVersion="2022v5.0">
+<Return returnVersion="2022v5.0" xmlns="http://www.irs.gov/efile" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <ReturnHeader binaryAttachmentCnt="0">
     <ReturnTs>2023-12-22T14:36:19-05:00</ReturnTs>
     <TaxPeriodEndDt>2023-06-30</TaxPeriodEndDt>
@@ -201,16 +201,16 @@
         </USAddress>
       </BooksInCareOfDetail>
       <Form990PartVIISectionAGrp>
-        <PersonNm>ROBERT LYBARGER II</PersonNm>
-        <TitleTxt>EXECUTIVE DI</TitleTxt>
-        <AverageHoursPerWeekRt>40.00</AverageHoursPerWeekRt>
-        <OfficerInd>X</OfficerInd>
-        <ReportableCompFromOrgAmt>170000</ReportableCompFromOrgAmt>
+        <PersonNm>MOLLY ACKLEY</PersonNm>
+        <TitleTxt>DIRECTOR</TitleTxt>
+        <AverageHoursPerWeekRt>2.00</AverageHoursPerWeekRt>
+        <IndividualTrusteeOrDirectorInd>X</IndividualTrusteeOrDirectorInd>
+        <ReportableCompFromOrgAmt>0</ReportableCompFromOrgAmt>
         <ReportableCompFromRltdOrgAmt>0</ReportableCompFromRltdOrgAmt>
         <OtherCompensationAmt>0</OtherCompensationAmt>
       </Form990PartVIISectionAGrp>
       <Form990PartVIISectionAGrp>
-        <PersonNm>MOLLY ACKLEY</PersonNm>
+        <PersonNm>ROBERT ACKLEY</PersonNm>
         <TitleTxt>DIRECTOR</TitleTxt>
         <AverageHoursPerWeekRt>2.00</AverageHoursPerWeekRt>
         <IndividualTrusteeOrDirectorInd>X</IndividualTrusteeOrDirectorInd>
