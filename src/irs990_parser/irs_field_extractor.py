@@ -217,6 +217,8 @@ class TrusteeExtractor:
     def _is_trustee(self, trustee_xml_object: bs4.element.Tag) -> bool:
         """Verify an employee is a trustee
 
+        :param trustee_xml_object: The XML representation of an employee
+        :type trustee_xml_object: bs4.element.Tag
         :return: True if the employee is a trustee, False otherwise
         :rtype: bool
         """
@@ -234,6 +236,8 @@ class TrusteeExtractor:
     ) -> bool:
         """Verify an employee is an individual trustee or director
 
+        :param trustee_xml_object: The XML representation of an employee
+        :type trustee_xml_object: bs4.element.Tag
         :return: True if the employee is an individual trustee or director, False otherwise
         :rtype: bool
         """
@@ -250,6 +254,8 @@ class TrusteeExtractor:
     ) -> bool:
         """Verify if the reportable compensation from their organization is 0
 
+        :param trustee_xml_object: The XML representation of an employee
+        :type trustee_xml_object: bs4.element.Tag
         :return: True if the amount is 0, False otherwise
         :rtype: bool
         """
@@ -266,6 +272,8 @@ class TrusteeExtractor:
     ) -> bool:
         """Verify if the reportable compensation from related organizations is 0
 
+        :param trustee_xml_object: The XML representation of an employee
+        :type trustee_xml_object: bs4.element.Tag
         :return: True if the amount is 0, False otherwise
         :rtype: bool
         """
@@ -282,6 +290,8 @@ class TrusteeExtractor:
     ) -> bool:
         """Verify if the estimated amount of other compensation is 0
 
+        :param trustee_xml_object: The XML representation of an employee
+        :type trustee_xml_object: bs4.element.Tag
         :return: True if the amount is 0, False otherwise
         :rtype: bool
         """
