@@ -191,59 +191,54 @@ class TrusteeExtractor:
         self.parsed_xml = parsed_xml
         self.guesser = guesser
 
-    def calculate_trustee_male_to_female_ratio(self) -> Optional[float]:
-        """Calculate male to female ratio of trustees
+    def calculate_trustee_female_percentage(self) -> Optional[float]:
+        """Calculate percentage of female trustees
 
-        :return: Ratio of male to female trustees. If there are no
-        female trustees, return None
+        :return: Percentage of female trustees in an organization
         :rtype: Optional[float]
         """
-        stakeholder_xml_objects = self.parsed_xml.find_all("Form990PartVIISectionAGrp")
-        male = 0
+        trustee_xml_objects = self.parsed_xml.find_all("Form990PartVIISectionAGrp")
         female = 0
-        for stakeholder_xml_object in stakeholder_xml_objects:
-            if not self._is_stakeholder(stakeholder_xml_object):
+        total = 0
+        for trustee_xml_object in trustee_xml_objects:
+            if not self._is_trustee(trustee_xml_object):
                 continue
 
-            first_name = stakeholder_xml_object.find("PersonNm").text.split()[0].lower()
+            first_name = trustee_xml_object.find("PersonNm").text.split()[0].lower()
             guess = self.guesser.guess(first_name)
 
             if guess == "F":
                 female += 1
-            else:
-                male += 1
 
-        return male / female if female > 0 else None
+            total += 1
 
-    def _is_stakeholder(self, stakeholder_xml_object: bs4.element.Tag) -> bool:
-        """Verify an employee is a stakeholder
+        return female / total if total > 0 else None
 
-        :return: True if the employee is a stakeholder, False otherwise
+    def _is_trustee(self, trustee_xml_object: bs4.element.Tag) -> bool:
+        """Verify an employee is a trustee
+
+        :return: True if the employee is a trustee, False otherwise
         :rtype: bool
         """
         return (
-            self._is_individual_trustee_or_director(stakeholder_xml_object)
-            and self._no_reportable_compensation_from_organization(
-                stakeholder_xml_object
-            )
+            self._is_individual_trustee_or_director(trustee_xml_object)
+            and self._no_reportable_compensation_from_organization(trustee_xml_object)
             and self._no_reportable_compensation_from_related_organizations(
-                stakeholder_xml_object
+                trustee_xml_object
             )
-            and self._zero_estimated_amount_of_other_compensation(
-                stakeholder_xml_object
-            )
+            and self._zero_estimated_amount_of_other_compensation(trustee_xml_object)
         )
 
     def _is_individual_trustee_or_director(
-        self, stakeholder_xml_object: bs4.element.Tag
+        self, trustee_xml_object: bs4.element.Tag
     ) -> bool:
         """Verify an employee is an individual trustee or director
 
         :return: True if the employee is an individual trustee or director, False otherwise
         :rtype: bool
         """
-        individual_trustee_or_director_checkbox_xml_object = (
-            stakeholder_xml_object.find("IndividualTrusteeOrDirectorInd")
+        individual_trustee_or_director_checkbox_xml_object = trustee_xml_object.find(
+            "IndividualTrusteeOrDirectorInd"
         )
         return (
             individual_trustee_or_director_checkbox_xml_object is not None
@@ -251,14 +246,14 @@ class TrusteeExtractor:
         )
 
     def _no_reportable_compensation_from_organization(
-        self, stakeholder_xml_object: bs4.element.Tag
+        self, trustee_xml_object: bs4.element.Tag
     ) -> bool:
         """Verify if the reportable compensation from their organization is 0
 
         :return: True if the amount is 0, False otherwise
         :rtype: bool
         """
-        reportable_compensation_xml_object = stakeholder_xml_object.find(
+        reportable_compensation_xml_object = trustee_xml_object.find(
             "ReportableCompFromOrgAmt"
         )
         return (
@@ -267,14 +262,14 @@ class TrusteeExtractor:
         )
 
     def _no_reportable_compensation_from_related_organizations(
-        self, stakeholder_xml_object: bs4.element.Tag
+        self, trustee_xml_object: bs4.element.Tag
     ) -> bool:
         """Verify if the reportable compensation from related organizations is 0
 
         :return: True if the amount is 0, False otherwise
         :rtype: bool
         """
-        related_reportable_compensation_xml_object = stakeholder_xml_object.find(
+        related_reportable_compensation_xml_object = trustee_xml_object.find(
             "ReportableCompFromRltdOrgAmt"
         )
         return (
@@ -283,16 +278,14 @@ class TrusteeExtractor:
         )
 
     def _zero_estimated_amount_of_other_compensation(
-        self, stakeholder_xml_object: bs4.element.Tag
+        self, trustee_xml_object: bs4.element.Tag
     ) -> bool:
         """Verify if the estimated amount of other compensation is 0
 
         :return: True if the amount is 0, False otherwise
         :rtype: bool
         """
-        other_compensation_xml_object = stakeholder_xml_object.find(
-            "OtherCompensationAmt"
-        )
+        other_compensation_xml_object = trustee_xml_object.find("OtherCompensationAmt")
         return (
             other_compensation_xml_object is not None
             and int(other_compensation_xml_object.text) == 0
