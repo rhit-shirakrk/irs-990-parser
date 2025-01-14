@@ -290,3 +290,15 @@ class TrusteeExtractor:
             other_compensation_xml_object is not None
             and int(other_compensation_xml_object.text) == 0
         )
+
+
+class KeyEmployeeExtractor:
+    def __init__(
+        self,
+        file_name: str,
+        parsed_xml: bs4.BeautifulSoup,
+        guesser: gender_guesser.GenderGuesser,
+    ) -> None:
+        self.file_name = file_name
+        self.parsed_xml = parsed_xml
+        self.guesser = guesser
