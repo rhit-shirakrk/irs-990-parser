@@ -377,3 +377,7 @@ class KeyEmployeeExtractor:
                 male_pay += compensation
 
         return male_pay / female_pay if female_pay > 0 else None
+
+    def calculate_president_to_average_pay_ratio(self) -> None:
+        """Calculate president (highest salary) to average wage ratio"""
+        return None
