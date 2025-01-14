@@ -347,3 +347,33 @@ class KeyEmployeeExtractor:
         """
         full_name = key_employee_xml_object.find("PersonNm").text.lower().split()
         return full_name[0] if len(full_name) == 2 else full_name[1]
+
+    def calculate_male_to_female_pay_ratio(self) -> Optional[float]:
+        """Calculate male to female pay ratio of key employees
+
+        :return: Ratio of male to female pay
+        :rtype: float
+        """
+        schedule_j = self.parsed_xml.find("IRS990ScheduleJ")
+        if schedule_j is None:
+            return None
+
+        key_employee_xml_objects = schedule_j.find_all("RltdOrgOfficerTrstKeyEmplGrp")
+        if key_employee_xml_objects is None:
+            return None
+
+        male_pay = 0
+        female_pay = 0
+        for key_employee_xml_object in key_employee_xml_objects:
+            compensation = float(
+                key_employee_xml_object.find("TotalCompensationFilingOrgAmt").text
+            )
+            if (
+                self.guesser.guess(self._get_name_to_guess(key_employee_xml_object))
+                == "F"
+            ):
+                female_pay += compensation
+            else:
+                male_pay += compensation
+
+        return male_pay / female_pay if female_pay > 0 else None
