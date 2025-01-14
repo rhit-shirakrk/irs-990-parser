@@ -452,9 +452,9 @@ class TestIRSFieldExtractor:
             trustee_extractor = irs_field_extractor.TrusteeExtractor(
                 file_name, parsed_xml, gender_guesser_singleton
             )
-            assert trustee_extractor.calculate_trustee_male_to_female_ratio() == 0.0
+            assert trustee_extractor.calculate_trustee_female_percentage() == 1.0
 
-    def test_trustee_extractor_male_to_female_ratio_no_female_expected_none(
+    def test_trustee_extractor_male_to_female_ratio_no_female_expected_zero(
         self,
         gender_guesser_singleton: gender_guesser.GenderGuesser,
         mocker: pytest_mock.MockerFixture,
@@ -481,7 +481,7 @@ class TestIRSFieldExtractor:
             trustee_extractor = irs_field_extractor.TrusteeExtractor(
                 file_name, parsed_xml, gender_guesser_singleton
             )
-            assert trustee_extractor.calculate_trustee_male_to_female_ratio() is None
+            assert trustee_extractor.calculate_trustee_female_percentage() == 0.0
 
     def test_trustee_extractor_no_trustees_expected_none(
         self,
@@ -504,7 +504,7 @@ class TestIRSFieldExtractor:
             trustee_extractor = irs_field_extractor.TrusteeExtractor(
                 file_name, parsed_xml, gender_guesser_singleton
             )
-            assert trustee_extractor.calculate_trustee_male_to_female_ratio() is None
+            assert trustee_extractor.calculate_trustee_female_percentage() is None
 
     def test_trustee_extractor_missing_trustees_section_expected_none(
         self, gender_guesser_singleton: gender_guesser.GenderGuesser
@@ -526,4 +526,4 @@ class TestIRSFieldExtractor:
             trustee_extractor = irs_field_extractor.TrusteeExtractor(
                 file_name, parsed_xml, gender_guesser_singleton
             )
-            assert trustee_extractor.calculate_trustee_male_to_female_ratio() is None
+            assert trustee_extractor.calculate_trustee_female_percentage() is None
