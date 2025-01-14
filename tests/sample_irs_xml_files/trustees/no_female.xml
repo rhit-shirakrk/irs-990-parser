@@ -32,7 +32,7 @@
       </USAddress>
     </Filer>
     <BusinessOfficerGrp>
-      <PersonNm>ROBERT LYBARGER II</PersonNm>
+      <PersonNm>ROBERTA LYBARGER II</PersonNm>
       <PersonTitleTxt>EXECUTIVE DIRECTOR</PersonTitleTxt>
       <PhoneNum>9373353701</PhoneNum>
       <SignatureDt>2023-12-21</SignatureDt>
@@ -204,8 +204,8 @@
         <PersonNm>MICHAEL LYBARGER II</PersonNm>
         <TitleTxt>EXECUTIVE DI</TitleTxt>
         <AverageHoursPerWeekRt>40.00</AverageHoursPerWeekRt>
-        <OfficerInd>X</OfficerInd>
-        <ReportableCompFromOrgAmt>170000</ReportableCompFromOrgAmt>
+        <IndividualTrusteeOrDirectorInd>X</IndividualTrusteeOrDirectorInd>
+        <ReportableCompFromOrgAmt>0</ReportableCompFromOrgAmt>
         <ReportableCompFromRltdOrgAmt>0</ReportableCompFromRltdOrgAmt>
         <OtherCompensationAmt>0</OtherCompensationAmt>
       </Form990PartVIISectionAGrp>
