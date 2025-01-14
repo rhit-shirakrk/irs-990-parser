@@ -670,3 +670,30 @@ class TestIRSFieldExtractor:
                 file_name, parsed_xml, gender_guesser_singleton
             )
             assert key_employee_extractor.calculate_male_to_female_pay_ratio() is None
+
+    def test_key_employee_extractor_president_to_average_pay_ratio_no_non_key_employees_expected_none(
+        self, gender_guesser_singleton: gender_guesser.GenderGuesser
+    ) -> None:
+        """Tests case where there are no non-key employees
+
+        :param gender_guesser_singleton: Gender guesser object
+        :type gender_guesser_singleton: gender_guesser.GenderGuesser
+        """
+        no_non_key_employees_path = pathlib.Path(
+            os.path.join(
+                TestIRSFieldExtractor.SAMPLE_FILES_DIR,
+                "key_employees",
+                "no_non_key_employees.xml",
+            )
+        )
+        with open(no_non_key_employees_path, "r", encoding="utf-8") as f:
+            file = f.read()
+            file_name = os.path.basename(no_non_key_employees_path)
+            parsed_xml = bs4.BeautifulSoup(file, "xml")
+            key_employee_extractor = irs_field_extractor.KeyEmployeeExtractor(
+                file_name, parsed_xml, gender_guesser_singleton
+            )
+            assert (
+                key_employee_extractor.calculate_president_to_average_pay_ratio()
+                is None
+            )
