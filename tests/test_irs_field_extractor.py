@@ -506,6 +506,30 @@ class TestIRSFieldExtractor:
             )
             assert trustee_extractor.calculate_trustee_female_percentage() is None
 
+    def test_trustee_extractor_female_percentage_both_expected_half(
+        self, gender_guesser_singleton: gender_guesser.GenderGuesser
+    ) -> None:
+        """Tests case where there are no key employees
+
+        :param gender_guesser_singleton: Gender guesser object
+        :type gender_guesser_singleton: gender_guesser.GenderGuesser
+        """
+        both_path = pathlib.Path(
+            os.path.join(
+                TestIRSFieldExtractor.SAMPLE_FILES_DIR,
+                "trustees",
+                "both.xml",
+            )
+        )
+        with open(both_path, "r", encoding="utf-8") as f:
+            file = f.read()
+            file_name = os.path.basename(both_path)
+            parsed_xml = bs4.BeautifulSoup(file, "xml")
+            trustee_extractor = irs_field_extractor.TrusteeExtractor(
+                file_name, parsed_xml, gender_guesser_singleton
+            )
+            assert trustee_extractor.calculate_trustee_female_percentage() == 0.5
+
     def test_trustee_extractor_female_percentage_missing_trustees_section_expected_none(
         self, gender_guesser_singleton: gender_guesser.GenderGuesser
     ) -> None:
@@ -601,6 +625,32 @@ class TestIRSFieldExtractor:
             assert (
                 key_employee_extractor.calculate_key_employee_female_percentage()
                 is None
+            )
+
+    def test_key_employee_extractor_female_percentage_both_expected_half(
+        self, gender_guesser_singleton: gender_guesser.GenderGuesser
+    ) -> None:
+        """Tests case where there are no key employees
+
+        :param gender_guesser_singleton: Gender guesser object
+        :type gender_guesser_singleton: gender_guesser.GenderGuesser
+        """
+        both_path = pathlib.Path(
+            os.path.join(
+                TestIRSFieldExtractor.SAMPLE_FILES_DIR,
+                "key_employees",
+                "both.xml",
+            )
+        )
+        with open(both_path, "r", encoding="utf-8") as f:
+            file = f.read()
+            file_name = os.path.basename(both_path)
+            parsed_xml = bs4.BeautifulSoup(file, "xml")
+            key_employee_extractor = irs_field_extractor.KeyEmployeeExtractor(
+                file_name, parsed_xml, gender_guesser_singleton
+            )
+            assert (
+                key_employee_extractor.calculate_key_employee_female_percentage() == 0.5
             )
 
     def test_key_employee_extractor_female_percentage_missing_key_employees_expected_none(
