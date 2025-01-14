@@ -303,11 +303,11 @@ class KeyEmployeeExtractor:
         self.parsed_xml = parsed_xml
         self.guesser = guesser
 
-    def calculate_key_employee_female_percentage(self) -> float:
+    def calculate_key_employee_female_percentage(self) -> Optional[float]:
         """Calculate female percentage of key employees
 
         :return: Female percentage of key employees
-        :rtype: float
+        :rtype: Optional[float]
         """
         key_employee_xml_objects = self.parsed_xml.find_all("Form990PartVIISectionAGrp")
         female = 0
@@ -317,9 +317,27 @@ class KeyEmployeeExtractor:
                 key_employee_xml_object.find("PersonNm").text.split()[0].lower()
             )
             guess = self.guesser.guess(first_name)
+            if not self._is_key_employee(key_employee_xml_object):
+                continue
 
             if guess == "F":
                 female += 1
             total += 1
 
-        return female / total
+        return female / total if total > 0 else None
+
+    def _is_key_employee(self, key_employee_xml_object: bs4.element.Tag) -> bool:
+        """Verify an employee is a key employee
+
+        :param key_employee_xml_object: The XML representation of an employee
+        :type key_employee_xml_object: bs4.element.Tag
+        :return: True if the employee is a key employee, False otherwise
+        :rtype: bool
+        """
+        key_employee_checkbox_xml_object = key_employee_xml_object.find(
+            "KeyEmployeeInd"
+        )
+        return (
+            key_employee_checkbox_xml_object is not None
+            and key_employee_checkbox_xml_object.text == "X"
+        )
