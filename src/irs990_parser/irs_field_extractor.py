@@ -127,8 +127,6 @@ class WhistleblowerPolicyExtractor:
 
 
 class CEOCompensationReviewExtractor:
-    PRESENT = 1
-
     def __init__(self, file_name: str, parsed_xml: bs4.BeautifulSoup) -> None:
         self.file_name = file_name
         self.parsed_xml = parsed_xml
@@ -145,12 +143,13 @@ class CEOCompensationReviewExtractor:
         if ceo_compensation_review_xml_object is None:
             return None
 
-        return self._ceo_reviewed_compensation(
-            int(ceo_compensation_review_xml_object.text)
-        )
+        return self._ceo_reviewed_compensation(ceo_compensation_review_xml_object.text)
 
-    def _ceo_reviewed_compensation(self, checked: int) -> bool:
-        return checked == WhistleblowerPolicyExtractor.PRESENT
+    def _ceo_reviewed_compensation(self, field_text: str) -> bool:
+        if field_text.isdigit():
+            return int(field_text) == 1
+
+        return False
 
 
 class OtherCompensationReviewExtractor:
