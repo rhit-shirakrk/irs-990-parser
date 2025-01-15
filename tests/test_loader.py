@@ -12,12 +12,11 @@ class TestLoader:
 
     def test_loader_initial_state_expected_0(self) -> None:
         """Tests initial state has 0 records"""
-        data_loader = loader.Loader()
-        assert data_loader.get_loaded_records() == 0
+        data_loader = loader.Loader([])
+        assert len(data_loader.records) == 0
 
     def test_loader_load_organizational_data_model_expected_1(self) -> None:
         """Tests if data is successfully loaded into memory"""
-        data_loader = loader.Loader()
         sample_data = irs_field_extractor.OrganizationDataModel(
             ein="1",
             org_name="test",
@@ -29,5 +28,5 @@ class TestLoader:
             male_to_female_pay_ratio=0.2,
             president_to_average_pay_ratio=0.15,
         )
-        data_loader.load(sample_data)
-        assert data_loader.get_loaded_records() == 1
+        data_loader = loader.Loader([sample_data])
+        assert len(data_loader.records) == 1
