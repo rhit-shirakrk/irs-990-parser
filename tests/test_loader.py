@@ -10,6 +10,11 @@ class TestLoader:
     Tests functionality of Loader class
     """
 
+    def test_loader_initial_state_expected_0(self) -> None:
+        """Tests initial state has 0 records"""
+        data_loader = loader.Loader()
+        assert data_loader.get_loaded_records() == 0
+
     def test_loader_load_organizational_data_model_expected_1(self) -> None:
         """Tests if data is successfully loaded into memory"""
         data_loader = loader.Loader()
