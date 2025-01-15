@@ -12,4 +12,4 @@ class TestLoader:
 
     def test_loader_load_organizational_data_model_expected_1(self) -> None:
         """Tests if data is successfully loaded into memory"""
-        loader = loader.Loader()
+        data_loader = loader.Loader()
