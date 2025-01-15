@@ -237,7 +237,11 @@ class TrusteeExtractor:
             if not self._is_trustee(trustee_xml_object):
                 continue
 
-            first_name = trustee_xml_object.find("PersonNm").text.split()[0].lower()
+            name_xml_object = trustee_xml_object.find("PersonNm")
+            if name_xml_object is None:
+                continue
+
+            first_name = name_xml_object.text.split()[0].lower()
             guess = self.guesser.guess(first_name)
 
             if guess == "F":
@@ -361,24 +365,31 @@ class KeyEmployeeExtractor:
         female = 0
         total = 0
         for key_employee_xml_object in key_employee_xml_objects:
-            if (
-                self.guesser.guess(self._get_name_to_guess(key_employee_xml_object))
-                == "F"
-            ):
+            name = self._get_name_to_guess(key_employee_xml_object)
+            if name is None:
+                continue
+
+            if self.guesser.guess(name) == "F":
                 female += 1
             total += 1
 
         return female / total if total > 0 else None
 
-    def _get_name_to_guess(self, key_employee_xml_object: bs4.element.Tag) -> str:
+    def _get_name_to_guess(
+        self, key_employee_xml_object: bs4.element.Tag
+    ) -> Optional[str]:
         """Return the name used to guess gender
 
         :param key_employee_xml_object: XML reprsentation of an employee
         :type key_employee_xml_object: bs4.element.Tag
         :return: The name used to guess gender
-        :rtype: str
+        :rtype: Optional[str]
         """
-        full_name = key_employee_xml_object.find("PersonNm").text.lower().split()
+        name_xml_object = key_employee_xml_object.find("PersonNm")
+        if name_xml_object is None:
+            return None
+
+        full_name = name_xml_object.text.lower().split()
         return full_name[0] if len(full_name) == 2 else full_name[1]
 
     def calculate_male_to_female_pay_ratio(self) -> Optional[float]:
@@ -431,7 +442,9 @@ class KeyEmployeeExtractor:
         if average_salary is None:
             return None
 
-        return highest_key_employee_salary / average_salary
+        return (
+            highest_key_employee_salary / average_salary if average_salary > 0 else None
+        )
 
     def _get_highest_key_employee_salary(self) -> Optional[float]:
         """Get highest salary of key employees
