@@ -25,3 +25,4 @@ class TestLoader:
             president_to_average_pay_ratio=0.15,
         )
         data_loader.load(sample_data)
+        assert data_loader.get_loaded_records() == 1
