@@ -178,4 +178,4 @@ class OtherCompensationReviewExtractor:
     def _other_reviewed_compensation(self, field_text: str) -> bool:
         if field_text.isdigit():
             return int(field_text) == 1
-        return True
+        return field_text == "true"
