@@ -6,7 +6,7 @@ from typing import Optional
 
 import bs4
 
-from irs990_parser import custom_exceptions
+from irs990_parser import custom_exceptions, gender_guesser
 
 
 class EINEXtractor:
@@ -179,3 +179,306 @@ class OtherCompensationReviewExtractor:
         if field_text.isdigit():
             return int(field_text) == 1
         return field_text == "true"
+
+class TrusteeExtractor:
+    def __init__(
+        self,
+        file_name: str,
+        parsed_xml: bs4.BeautifulSoup,
+        guesser: gender_guesser.GenderGuesser,
+    ) -> None:
+        self.file_name = file_name
+        self.parsed_xml = parsed_xml
+        self.guesser = guesser
+
+    def calculate_trustee_female_percentage(self) -> Optional[float]:
+        """Calculate percentage of female trustees
+
+        :return: Percentage of female trustees in an organization
+        :rtype: Optional[float]
+        """
+        trustee_xml_objects = self.parsed_xml.find_all("Form990PartVIISectionAGrp")
+        female = 0
+        total = 0
+        for trustee_xml_object in trustee_xml_objects:
+            if not self._is_trustee(trustee_xml_object):
+                continue
+
+            first_name = trustee_xml_object.find("PersonNm").text.split()[0].lower()
+            guess = self.guesser.guess(first_name)
+
+            if guess == "F":
+                female += 1
+
+            total += 1
+
+        return female / total if total > 0 else None
+
+    def _is_trustee(self, trustee_xml_object: bs4.element.Tag) -> bool:
+        """Verify an employee is a trustee
+
+        :param trustee_xml_object: The XML representation of an employee
+        :type trustee_xml_object: bs4.element.Tag
+        :return: True if the employee is a trustee, False otherwise
+        :rtype: bool
+        """
+        return (
+            self._is_individual_trustee_or_director(trustee_xml_object)
+            and self._no_reportable_compensation_from_organization(trustee_xml_object)
+            and self._no_reportable_compensation_from_related_organizations(
+                trustee_xml_object
+            )
+            and self._zero_estimated_amount_of_other_compensation(trustee_xml_object)
+        )
+
+    def _is_individual_trustee_or_director(
+        self, trustee_xml_object: bs4.element.Tag
+    ) -> bool:
+        """Verify an employee is an individual trustee or director
+
+        :param trustee_xml_object: The XML representation of an employee
+        :type trustee_xml_object: bs4.element.Tag
+        :return: True if the employee is an individual trustee or director, False otherwise
+        :rtype: bool
+        """
+        individual_trustee_or_director_checkbox_xml_object = trustee_xml_object.find(
+            "IndividualTrusteeOrDirectorInd"
+        )
+        return (
+            individual_trustee_or_director_checkbox_xml_object is not None
+            and individual_trustee_or_director_checkbox_xml_object.text == "X"
+        )
+
+    def _no_reportable_compensation_from_organization(
+        self, trustee_xml_object: bs4.element.Tag
+    ) -> bool:
+        """Verify if the reportable compensation from their organization is 0
+
+        :param trustee_xml_object: The XML representation of an employee
+        :type trustee_xml_object: bs4.element.Tag
+        :return: True if the amount is 0, False otherwise
+        :rtype: bool
+        """
+        reportable_compensation_xml_object = trustee_xml_object.find(
+            "ReportableCompFromOrgAmt"
+        )
+        return (
+            reportable_compensation_xml_object is not None
+            and int(reportable_compensation_xml_object.text) == 0
+        )
+
+    def _no_reportable_compensation_from_related_organizations(
+        self, trustee_xml_object: bs4.element.Tag
+    ) -> bool:
+        """Verify if the reportable compensation from related organizations is 0
+
+        :param trustee_xml_object: The XML representation of an employee
+        :type trustee_xml_object: bs4.element.Tag
+        :return: True if the amount is 0, False otherwise
+        :rtype: bool
+        """
+        related_reportable_compensation_xml_object = trustee_xml_object.find(
+            "ReportableCompFromRltdOrgAmt"
+        )
+        return (
+            related_reportable_compensation_xml_object is not None
+            and int(related_reportable_compensation_xml_object.text) == 0
+        )
+
+    def _zero_estimated_amount_of_other_compensation(
+        self, trustee_xml_object: bs4.element.Tag
+    ) -> bool:
+        """Verify if the estimated amount of other compensation is 0
+
+        :param trustee_xml_object: The XML representation of an employee
+        :type trustee_xml_object: bs4.element.Tag
+        :return: True if the amount is 0, False otherwise
+        :rtype: bool
+        """
+        other_compensation_xml_object = trustee_xml_object.find("OtherCompensationAmt")
+        return (
+            other_compensation_xml_object is not None
+            and int(other_compensation_xml_object.text) == 0
+        )
+
+
+class KeyEmployeeExtractor:
+    def __init__(
+        self,
+        file_name: str,
+        parsed_xml: bs4.BeautifulSoup,
+        guesser: gender_guesser.GenderGuesser,
+    ) -> None:
+        self.file_name = file_name
+        self.parsed_xml = parsed_xml
+        self.guesser = guesser
+
+    def calculate_key_employee_female_percentage(self) -> Optional[float]:
+        """Calculate female percentage of key employees
+
+        :return: Female percentage of key employees
+        :rtype: Optional[float]
+        """
+        schedule_j = self.parsed_xml.find("IRS990ScheduleJ")
+        if schedule_j is None:
+            return None
+
+        key_employee_xml_objects = schedule_j.find_all("RltdOrgOfficerTrstKeyEmplGrp")
+
+        female = 0
+        total = 0
+        for key_employee_xml_object in key_employee_xml_objects:
+            if (
+                self.guesser.guess(self._get_name_to_guess(key_employee_xml_object))
+                == "F"
+            ):
+                female += 1
+            total += 1
+
+        return female / total if total > 0 else None
+
+    def _get_name_to_guess(self, key_employee_xml_object: bs4.element.Tag) -> str:
+        """Return the name used to guess gender
+
+        :param key_employee_xml_object: XML reprsentation of an employee
+        :type key_employee_xml_object: bs4.element.Tag
+        :return: The name used to guess gender
+        :rtype: str
+        """
+        full_name = key_employee_xml_object.find("PersonNm").text.lower().split()
+        return full_name[0] if len(full_name) == 2 else full_name[1]
+
+    def calculate_male_to_female_pay_ratio(self) -> Optional[float]:
+        """Calculate male to female pay ratio of key employees
+
+        :return: Ratio of male to female pay
+        :rtype: float
+        """
+        schedule_j = self.parsed_xml.find("IRS990ScheduleJ")
+        if schedule_j is None:
+            return None
+
+        key_employee_xml_objects = schedule_j.find_all("RltdOrgOfficerTrstKeyEmplGrp")
+        if key_employee_xml_objects is None:
+            return None
+
+        male_pay = 0
+        female_pay = 0
+        for key_employee_xml_object in key_employee_xml_objects:
+            compensation = float(
+                key_employee_xml_object.find("TotalCompensationFilingOrgAmt").text
+            )
+            if (
+                self.guesser.guess(self._get_name_to_guess(key_employee_xml_object))
+                == "F"
+            ):
+                female_pay += compensation
+            else:
+                male_pay += compensation
+
+        return male_pay / female_pay if female_pay > 0 else None
+
+    def calculate_president_to_average_pay_ratio(self) -> Optional[float]:
+        """Calculate president (highest salary) to average wage ratio
+
+        :return: Highest salary to average wage ratio
+        :rtype: Optional[float]
+        """
+        highest_key_employee_salary = self._get_highest_key_employee_salary()
+        if highest_key_employee_salary is None:
+            return None
+
+        average_salary = self._calculate_average_salary()
+        if average_salary is None:
+            return None
+
+        return highest_key_employee_salary / average_salary
+
+    def _get_highest_key_employee_salary(self) -> Optional[float]:
+        """Get highest salary of key employees
+
+        :return: Highest salary
+        :rtype: Optional[float]
+        """
+        schedule_j = self.parsed_xml.find("IRS990ScheduleJ")
+        if schedule_j is None:
+            return None
+
+        key_employee_xml_objects = schedule_j.find_all("RltdOrgOfficerTrstKeyEmplGrp")
+        if key_employee_xml_objects is None:
+            return None
+
+        max_pay = 0
+        for key_employee_xml_object in key_employee_xml_objects:
+            compensation = float(
+                key_employee_xml_object.find("TotalCompensationFilingOrgAmt").text
+            )
+            max_pay = max(max_pay, compensation)
+
+        return max_pay
+
+    def _calculate_average_salary(self) -> Optional[float]:
+        """Calculate the average salary of employees in an organization
+
+        :return: Average salary
+        :rtype: Optional[float]
+        """
+        total_salary = float(self.parsed_xml.find("CYSalariesCompEmpBnftPaidAmt").text)
+        if total_salary is None:
+            return None
+
+        total_salary_of_key_employees = self._calculate_total_salary_of_key_employees()
+        if total_salary_of_key_employees is None:
+            return None
+
+        total_employees = int(self.parsed_xml.find("EmployeeCnt").text)
+        total_key_employees = self._get_total_key_employees()
+
+        print(f"Total employees: {total_employees}")
+        print(f"Total key employees: {total_key_employees}")
+
+        return (
+            (total_salary - total_salary_of_key_employees)
+            / (total_employees - total_key_employees)
+            if (total_employees - total_key_employees) > 0
+            else None
+        )
+
+    def _calculate_total_salary_of_key_employees(self) -> Optional[float]:
+        """Calculate total salary of all key employees
+
+        :return: Total salary of all key employees
+        :rtype: Optional[float]
+        """
+        schedule_j = self.parsed_xml.find("IRS990ScheduleJ")
+        if schedule_j is None:
+            return None
+
+        key_employee_xml_objects = schedule_j.find_all("RltdOrgOfficerTrstKeyEmplGrp")
+        if key_employee_xml_objects is None:
+            return None
+
+        total_salary = 0
+        for key_employee_xml_object in key_employee_xml_objects:
+            compensation = float(
+                key_employee_xml_object.find("TotalCompensationFilingOrgAmt").text
+            )
+            total_salary += compensation
+
+        return total_salary
+
+    def _get_total_key_employees(self) -> int:
+        """Return the number of total key employees
+
+        :return: Number of key employees
+        :rtype: int
+        """
+        schedule_j = self.parsed_xml.find("IRS990ScheduleJ")
+        if schedule_j is None:
+            return 0
+
+        key_employee_xml_objects = schedule_j.find_all("RltdOrgOfficerTrstKeyEmplGrp")
+        if key_employee_xml_objects is None:
+            return 0
+
+        return len(key_employee_xml_objects)
