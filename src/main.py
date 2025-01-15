@@ -44,6 +44,7 @@ if __name__ == "__main__":
 
             monthly_org_data = []
             for file in os.listdir(irs_990_dir):
+                print(f"Processing file {file}")
                 with open(os.path.join(irs_990_dir, file), "r", encoding="utf-8") as f:
                     xml_file = f.read()
                     file_name = os.path.basename(xml_file)
