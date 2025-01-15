@@ -5,8 +5,21 @@ Implementation of various field extractor classes
 from typing import Optional
 
 import bs4
+import pydantic
 
 from irs990_parser import custom_exceptions, gender_guesser
+
+
+class OrganizationDataModel(pydantic.BaseModel):
+    ein: str
+    instnm: str
+    year: int
+    percentage_women_trustees: Optional[float]
+    percentage_women_key_employees: Optional[float]
+    ceo_reviewed_compensation: Optional[bool]
+    other_reviewed_compensation: Optional[bool]
+    male_to_female_pay_ratio: Optional[float]
+    president_to_average_pay_ratio: Optional[float]
 
 
 class EINEXtractor:
