@@ -89,11 +89,15 @@ class TotalCompensationExtractor:
         :return: Total compensation
         :rtype: Optional[float]
         """
-        compensation_xml_object = self.parsed_xml.find("CYSalariesCompEmpBnftPaidAmt")
-        if compensation_xml_object is None:
+        try:
+            compensation_xml_object = self.parsed_xml.find(
+                "CYSalariesCompEmpBnftPaidAmt"
+            )
+            return float(compensation_xml_object.text)
+        except AttributeError:
             return None
-
-        return float(compensation_xml_object.text)
+        except ValueError:
+            return None
 
 
 class TotalEmployeesExtractor:
@@ -107,11 +111,13 @@ class TotalEmployeesExtractor:
         :return: Number of employees
         :rtype: Optional[int]
         """
-        total_employees_xml_object = self.parsed_xml.find("EmployeeCnt")
-        if total_employees_xml_object is None:
+        try:
+            total_employees_xml_object = self.parsed_xml.find("EmployeeCnt")
+            return int(total_employees_xml_object.text)
+        except AttributeError:
             return None
-
-        return int(total_employees_xml_object.text)
+        except ValueError:
+            return None
 
 
 class WhistleblowerPolicyExtractor:
@@ -127,16 +133,23 @@ class WhistleblowerPolicyExtractor:
         :return: Whether a whistleblower policy is present
         :rtype: Optional[bool]
         """
-        whistleblower_policy_xml_object = self.parsed_xml.find("WhistleblowerPolicyInd")
-        if whistleblower_policy_xml_object is None:
+        try:
+            whistleblower_policy_xml_object = self.parsed_xml.find(
+                "WhistleblowerPolicyInd"
+            )
+            return self._implemented_whisteblower_policy(
+                whistleblower_policy_xml_object.text
+            )
+        except AttributeError:
+            return None
+        except ValueError:
             return None
 
-        return self._implemented_whisteblower_policy(
-            int(whistleblower_policy_xml_object.text)
-        )
+    def _implemented_whisteblower_policy(self, field_text: str) -> bool:
+        if field_text.isdigit():
+            return int(field_text) == 1
 
-    def _implemented_whisteblower_policy(self, checked: int) -> bool:
-        return checked == WhistleblowerPolicyExtractor.PRESENT
+        return field_text == "true"
 
 
 class CEOCompensationReviewExtractor:
@@ -150,13 +163,17 @@ class CEOCompensationReviewExtractor:
         :return: CEO compensation review policy
         :rtype: Optional[bool]
         """
-        ceo_compensation_review_xml_object = self.parsed_xml.find(
-            "CompensationProcessCEOInd"
-        )
-        if ceo_compensation_review_xml_object is None:
+        try:
+            ceo_compensation_review_xml_object = self.parsed_xml.find(
+                "CompensationProcessCEOInd"
+            )
+            return self._ceo_reviewed_compensation(
+                ceo_compensation_review_xml_object.text
+            )
+        except AttributeError:
             return None
-
-        return self._ceo_reviewed_compensation(ceo_compensation_review_xml_object.text)
+        except ValueError:
+            return None
 
     def _ceo_reviewed_compensation(self, field_text: str) -> bool:
         if field_text.isdigit():
@@ -172,26 +189,29 @@ class OtherCompensationReviewExtractor:
         self.file_name = file_name
         self.parsed_xml = parsed_xml
 
-    def extract(self) -> bool:
+    def extract(self) -> Optional[bool]:
         """Extract Other compensation review policy from IRS 990 form
 
         :return: Other compensation review policy
-        :rtype: bool
+        :rtype: Optional[bool]
         """
-        other_compensation_review_xml_object = self.parsed_xml.find(
-            "CompensationProcessOtherInd"
-        )
-        if other_compensation_review_xml_object is None:
+        try:
+            other_compensation_review_xml_object = self.parsed_xml.find(
+                "CompensationProcessOtherInd"
+            )
+            return self._other_reviewed_compensation(
+                other_compensation_review_xml_object.text
+            )
+        except AttributeError:
             return None
-
-        return self._other_reviewed_compensation(
-            other_compensation_review_xml_object.text
-        )
+        except ValueError:
+            return None
 
     def _other_reviewed_compensation(self, field_text: str) -> bool:
         if field_text.isdigit():
             return int(field_text) == 1
         return field_text == "true"
+
 
 class TrusteeExtractor:
     def __init__(
@@ -217,7 +237,11 @@ class TrusteeExtractor:
             if not self._is_trustee(trustee_xml_object):
                 continue
 
-            first_name = trustee_xml_object.find("PersonNm").text.split()[0].lower()
+            name_xml_object = trustee_xml_object.find("PersonNm")
+            if name_xml_object is None:
+                continue
+
+            first_name = name_xml_object.text.split()[0].lower()
             guess = self.guesser.guess(first_name)
 
             if guess == "F":
@@ -341,24 +365,31 @@ class KeyEmployeeExtractor:
         female = 0
         total = 0
         for key_employee_xml_object in key_employee_xml_objects:
-            if (
-                self.guesser.guess(self._get_name_to_guess(key_employee_xml_object))
-                == "F"
-            ):
+            name = self._get_name_to_guess(key_employee_xml_object)
+            if name is None:
+                continue
+
+            if self.guesser.guess(name) == "F":
                 female += 1
             total += 1
 
         return female / total if total > 0 else None
 
-    def _get_name_to_guess(self, key_employee_xml_object: bs4.element.Tag) -> str:
+    def _get_name_to_guess(
+        self, key_employee_xml_object: bs4.element.Tag
+    ) -> Optional[str]:
         """Return the name used to guess gender
 
         :param key_employee_xml_object: XML reprsentation of an employee
         :type key_employee_xml_object: bs4.element.Tag
         :return: The name used to guess gender
-        :rtype: str
+        :rtype: Optional[str]
         """
-        full_name = key_employee_xml_object.find("PersonNm").text.lower().split()
+        name_xml_object = key_employee_xml_object.find("PersonNm")
+        if name_xml_object is None:
+            return None
+
+        full_name = name_xml_object.text.lower().split()
         return full_name[0] if len(full_name) == 2 else full_name[1]
 
     def calculate_male_to_female_pay_ratio(self) -> Optional[float]:
@@ -378,16 +409,22 @@ class KeyEmployeeExtractor:
         male_pay = 0
         female_pay = 0
         for key_employee_xml_object in key_employee_xml_objects:
-            compensation = float(
-                key_employee_xml_object.find("TotalCompensationFilingOrgAmt").text
-            )
-            if (
-                self.guesser.guess(self._get_name_to_guess(key_employee_xml_object))
-                == "F"
-            ):
-                female_pay += compensation
-            else:
-                male_pay += compensation
+            try:
+                compensation = float(
+                    key_employee_xml_object.find("TotalCompensationFilingOrgAmt").text
+                )
+                if (
+                    self.guesser.guess(self._get_name_to_guess(key_employee_xml_object))
+                    == "F"
+                ):
+                    female_pay += compensation
+                else:
+                    male_pay += compensation
+
+            except AttributeError:
+                continue
+            except ValueError:
+                continue
 
         return male_pay / female_pay if female_pay > 0 else None
 
@@ -405,7 +442,9 @@ class KeyEmployeeExtractor:
         if average_salary is None:
             return None
 
-        return highest_key_employee_salary / average_salary
+        return (
+            highest_key_employee_salary / average_salary if average_salary > 0 else None
+        )
 
     def _get_highest_key_employee_salary(self) -> Optional[float]:
         """Get highest salary of key employees
@@ -423,10 +462,15 @@ class KeyEmployeeExtractor:
 
         max_pay = 0
         for key_employee_xml_object in key_employee_xml_objects:
-            compensation = float(
-                key_employee_xml_object.find("TotalCompensationFilingOrgAmt").text
-            )
-            max_pay = max(max_pay, compensation)
+            try:
+                compensation = float(
+                    key_employee_xml_object.find("TotalCompensationFilingOrgAmt").text
+                )
+                max_pay = max(max_pay, compensation)
+            except AttributeError:
+                continue
+            except ValueError:
+                continue
 
         return max_pay
 
@@ -444,11 +488,11 @@ class KeyEmployeeExtractor:
         if total_salary_of_key_employees is None:
             return None
 
-        total_employees = int(self.parsed_xml.find("EmployeeCnt").text)
+        total_employee_count_xml_object = self.parsed_xml.find("EmployeeCnt")
+        if total_employee_count_xml_object is None:
+            return None
+        total_employees = int(total_employee_count_xml_object.text)
         total_key_employees = self._get_total_key_employees()
-
-        print(f"Total employees: {total_employees}")
-        print(f"Total key employees: {total_key_employees}")
 
         return (
             (total_salary - total_salary_of_key_employees)
@@ -473,10 +517,15 @@ class KeyEmployeeExtractor:
 
         total_salary = 0
         for key_employee_xml_object in key_employee_xml_objects:
-            compensation = float(
-                key_employee_xml_object.find("TotalCompensationFilingOrgAmt").text
-            )
-            total_salary += compensation
+            try:
+                compensation = float(
+                    key_employee_xml_object.find("TotalCompensationFilingOrgAmt").text
+                )
+                total_salary += compensation
+            except AttributeError:
+                continue
+            except ValueError:
+                continue
 
         return total_salary
 

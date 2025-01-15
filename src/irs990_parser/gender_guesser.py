@@ -14,6 +14,9 @@ class GenderGuesser:
         self._gender_df[GenderGuesser.NAME_COL] = self._gender_df[
             GenderGuesser.NAME_COL
         ].str.lower()
+        self._gender_df = self._gender_df.set_index(GenderGuesser.NAME_COL)[
+            GenderGuesser.PROB_COL
+        ].to_dict()
 
     def guess(self, first_name: str) -> str:
         """Return guessed gender based off first name
@@ -24,13 +27,8 @@ class GenderGuesser:
         :rtype: str
         """
         first_name = first_name.lower()
-        prob_in_df = self._gender_df[
-            self._gender_df[GenderGuesser.NAME_COL] == first_name
-        ][GenderGuesser.PROB_COL].values
-        if prob_in_df.size == 0:
-            return self._guess_using_threshold(0.5)
-
-        return self._guess_using_threshold(prob_in_df[0])
+        prob = self._gender_df.get(first_name, 0.5)
+        return self._guess_using_threshold(prob)
 
     def _guess_using_threshold(self, threshold: float) -> str:
         """Guess gender based on probability threshold
