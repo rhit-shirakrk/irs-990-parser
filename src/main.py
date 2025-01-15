@@ -47,7 +47,7 @@ if __name__ == "__main__":
             print(f"Processing files for {os.path.basename(irs_990_dir)}")
 
             monthly_org_data = []
-            for file in os.listdir(irs_990_dir):
+            for file in tqdm.tqdm(os.listdir(irs_990_dir)):
                 with open(os.path.join(irs_990_dir, file), "r", encoding="utf-8") as f:
                     xml_file = f.read()
                     file_name = os.path.basename(xml_file)
