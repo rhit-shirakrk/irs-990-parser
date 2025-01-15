@@ -149,7 +149,7 @@ class CEOCompensationReviewExtractor:
         if field_text.isdigit():
             return int(field_text) == 1
 
-        return False
+        return field_text == "true"
 
 
 class OtherCompensationReviewExtractor:
