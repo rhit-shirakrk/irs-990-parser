@@ -471,6 +471,48 @@ class TestIRSFieldExtractor:
             )
             assert other_compensation_policy.extract() is None
 
+    def test_other_compensation_review_extraction_bool_ind_expected_true(self) -> None:
+        """Tests for boolean values in fields"""
+        bool_ind_true_compensation_path = pathlib.Path(
+            os.path.join(
+                TestIRSFieldExtractor.SAMPLE_FILES_DIR,
+                "compensation_review",
+                "other",
+                "bool_ind_true.xml",
+            )
+        )
+        with open(bool_ind_true_compensation_path, "r", encoding="utf-8") as f:
+            file = f.read()
+            file_name = os.path.basename(bool_ind_true_compensation_path)
+            parsed_xml = bs4.BeautifulSoup(file, "xml")
+            other_compensation_policy = (
+                irs_field_extractor.OtherCompensationReviewExtractor(
+                    file_name, parsed_xml
+                )
+            )
+            assert other_compensation_policy.extract() is True
+
+    def test_other_compensation_review_extraction_bool_ind_expected_false(self) -> None:
+        """Tests for boolean values in fields"""
+        bool_ind_false_compensation_path = pathlib.Path(
+            os.path.join(
+                TestIRSFieldExtractor.SAMPLE_FILES_DIR,
+                "compensation_review",
+                "other",
+                "bool_ind_false.xml",
+            )
+        )
+        with open(bool_ind_false_compensation_path, "r", encoding="utf-8") as f:
+            file = f.read()
+            file_name = os.path.basename(bool_ind_false_compensation_path)
+            parsed_xml = bs4.BeautifulSoup(file, "xml")
+            other_compensation_policy = (
+                irs_field_extractor.OtherCompensationReviewExtractor(
+                    file_name, parsed_xml
+                )
+            )
+            assert other_compensation_policy.extract() is False
+
     def test_trustee_extractor_female_percentage_no_male_expected_1(
         self,
         gender_guesser_singleton: gender_guesser.GenderGuesser,

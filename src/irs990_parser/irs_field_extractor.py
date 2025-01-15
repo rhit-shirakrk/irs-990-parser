@@ -172,12 +172,13 @@ class OtherCompensationReviewExtractor:
             return None
 
         return self._other_reviewed_compensation(
-            int(other_compensation_review_xml_object.text)
+            other_compensation_review_xml_object.text
         )
 
-    def _other_reviewed_compensation(self, checked: int) -> bool:
-        return checked == OtherCompensationReviewExtractor.PRESENT
-
+    def _other_reviewed_compensation(self, field_text: str) -> bool:
+        if field_text.isdigit():
+            return int(field_text) == 1
+        return field_text == "true"
 
 class TrusteeExtractor:
     def __init__(
