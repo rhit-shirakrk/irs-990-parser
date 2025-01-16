@@ -82,26 +82,11 @@ class IRS990LinkRetriever:
         href_elements_by_year = self._irs_website_html_elements.select(
             ".collapsible-item-body > p a"
         )
-        print(f"href elements by year: {href_elements_by_year}")
         return [
             csv_link["href"]
             for csv_link in href_elements_by_year
-            if self._csv_file_within_year_range(csv_link["href"])
+            if self._link_within_year_range(csv_link["href"])
         ]
-
-    def _csv_file_within_year_range(self, link: str) -> bool:
-        """Verify the link to a csv indx file is within the start and end year
-
-        :param link: The link to an index file
-        :type link: str
-        :return: True if the link is between the start (inclusive) and current year (inclusive),
-        False otherwise
-        :rtype: bool
-        """
-        year_from_link = int(link.split("/")[-2])
-        print(f"Link split: {link.split('/')}")
-        print(f"Checking if {link} is between {self.start_year} and {self.end_year}")
-        return self.start_year <= year_from_link <= self.end_year
 
     def get_zip_links(self) -> list[str | list[str]]:
         """Return links to zip files from the start year onward
@@ -112,29 +97,26 @@ class IRS990LinkRetriever:
         list_elements_by_year = self._irs_website_html_elements.select(
             ".collapsible-item-body"
         )
-        print(f"List elements by year: {list_elements_by_year}")
         zip_links = []
         for item in list_elements_by_year:
             zip_links.extend(
                 [
                     link["href"]
                     for link in item.select("a[href$='.zip']")
-                    if self._zip_file_within_year_range(link["href"])
+                    if self._link_within_year_range(link["href"])
                 ]
             )
 
         return zip_links
 
-    def _zip_file_within_year_range(self, link: str) -> bool:
+    def _link_within_year_range(self, link: str) -> bool:
         """Verify the link to a yearly record is within the start and end year
 
-        :param link: The link to a yearly record of IRS files
+        :param link: The link to an IRS asset
         :type link: str
         :return: True if the link is between the start (inclusive) and current year (inclusive),
         False otherwise
         :rtype: bool
         """
-        year_from_link = int(link.split("/")[-2])
-        print(f"Link split: {link.split('/')}")
-        print(f"Checking if {link} is between {self.start_year} and {self.end_year}")
+        year_from_link = int(link.split("/")[7])
         return self.start_year <= year_from_link <= self.end_year
