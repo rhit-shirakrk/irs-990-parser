@@ -2,8 +2,6 @@
 Download IRS 990 files and save at specified directory
 """
 
-from datetime import datetime
-
 import bs4
 import requests
 
@@ -17,6 +15,7 @@ class IRS990LinkRetriever:
 
     IRS_URL = "https://www.irs.gov/charities-non-profits/form-990-series-downloads"
     EARLIEST_START_YEAR = 2018
+    LATEST_END_YEAR = 2024
     IRS_REQUEST_TIMEOUT_SEC = 5
 
     def __init__(self, start_year: int, end_year: int) -> None:
@@ -40,10 +39,9 @@ class IRS990LinkRetriever:
                 f"Invalid start year {start_year}. The earliest available year is {IRS990LinkRetriever.EARLIEST_START_YEAR}"
             )
 
-        current_year = datetime.now().year
-        if start_year > current_year:
+        if start_year > IRS990LinkRetriever.LATEST_END_YEAR:
             raise ValueError(
-                f"Invalid start year {start_year}. The latest available year is {current_year}"
+                f"Invalid start year {start_year}. The latest available year is {IRS990LinkRetriever.LATEST_END_YEAR}"
             )
 
     def _validate_end_year(self, end_year: int) -> None:
@@ -53,10 +51,9 @@ class IRS990LinkRetriever:
         :type start_year: int
         :raises ValueError: Invalid start year
         """
-        current_year = datetime.now().year
-        if end_year > current_year:
+        if end_year > IRS990LinkRetriever.LATEST_END_YEAR:
             raise ValueError(
-                f"Invalid end year {end_year}. The latest available year is {current_year}"
+                f"Invalid end year {end_year}. The latest available year is {IRS990LinkRetriever.LATEST_END_YEAR}"
             )
 
         if end_year < self.start_year:
