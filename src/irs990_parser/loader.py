@@ -14,7 +14,7 @@ from irs990_parser import irs_field_extractor
 
 class Loader:
     """
-    Load calculations/field extracted data for a database
+    Load a database config file to upload data to a database
     """
 
     CONFIG_FILE_EXTENSION = ".ini"
