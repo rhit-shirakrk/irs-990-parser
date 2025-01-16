@@ -2,8 +2,6 @@
 Download IRS 990 files and save at specified directory
 """
 
-from datetime import datetime
-
 import bs4
 import requests
 
@@ -16,7 +14,8 @@ class IRS990LinkRetriever:
     """
 
     IRS_URL = "https://www.irs.gov/charities-non-profits/form-990-series-downloads"
-    EARLIEST_START_YEAR = 2018
+    EARLIEST_START_YEAR = 2019
+    LATEST_END_YEAR = 2024
     IRS_REQUEST_TIMEOUT_SEC = 5
 
     def __init__(self, start_year: int, end_year: int) -> None:
@@ -40,10 +39,9 @@ class IRS990LinkRetriever:
                 f"Invalid start year {start_year}. The earliest available year is {IRS990LinkRetriever.EARLIEST_START_YEAR}"
             )
 
-        current_year = datetime.now().year
-        if start_year > current_year:
+        if start_year > IRS990LinkRetriever.LATEST_END_YEAR:
             raise ValueError(
-                f"Invalid start year {start_year}. The latest available year is {current_year}"
+                f"Invalid start year {start_year}. The latest available year is {IRS990LinkRetriever.LATEST_END_YEAR}"
             )
 
     def _validate_end_year(self, end_year: int) -> None:
@@ -53,10 +51,9 @@ class IRS990LinkRetriever:
         :type start_year: int
         :raises ValueError: Invalid start year
         """
-        current_year = datetime.now().year
-        if end_year > current_year:
+        if end_year > IRS990LinkRetriever.LATEST_END_YEAR:
             raise ValueError(
-                f"Invalid end year {end_year}. The latest available year is {current_year}"
+                f"Invalid end year {end_year}. The latest available year is {IRS990LinkRetriever.LATEST_END_YEAR}"
             )
 
         if end_year < self.start_year:
@@ -88,20 +85,8 @@ class IRS990LinkRetriever:
         return [
             csv_link["href"]
             for csv_link in href_elements_by_year
-            if self._csv_file_within_year_range(csv_link["href"])
+            if self._link_within_year_range(csv_link["href"])
         ]
-
-    def _csv_file_within_year_range(self, link: str) -> bool:
-        """Verify the link to a csv indx file is within the start and end year
-
-        :param link: The link to an index file
-        :type link: str
-        :return: True if the link is between the start (inclusive) and current year (inclusive),
-        False otherwise
-        :rtype: bool
-        """
-        year_from_link = int(link.split("/")[-2])
-        return self.start_year <= year_from_link <= self.end_year
 
     def get_zip_links(self) -> list[str | list[str]]:
         """Return links to zip files from the start year onward
@@ -118,20 +103,20 @@ class IRS990LinkRetriever:
                 [
                     link["href"]
                     for link in item.select("a[href$='.zip']")
-                    if self._zip_file_within_year_range(link["href"])
+                    if self._link_within_year_range(link["href"])
                 ]
             )
 
         return zip_links
 
-    def _zip_file_within_year_range(self, link: str) -> bool:
+    def _link_within_year_range(self, link: str) -> bool:
         """Verify the link to a yearly record is within the start and end year
 
-        :param link: The link to a yearly record of IRS files
+        :param link: The link to an IRS asset
         :type link: str
         :return: True if the link is between the start (inclusive) and current year (inclusive),
         False otherwise
         :rtype: bool
         """
-        year_from_link = int(link.split("/")[-2])
+        year_from_link = int(link.split("/")[7])
         return self.start_year <= year_from_link <= self.end_year

@@ -2,8 +2,6 @@
 Unit tests for retriving links to index and zip files
 """
 
-from datetime import datetime
-
 import pytest
 from pytest_unordered import unordered
 
@@ -22,22 +20,9 @@ class TestIRS990LinkRetriever:
         "https://apps.irs.gov/pub/epostcard/990/xml/2021/index_2021.csv",
         "https://apps.irs.gov/pub/epostcard/990/xml/2020/index_2020.csv",
         "https://apps.irs.gov/pub/epostcard/990/xml/2019/index_2019.csv",
-        "https://apps.irs.gov/pub/epostcard/990/xml/2018/index_2018.csv",
     ]
 
     YEAR_TO_ZIP_LINKS = {
-        2018: [
-            "https://apps.irs.gov/pub/epostcard/990/xml/2018/2018_TEOS_XML_CT1.zip",
-            "https://apps.irs.gov/pub/epostcard/990/xml/2018/2018_TEOS_XML_CT2.zip",
-            "https://apps.irs.gov/pub/epostcard/990/xml/2018/2018_TEOS_XML_CT3.zip",
-            "https://apps.irs.gov/pub/epostcard/990/xml/2018/download990xml_2018_1.zip",
-            "https://apps.irs.gov/pub/epostcard/990/xml/2018/download990xml_2018_2.zip",
-            "https://apps.irs.gov/pub/epostcard/990/xml/2018/download990xml_2018_3.zip",
-            "https://apps.irs.gov/pub/epostcard/990/xml/2018/download990xml_2018_4.zip",
-            "https://apps.irs.gov/pub/epostcard/990/xml/2018/download990xml_2018_5.zip",
-            "https://apps.irs.gov/pub/epostcard/990/xml/2018/download990xml_2018_6.zip",
-            "https://apps.irs.gov/pub/epostcard/990/xml/2018/download990xml_2018_7.zip",
-        ],
         2019: [
             "https://apps.irs.gov/pub/epostcard/990/xml/2019/2019_TEOS_XML_CT1.zip",
             "https://apps.irs.gov/pub/epostcard/990/xml/2019/download990xml_2019_1.zip",
@@ -113,15 +98,16 @@ class TestIRS990LinkRetriever:
             "https://apps.irs.gov/pub/epostcard/990/xml/2024/2024_TEOS_XML_11A.zip",
             "https://apps.irs.gov/pub/epostcard/990/xml/2024/2024_TEOS_XML_11B.zip",
             "https://apps.irs.gov/pub/epostcard/990/xml/2024/2024_TEOS_XML_11C.zip",
+            "https://apps.irs.gov/pub/epostcard/990/xml/2024/2024_TEOS_XML_12A.zip",
         ],
     }
 
-    def test_earlier_than_2018_start_year_expected_value_error(self) -> None:
+    def test_earlier_than_earliest_start_year_expected_value_error(self) -> None:
         """
-        Tests for a start year earlier than 2018
+        Tests for a start year earlier than 2019
         """
         invalid_start_year = link_retriever.IRS990LinkRetriever.EARLIEST_START_YEAR - 1
-        current_year = datetime.now().year
+        current_year = 2024
         with pytest.raises(ValueError) as excinfo:
             link_retriever.IRS990LinkRetriever(invalid_start_year, current_year)
         assert (
@@ -131,9 +117,9 @@ class TestIRS990LinkRetriever:
 
     def test_later_than_current_year_start_year_expected_value_error(self) -> None:
         """
-        Tests for a start year later than the current year
+        Tests for a start year later than the most recent year with IRS files published
         """
-        current_year = datetime.now().year
+        current_year = 2024
         invalid_start_year = current_year + 1
         with pytest.raises(ValueError) as excinfo:
             link_retriever.IRS990LinkRetriever(invalid_start_year, current_year)
@@ -146,7 +132,7 @@ class TestIRS990LinkRetriever:
         """
         Tests for an end year later than the current year
         """
-        current_year = datetime.now().year
+        current_year = 2024
         invalid_end_year = current_year + 1
         with pytest.raises(ValueError) as excinfo:
             link_retriever.IRS990LinkRetriever(current_year, invalid_end_year)
@@ -159,7 +145,7 @@ class TestIRS990LinkRetriever:
         """
         Tests for an end year earlier than the start year
         """
-        current_year = datetime.now().year
+        current_year = 2024
         invalid_end_year = current_year - 1
         with pytest.raises(ValueError) as excinfo:
             link_retriever.IRS990LinkRetriever(current_year, invalid_end_year)
@@ -200,7 +186,7 @@ class TestIRS990LinkRetriever:
         """
         Tests for proper fetching of links to index files for a single year
         """
-        current_year = datetime.now().year
+        current_year = 2024
         irs_link_retriever = link_retriever.IRS990LinkRetriever(
             link_retriever.IRS990LinkRetriever.EARLIEST_START_YEAR, current_year
         )
@@ -248,6 +234,6 @@ class TestIRS990LinkRetriever:
             unordered(expected_links)
             == link_retriever.IRS990LinkRetriever(
                 link_retriever.IRS990LinkRetriever.EARLIEST_START_YEAR,
-                datetime.now().year,
+                link_retriever.IRS990LinkRetriever.LATEST_END_YEAR,
             ).get_zip_links()
         )
