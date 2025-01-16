@@ -16,6 +16,7 @@ class OrganizationDataModel(pydantic.BaseModel):
     year: int
     percentage_women_trustees: Optional[float]
     percentage_women_key_employees: Optional[float]
+    whistleblower_policy: Optional[bool]
     ceo_reviewed_compensation: Optional[bool]
     other_reviewed_compensation: Optional[bool]
     male_to_female_pay_ratio: Optional[float]
