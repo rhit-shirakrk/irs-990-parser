@@ -37,6 +37,9 @@ if __name__ == "__main__":
     guesser = gender_guesser.GenderGuesser(
         pathlib.Path("../src/irs990_parser/first_name_gender_probabilities.csv")
     )
+
+    data_loader = loader.Loader(pathlib.Path("/home/rhit-shirakrk/db_config.ini"))
+
     for url in irs_990_links:
         year = get_year_from_url(url)
         with tempfile.TemporaryDirectory() as temp_dir_path:
@@ -73,7 +76,7 @@ if __name__ == "__main__":
                         irs_field_extractor.WhistleblowerPolicyExtractor(
                             file_name, parsed_xml
                         )
-                    )
+                    ).extract()
 
                     ceo_compensation_review = (
                         irs_field_extractor.CEOCompensationReviewExtractor(
@@ -102,6 +105,7 @@ if __name__ == "__main__":
                         year=year,
                         percentage_women_trustees=trustee_stuff.calculate_trustee_female_percentage(),
                         percentage_women_key_employees=key_employer_stuff.calculate_key_employee_female_percentage(),
+                        whistleblower_policy=whistleblower_policy,
                         ceo_reviewed_compensation=ceo_compensation_review,
                         other_reviewed_compensation=other_compensation_review,
                         male_to_female_pay_ratio=key_employer_stuff.calculate_male_to_female_pay_ratio(),
@@ -109,5 +113,4 @@ if __name__ == "__main__":
                     )
                     monthly_org_data.append(org_info)
 
-            data_loader = loader.Loader(monthly_org_data)
-            data_loader.load_into_db(pathlib.Path("/home/rhit-shirakrk/db_creds.ini"))
+            data_loader.load_into_db(monthly_org_data)
