@@ -2,6 +2,7 @@
 Tests loader functionality
 """
 
+import configparser
 import pathlib
 
 import pytest
@@ -22,7 +23,11 @@ class TestLoaderFileValidation:
     def test_invalid_file_format_expected_invalid_db_config_format_error(
         self, tmp_path: pathlib.Path
     ) -> None:
-        """Tests if config file is not an ini file"""
+        """Tests if config file is not an ini file
+
+        :param tmp_path: Function-level directory fixture
+        :type tmp_path: pathlib.Path
+        """
         fake_dir = tmp_path / "temp"
         fake_dir.mkdir()
         fake_file = fake_dir / "temp.txt"

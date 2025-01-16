@@ -17,7 +17,7 @@ class Loader:
     Load calculations/field extracted data for a database
     """
 
-    CONFIG_FILE_EXTENSION = "ini"
+    CONFIG_FILE_EXTENSION = ".ini"
     CONFIG_SECTION = "irs_db"
     USER_CONFIG_KEY = "user"
     PASSWORD_CONFIG_KEY = "password"
