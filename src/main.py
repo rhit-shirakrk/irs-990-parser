@@ -1,4 +1,5 @@
 import argparse
+import logging
 import os
 import pathlib
 import tempfile
@@ -28,7 +29,17 @@ def get_year_from_url(url: str) -> int:
     return int(url.split("/")[7])
 
 
+def store_bad_file(bad_files_dir: pathlib.Path, xml_string: str) -> None:
+    with open(bad_files_dir, "w") as b:
+        b.write(xml_string)
+
+
 if __name__ == "__main__":
+    logger = logging.getLogger(__name__)
+    logging.basicConfig(filename="example.log", encoding="utf-8", level=logging.DEBUG)
+
+    bad_files_dir = pathlib.Path("bad_files")
+
     start_year, end_year = get_start_and_end_years()
     irs_990_links = link_retriever.IRS990LinkRetriever(
         start_year, end_year
@@ -56,60 +67,128 @@ if __name__ == "__main__":
                     file_name = os.path.basename(xml_file)
                     parsed_xml = bs4.BeautifulSoup(xml_file, "xml")
 
-                    ein = irs_field_extractor.EINEXtractor(
-                        file_name, parsed_xml
-                    ).extract()
-
-                    org_name = irs_field_extractor.OrgNameExtractor(
-                        file_name, parsed_xml
-                    ).extract()
-
-                    total_compensation = irs_field_extractor.TotalCompensationExtractor(
-                        file_name, parsed_xml
-                    )
-
-                    total_employees = irs_field_extractor.TotalEmployeesExtractor(
-                        file_name, parsed_xml
-                    )
-
-                    whistleblower_policy = (
-                        irs_field_extractor.WhistleblowerPolicyExtractor(
+                    try:
+                        ein = irs_field_extractor.EINEXtractor(
                             file_name, parsed_xml
+                        ).extract()
+                    except:
+                        logging.error(
+                            f"File {file} in {irs_990_dir} had an error extracting ein"
                         )
-                    ).extract()
+                        store_bad_file(bad_files_dir, xml_file)
+                        continue
 
-                    ceo_compensation_review = (
-                        irs_field_extractor.CEOCompensationReviewExtractor(
+                    try:
+                        org_name = irs_field_extractor.OrgNameExtractor(
                             file_name, parsed_xml
                         ).extract()
-                    )
+                    except:
+                        logging.error(
+                            f"File {file} in {irs_990_dir} had an error extracting org name"
+                        )
+                        store_bad_file(bad_files_dir, xml_file)
+                        continue
 
-                    other_compensation_review = (
-                        irs_field_extractor.OtherCompensationReviewExtractor(
-                            file_name, parsed_xml
+                    try:
+                        whistleblower_policy = (
+                            irs_field_extractor.WhistleblowerPolicyExtractor(
+                                file_name, parsed_xml
+                            )
                         ).extract()
-                    )
+                    except:
+                        logging.error(
+                            f"File {file} in {irs_990_dir} had an error extracting whistleblower policy"
+                        )
+                        store_bad_file(bad_files_dir, xml_file)
+                        continue
 
-                    trustee_stuff = irs_field_extractor.TrusteeExtractor(
+                    try:
+                        ceo_compensation_review = (
+                            irs_field_extractor.CEOCompensationReviewExtractor(
+                                file_name, parsed_xml
+                            ).extract()
+                        )
+                    except:
+                        logging.error(
+                            f"File {file} in {irs_990_dir} had an error extracting ceo compensation review"
+                        )
+                        store_bad_file(bad_files_dir, xml_file)
+                        continue
+
+                    try:
+                        other_compensation_review = (
+                            irs_field_extractor.OtherCompensationReviewExtractor(
+                                file_name, parsed_xml
+                            ).extract()
+                        )
+                    except:
+                        logging.error(
+                            f"File {file} in {irs_990_dir} had an error extracting other compensation review"
+                        )
+                        store_bad_file(bad_files_dir, xml_file)
+                        continue
+
+                    trustee_info = irs_field_extractor.TrusteeExtractor(
                         file_name, parsed_xml, guesser
                     )
-                    pct_women = trustee_stuff.calculate_trustee_female_percentage()
+                    try:
+                        percentage_women_trustees = (
+                            trustee_info.calculate_trustee_female_percentage()
+                        )
+                    except:
+                        logging.error(
+                            f"File {file} in {irs_990_dir} had an error extracting percentage women trustees"
+                        )
+                        store_bad_file(bad_files_dir, xml_file)
+                        continue
 
-                    key_employer_stuff = irs_field_extractor.KeyEmployeeExtractor(
+                    key_employer_info = irs_field_extractor.KeyEmployeeExtractor(
                         file_name, parsed_xml, guesser
                     )
+                    try:
+                        percentage_women_key_employees = (
+                            key_employer_info.calculate_key_employee_female_percentage()
+                        )
+                    except:
+                        logging.error(
+                            f"File {file} in {irs_990_dir} had an error extracting percentage women key employees"
+                        )
+                        store_bad_file(bad_files_dir, xml_file)
+                        continue
+
+                    try:
+                        male_to_female_pay_ratio = (
+                            key_employer_info.calculate_male_to_female_pay_ratio()
+                        )
+                    except:
+                        logging.error(
+                            f"File {file} in {irs_990_dir} had an error extracting male to female ratio"
+                        )
+                        store_bad_file(bad_files_dir, xml_file)
+                        continue
+
+                    try:
+                        president_to_average_pay_ratio = (
+                            key_employer_info.calculate_president_to_average_pay_ratio()
+                        )
+                    except:
+                        logging.error(
+                            f"File {file} in {irs_990_dir} had an error extracting president to average ratio"
+                        )
+                        store_bad_file(bad_files_dir, xml_file)
+                        continue
 
                     org_info = irs_field_extractor.OrganizationDataModel(
                         ein=ein,
                         instnm=org_name,
                         year=year,
-                        percentage_women_trustees=trustee_stuff.calculate_trustee_female_percentage(),
-                        percentage_women_key_employees=key_employer_stuff.calculate_key_employee_female_percentage(),
+                        percentage_women_trustees=percentage_women_trustees,
+                        percentage_women_key_employees=percentage_women_key_employees,
                         whistleblower_policy=whistleblower_policy,
                         ceo_reviewed_compensation=ceo_compensation_review,
                         other_reviewed_compensation=other_compensation_review,
-                        male_to_female_pay_ratio=key_employer_stuff.calculate_male_to_female_pay_ratio(),
-                        president_to_average_pay_ratio=key_employer_stuff.calculate_president_to_average_pay_ratio(),
+                        male_to_female_pay_ratio=male_to_female_pay_ratio,
+                        president_to_average_pay_ratio=president_to_average_pay_ratio,
                     )
                     monthly_org_data.append(org_info)
 
