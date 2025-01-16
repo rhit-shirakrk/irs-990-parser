@@ -14,7 +14,7 @@ class IRS990LinkRetriever:
     """
 
     IRS_URL = "https://www.irs.gov/charities-non-profits/form-990-series-downloads"
-    EARLIEST_START_YEAR = 2018
+    EARLIEST_START_YEAR = 2019
     LATEST_END_YEAR = 2024
     IRS_REQUEST_TIMEOUT_SEC = 5
 
@@ -82,6 +82,7 @@ class IRS990LinkRetriever:
         href_elements_by_year = self._irs_website_html_elements.select(
             ".collapsible-item-body > p a"
         )
+        print(f"href elements by year: {href_elements_by_year}")
         return [
             csv_link["href"]
             for csv_link in href_elements_by_year
@@ -98,6 +99,8 @@ class IRS990LinkRetriever:
         :rtype: bool
         """
         year_from_link = int(link.split("/")[-2])
+        print(f"Link split: {link.split('/')}")
+        print(f"Checking if {link} is between {self.start_year} and {self.end_year}")
         return self.start_year <= year_from_link <= self.end_year
 
     def get_zip_links(self) -> list[str | list[str]]:
@@ -109,6 +112,7 @@ class IRS990LinkRetriever:
         list_elements_by_year = self._irs_website_html_elements.select(
             ".collapsible-item-body"
         )
+        print(f"List elements by year: {list_elements_by_year}")
         zip_links = []
         for item in list_elements_by_year:
             zip_links.extend(
@@ -131,4 +135,6 @@ class IRS990LinkRetriever:
         :rtype: bool
         """
         year_from_link = int(link.split("/")[-2])
+        print(f"Link split: {link.split('/')}")
+        print(f"Checking if {link} is between {self.start_year} and {self.end_year}")
         return self.start_year <= year_from_link <= self.end_year

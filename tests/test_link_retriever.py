@@ -20,22 +20,9 @@ class TestIRS990LinkRetriever:
         "https://apps.irs.gov/pub/epostcard/990/xml/2021/index_2021.csv",
         "https://apps.irs.gov/pub/epostcard/990/xml/2020/index_2020.csv",
         "https://apps.irs.gov/pub/epostcard/990/xml/2019/index_2019.csv",
-        "https://apps.irs.gov/pub/epostcard/990/xml/2018/index_2018.csv",
     ]
 
     YEAR_TO_ZIP_LINKS = {
-        2018: [
-            "https://apps.irs.gov/pub/epostcard/990/xml/2018/2018_TEOS_XML_CT1.zip",
-            "https://apps.irs.gov/pub/epostcard/990/xml/2018/2018_TEOS_XML_CT2.zip",
-            "https://apps.irs.gov/pub/epostcard/990/xml/2018/2018_TEOS_XML_CT3.zip",
-            "https://apps.irs.gov/pub/epostcard/990/xml/2018/download990xml_2018_1.zip",
-            "https://apps.irs.gov/pub/epostcard/990/xml/2018/download990xml_2018_2.zip",
-            "https://apps.irs.gov/pub/epostcard/990/xml/2018/download990xml_2018_3.zip",
-            "https://apps.irs.gov/pub/epostcard/990/xml/2018/download990xml_2018_4.zip",
-            "https://apps.irs.gov/pub/epostcard/990/xml/2018/download990xml_2018_5.zip",
-            "https://apps.irs.gov/pub/epostcard/990/xml/2018/download990xml_2018_6.zip",
-            "https://apps.irs.gov/pub/epostcard/990/xml/2018/download990xml_2018_7.zip",
-        ],
         2019: [
             "https://apps.irs.gov/pub/epostcard/990/xml/2019/2019_TEOS_XML_CT1.zip",
             "https://apps.irs.gov/pub/epostcard/990/xml/2019/download990xml_2019_1.zip",
@@ -115,9 +102,9 @@ class TestIRS990LinkRetriever:
         ],
     }
 
-    def test_earlier_than_2018_start_year_expected_value_error(self) -> None:
+    def test_earlier_than_earliest_start_year_expected_value_error(self) -> None:
         """
-        Tests for a start year earlier than 2018
+        Tests for a start year earlier than 2019
         """
         invalid_start_year = link_retriever.IRS990LinkRetriever.EARLIEST_START_YEAR - 1
         current_year = 2024
