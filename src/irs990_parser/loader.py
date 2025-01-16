@@ -48,6 +48,10 @@ class Loader:
         if not os.path.exists(db_config_path):
             raise FileNotFoundError(f"{db_config_path} does not lead to a file")
 
+        _, file_extension = os.path.splitext(db_config_path)
+        if file_extension != Loader.CONFIG_FILE_EXTENSION:
+            raise ValueError(f"{db_config_path} does not lead to an ini file")
+
     def load_into_db(
         self, organizations: list[irs_field_extractor.OrganizationDataModel]
     ) -> None:

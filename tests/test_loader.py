@@ -23,7 +23,11 @@ class TestLoaderFileValidation:
         self, tmp_path: pathlib.Path
     ) -> None:
         """Tests if config file is not an ini file"""
-        temp_file_path = tmp_path / "temp_file.txt"
-        with pytest.raises(FileNotFoundError) as excinfo:
-            data_loader = loader.Loader(temp_file_path)
-        assert f"{temp_file_path} does not lead to an ini file" in str(excinfo)
+        fake_dir = tmp_path / "temp"
+        fake_dir.mkdir()
+        fake_file = fake_dir / "temp.txt"
+        fake_file.touch()
+
+        with pytest.raises(ValueError) as excinfo:
+            data_loader = loader.Loader(fake_file)
+        assert f"{fake_file} does not lead to an ini file" in str(excinfo)
