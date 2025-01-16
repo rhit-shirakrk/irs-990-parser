@@ -18,3 +18,12 @@ class TestLoaderFileValidation:
         with pytest.raises(FileNotFoundError) as excinfo:
             data_loader = loader.Loader(invalid_path)
         assert f"{invalid_path} does not lead to a file" in str(excinfo)
+
+    def test_invalid_file_format_expected_invalid_db_config_format_error(
+        self, tmp_path: pathlib.Path
+    ) -> None:
+        """Tests if config file is not an ini file"""
+        temp_file_path = tmp_path / "temp_file.txt"
+        with pytest.raises(FileNotFoundError) as excinfo:
+            data_loader = loader.Loader(temp_file_path)
+        assert f"{temp_file_path} does not lead to an ini file" in str(excinfo)
