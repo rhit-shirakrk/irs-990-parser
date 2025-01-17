@@ -13,6 +13,7 @@ from irs990_parser import custom_exceptions, gender_guesser
 class OrganizationDataModel(pydantic.BaseModel):
     ein: str
     instnm: str
+    month: int
     year: int
     percentage_women_trustees: Optional[float]
     percentage_women_key_employees: Optional[float]
