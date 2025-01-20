@@ -16,7 +16,7 @@ dependencies = [
   "SQLAlchemy",
   "zipfile-deflate64",
 ]
-requires-python = ">= 3.6"
+requires-python = "3.10"
 authors = [
    {name = "Ryan Shiraki", email = "shirakrk@rose-hulman.edu"}
 ]

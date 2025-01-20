@@ -13,8 +13,10 @@ from irs990_parser import irs_field_extractor
 
 
 class Loader:
-    """
-    Load a database config file to upload data to a database
+    """Load a database config file to upload data to a database
+
+    :param ini_config_path: The path to the ini config file
+    :type ini_config_path: pathlib.Path
     """
 
     CONFIG_FILE_EXTENSION = ".ini"
@@ -26,31 +28,30 @@ class Loader:
     DATABASE_CONFIG_KEY = "database"
     TABLE_NAME = "Organizations"
 
-    def __init__(self, db_config_path: pathlib.Path) -> None:
-        self._validate_config_file(db_config_path)
+    def __init__(self, ini_config_path: pathlib.Path) -> None:
+        self._validate_config_file(ini_config_path)
         config = configparser.ConfigParser()
-        config.read(db_config_path)
+        config.read(ini_config_path)
         self.user = config.get(Loader.CONFIG_SECTION, Loader.USER_CONFIG_KEY)
         self.hostname = config.get(Loader.CONFIG_SECTION, Loader.HOSTNAME_CONFIG_KEY)
         self.password = config.get(Loader.CONFIG_SECTION, Loader.PASSWORD_CONFIG_KEY)
         self.database = config.get(Loader.CONFIG_SECTION, Loader.DATABASE_CONFIG_KEY)
 
-    def _validate_config_file(self, db_config_path: pathlib.Path) -> None:
+    def _validate_config_file(self, ini_config_path: pathlib.Path) -> None:
         """Ensure config file exists and is an ini file
 
-        :param db_config_path: The path to the config file
-        :type db_config_path: pathlib.Path
+        :param ini_config_path: The path to the config file
+        :type ini_config_path: pathlib.Path
         :raises FileNotFoundError: The path does not lead to an existing file
         :raises ValueError: The path does not lead to an ini file
         :raises ValueError: The file is missing the specified config section
-        :raises ValueError: The file is missing a user, hostname, password, or database field
         """
-        if not os.path.exists(db_config_path):
-            raise FileNotFoundError(f"{db_config_path} does not lead to a file")
+        if not os.path.exists(ini_config_path):
+            raise FileNotFoundError(f"{ini_config_path} does not lead to a file")
 
-        _, file_extension = os.path.splitext(db_config_path)
+        _, file_extension = os.path.splitext(ini_config_path)
         if file_extension != Loader.CONFIG_FILE_EXTENSION:
-            raise ValueError(f"{db_config_path} does not lead to an ini file")
+            raise ValueError(f"{ini_config_path} does not lead to an ini file")
 
     def load_into_db(
         self, organizations: list[irs_field_extractor.OrganizationDataModel]

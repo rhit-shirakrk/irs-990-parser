@@ -11,6 +11,10 @@ from irs990_parser import custom_exceptions, gender_guesser
 
 
 class OrganizationDataModel(pydantic.BaseModel):
+    """
+    Type safety for table representation of extracted data
+    """
+
     ein: str
     instnm: str
     irs_month: str
@@ -25,7 +29,13 @@ class OrganizationDataModel(pydantic.BaseModel):
 
 
 class EINEXtractor:
-    MISSING_FIELD_MSG = "EIN missing from IRS form"
+    """Extracts Employer Identification Number (EIN) from IRS 990 form
+
+    :param file_name: The name of the file
+    :type file_name: str
+    :param parsed_xml: The XML file parsed into a readable format
+    :type parsed_xml: bs4.BeautifulSoup
+    """
 
     def __init__(self, file_name: str, parsed_xml: bs4.BeautifulSoup) -> None:
         self.file_name = file_name
@@ -53,6 +63,14 @@ class EINEXtractor:
 
 
 class OrgNameExtractor:
+    """Extract organization name from IRS 990 form
+
+    :param file_name: The name of the file
+    :type file_name: str
+    :param parsed_xml: The XML file parsed into a readable format
+    :type parsed_xml: bs4.BeautifulSoup
+    """
+
     def __init__(self, file_name: str, parsed_xml: bs4.BeautifulSoup) -> None:
         self.file_name = file_name
         self.parsed_xml = parsed_xml
@@ -81,6 +99,15 @@ class OrgNameExtractor:
 
 
 class TotalCompensationExtractor:
+    """Extract total compensation from IRS 990 form. Total compensation is based on
+    Part I, question 15 in the IRS 990 form
+
+    :param file_name: The name of the file
+    :type file_name: str
+    :param parsed_xml: The XML file parsed into a readable format
+    :type parsed_xml: bs4.BeautifulSoup
+    """
+
     def __init__(self, file_name: str, parsed_xml: bs4.BeautifulSoup) -> None:
         self.file_name = file_name
         self.parsed_xml = parsed_xml
@@ -103,6 +130,15 @@ class TotalCompensationExtractor:
 
 
 class TotalEmployeesExtractor:
+    """Extract the number of employees in an organization. The number of
+    employees is based on Part V, 2a in the IRS 990 form
+
+    :param file_name: The name of the file
+    :type file_name: str
+    :param parsed_xml: The XML file parsed into a readable format
+    :type parsed_xml: bs4.BeautifulSoup
+    """
+
     def __init__(self, file_name: str, parsed_xml: bs4.BeautifulSoup) -> None:
         self.file_name = file_name
         self.parsed_xml = parsed_xml
@@ -123,6 +159,15 @@ class TotalEmployeesExtractor:
 
 
 class WhistleblowerPolicyExtractor:
+    """Extract an organization's whistleblower policy, if present. The
+    whistleblower policy is based on Section B, 13 in the IRS 990 form.
+
+    :param file_name: The name of the file
+    :type file_name: str
+    :param parsed_xml: The XML file parsed into a readable format
+    :type parsed_xml: bs4.BeautifulSoup
+    """
+
     PRESENT = 1
 
     def __init__(self, file_name: str, parsed_xml: bs4.BeautifulSoup) -> None:
@@ -148,13 +193,29 @@ class WhistleblowerPolicyExtractor:
             return None
 
     def _implemented_whisteblower_policy(self, field_text: str) -> bool:
+        """See if the checkbox is selected
+
+        :param field_text: The field text in the checkbox
+        :type field_text: str
+        :return: True if it is selected, False otherwise
+        :rtype: bool
+        """
         if field_text.isdigit():
-            return int(field_text) == 1
+            return int(field_text) == WhistleblowerPolicyExtractor.PRESENT
 
         return field_text == "true"
 
 
 class CEOCompensationReviewExtractor:
+    """Extract indication an organization's ceo reviwed the total compensation.
+    This is based on Section B, 15a in the IRS 990 form.
+
+    :param file_name: The name of the file
+    :type file_name: str
+    :param parsed_xml: The XML file parsed into a readable format
+    :type parsed_xml: bs4.BeautifulSoup
+    """
+
     def __init__(self, file_name: str, parsed_xml: bs4.BeautifulSoup) -> None:
         self.file_name = file_name
         self.parsed_xml = parsed_xml
@@ -178,6 +239,13 @@ class CEOCompensationReviewExtractor:
             return None
 
     def _ceo_reviewed_compensation(self, field_text: str) -> bool:
+        """See if the checkbox is selected
+
+        :param field_text: The field text in the checkbox
+        :type field_text: str
+        :return: True if it is selected, False otherwise
+        :rtype: bool
+        """
         if field_text.isdigit():
             return int(field_text) == 1
 
@@ -185,6 +253,15 @@ class CEOCompensationReviewExtractor:
 
 
 class OtherCompensationReviewExtractor:
+    """Extract indication another party reviwed the total compensation.
+    This is based on Section B, 15b in the IRS 990 form.
+
+    :param file_name: The name of the file
+    :type file_name: str
+    :param parsed_xml: The XML file parsed into a readable format
+    :type parsed_xml: bs4.BeautifulSoup
+    """
+
     PRESENT = 1
 
     def __init__(self, file_name: str, parsed_xml: bs4.BeautifulSoup) -> None:
@@ -210,12 +287,30 @@ class OtherCompensationReviewExtractor:
             return None
 
     def _other_reviewed_compensation(self, field_text: str) -> bool:
+        """See if the checkbox is selected
+
+        :param field_text: The field text in the checkbox
+        :type field_text: str
+        :return: True if it is selected, False otherwise
+        :rtype: bool
+        """
+
         if field_text.isdigit():
-            return int(field_text) == 1
+            return int(field_text) == OtherCompensationReviewExtractor.PRESENT
         return field_text == "true"
 
 
 class TrusteeExtractor:
+    """Extract trustee information
+
+    :param file_name: The name of the file
+    :type file_name: str
+    :param parsed_xml: The XML file parsed into a readable format
+    :type parsed_xml: bs4.BeautifulSoup
+    :param guesser: A class to guess gender based off name
+    :type guesser: gender_guesser.GenderGuesser
+    """
+
     def __init__(
         self,
         file_name: str,
@@ -342,6 +437,16 @@ class TrusteeExtractor:
 
 
 class KeyEmployeeExtractor:
+    """Extract key employee information
+
+    :param file_name: The name of the file
+    :type file_name: str
+    :param parsed_xml: The XML file parsed into a readable format
+    :type parsed_xml: bs4.BeautifulSoup
+    :param guesser: A class to guess gender based off name
+    :type guesser: gender_guesser.GenderGuesser
+    """
+
     def __init__(
         self,
         file_name: str,
