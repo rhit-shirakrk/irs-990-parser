@@ -20,3 +20,14 @@ all XML files from 2019 (inclusive) to 2024 (inclusive).
 
 Any errors will be logged to the `src/errors.log` file. Any bad files will be
 stored in the `src/bad_files` directory for easier debugging.
+
+## Data Sources
+
+### First Name Gender Probabilities
+
+- [World Gender Name Dictionary, Harvard Dataverse (WGND 2.0)](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/MSEGSJ)
+
+### Nonprofit Organization Data
+
+- IRS 990 Forms [downloads](https://www.irs.gov/charities-non-profits/form-990-series-downloads)
+- Candid Demographic Self-Reporting [download](https://info.candid.org/candid-demographics)
