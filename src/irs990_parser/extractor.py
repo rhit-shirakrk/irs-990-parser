@@ -13,6 +13,10 @@ from irs990_parser import custom_exceptions
 
 
 class IRSZipFileExtractor:
+    """
+    Extract zip files from a URL request
+    """
+
     TIMEOUT_SEC = 5
     ZIP_EXTENSION_LENGTH = 3
 

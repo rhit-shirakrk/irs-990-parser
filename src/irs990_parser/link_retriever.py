@@ -9,8 +9,10 @@ import requests
 class IRS990LinkRetriever:
     """Retrieve links to index and IRS zip files
 
-    :param start_year: The year from which to download published IRS forms
+    :param start_year: The start year from which to download published IRS forms
     :type start_year: int
+    :param end_year: The end year from which to download published IRS forms
+    :type end_year: int
     """
 
     IRS_URL = "https://www.irs.gov/charities-non-profits/form-990-series-downloads"

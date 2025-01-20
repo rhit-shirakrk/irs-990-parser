@@ -1,3 +1,7 @@
+"""
+Guess gender using a probabilities chart
+"""
+
 import pathlib
 import random
 
@@ -5,12 +9,19 @@ import pandas as pd
 
 
 class GenderGuesser:
+    """
+    Guess gender using a probability chart as input
+
+    :param csv_file_path: The file path to a CSV that maps names to probability of being female
+    :type csv_file_path: pathlib.Path
+    """
+
     NAME_COL = "Name"
     PROB_COL = "female_prob"
 
-    def __init__(self, file_path: pathlib.Path) -> None:
-        self.file_path = file_path
-        self._gender_df = pd.read_csv(file_path)
+    def __init__(self, csv_file_path: pathlib.Path) -> None:
+        self.csv_file_path = csv_file_path
+        self._gender_df = pd.read_csv(csv_file_path)
         self._gender_df[GenderGuesser.NAME_COL] = self._gender_df[
             GenderGuesser.NAME_COL
         ].str.lower()
