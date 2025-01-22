@@ -14,31 +14,39 @@ from irs990_parser import (
     loader,
 )
 
-
-def get_start_and_end_years():
-    arg_parser = argparse.ArgumentParser()
-    arg_parser.add_argument("--start-year", type=int, required=True)
-    arg_parser.add_argument("--end-year", type=int, required=True)
-    args = arg_parser.parse_args()
-
-    return args.start_year, args.end_year
+NAME_TO_GENDER_PROBABILITY_CSV = pathlib.Path(
+    "../src/irs990_parser/first_name_gender_probabilities.csv"
+)
 
 
 def get_year_from_url(url: str) -> int:
+    """Retrieve year from IRS URL
+
+    :param url: A URL that leads to an IRS asset
+    :type url: str
+    :return: The year within the URL
+    :rtype: int
+    """
     return int(url.split("/")[7])
 
 
 if __name__ == "__main__":
-    start_year, end_year = get_start_and_end_years()
+    arg_parser = argparse.ArgumentParser()
+    arg_parser.add_argument("--start-year", type=int, required=True)
+    arg_parser.add_argument("--end-year", type=int, required=True)
+    arg_parser.add_argument("--credentials-file", type=str, required=True)
+    args = arg_parser.parse_args()
+
+    start_year = args.start_year
+    end_year = args.end_year
+    credentials_file = pathlib.Path(args.credentials_file)
     irs_990_links = link_retriever.IRS990LinkRetriever(
         start_year, end_year
     ).get_zip_links()
 
-    guesser = gender_guesser.GenderGuesser(
-        pathlib.Path("../src/irs990_parser/first_name_gender_probabilities.csv")
-    )
+    guesser = gender_guesser.GenderGuesser(NAME_TO_GENDER_PROBABILITY_CSV)
 
-    data_loader = loader.Loader(pathlib.Path("/home/rhit-shirakrk/db_config.ini"))
+    data_loader = loader.Loader(credentials_file)
 
     for url in irs_990_links:
         year = get_year_from_url(url)
