@@ -63,7 +63,9 @@ class Loader:
         """
         connection = self._get_db_connection()
         records_df = pd.DataFrame([record.__dict__ for record in organizations])
-        records_df.drop_duplicates(subset="ein", keep="first", inplace=True)
+        records_df.drop_duplicates(
+            subset=["ein", "irs_month", "year"], keep="first", inplace=True
+        )
         records_df.to_sql(
             Loader.TABLE_NAME, connection, index=False, if_exists="append"
         )
