@@ -74,11 +74,5 @@ also available in the `tests/sample_irs_xml_files/` directory.
 
 # Data Sources
 
-## First Name Gender Probabilities
-
-- [World Gender Name Dictionary, Harvard Dataverse (WGND 2.0)](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/MSEGSJ)
-
-## Nonprofit Organization Data
-
+- Gender Probabilities: [World Gender Name Dictionary, Harvard Dataverse (WGND 2.0)](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/MSEGSJ)
 - IRS 990 Forms [downloads](https://www.irs.gov/charities-non-profits/form-990-series-downloads)
-- Candid Demographic Self-Reporting [download](https://info.candid.org/candid-demographics)
