@@ -5,7 +5,19 @@ First, ensure you have Python 3.10 installed. The reason is an external
 dependency to extract zip files ([`zipfile-deflate64`](https://github.com/brianhelba/zipfile-deflate64)) provides support
 only up to Python 3.10.
 
-Next, install dependencies via `pip install -r requirements.txt`
+- This is used because the IRS zip files used a proprietary compression
+algorithm, which causes issues with Python's `zipfile` library
+
+Dependencies are documented in the `pyproject.toml` file and the `requirements/`
+directory.
+
+- `common.txt` are the dependencies required to run the pipeline
+- `dev.txt` are dependencies used specifically during development (i.e., testing)
+
+To install dependencies:
+
+- `pip install -r requirements/common.txt`
+- `pip install -r requirements/dev.txt`
 
 # Usage
 
@@ -23,6 +35,42 @@ to a database using credentials stored in `creds.ini`.
 
 Any errors will be logged to the `src/errors.log` file. Any bad files will be
 stored in the `src/bad_files` directory for easier debugging.
+
+# Credentials File
+
+The expected format for `ini` files containing database credentials is:
+
+```python
+[irs_db]
+user = "USERNAME_HERE"
+password = "PASSWORD_HERE"
+hostname = "HOSTNAME_HERE"
+database = "DATABASE_NAME_HERE"
+
+```
+
+# IRS XML File Format
+
+Since the IRS 990 files are stored in XML format, fields can be found by
+indexing specific XML tags
+
+As an example, finding the Employer Identification Number (EIN) requires searching
+for the "Filer" tag. Then, nested in that tag, there's an EIN tag that contains
+the EIN.
+
+This nested structure continues through all field extractor classes in the
+`src/irs990_parser/irs_field_extractor.py` file.
+
+Though the fields are abbreviated, it is mostly clear as to which tag correlates
+to which field in the actual [IRS 990 form](https://www.irs.gov/pub/irs-pdf/f990.pdf).
+
+If a tag in the XML file is missing, then that information was not supplied.
+This, among other anomalies, exist within the XML files that the tests in the
+`tests/` directory attempt to catch. Look at the test names and implementations
+for more information.
+
+Sample files containing anomalies that were found in actual IRS XML files are
+also available in the `tests/sample_irs_xml_files/` directory.
 
 # Data Sources
 
