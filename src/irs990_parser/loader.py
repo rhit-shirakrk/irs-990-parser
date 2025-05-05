@@ -24,9 +24,11 @@ class Loader:
     USER_CONFIG_KEY = "user"
     PASSWORD_CONFIG_KEY = "password"
     HOSTNAME_CONFIG_KEY = "hostname"
-    PORT = 3306
     DATABASE_CONFIG_KEY = "database"
-    TABLE_NAME = "Organizations"
+    PORT_CONFIG_KEY = "port"
+    TABLE_NAME_CONFIG_KEY = "table_name"
+
+    PRIMARY_KEY = ["ein", "irs_month", "year"]
 
     def __init__(self, ini_config_path: pathlib.Path) -> None:
         self._validate_config_file(ini_config_path)
@@ -36,6 +38,8 @@ class Loader:
         self.hostname = config.get(Loader.CONFIG_SECTION, Loader.HOSTNAME_CONFIG_KEY)
         self.password = config.get(Loader.CONFIG_SECTION, Loader.PASSWORD_CONFIG_KEY)
         self.database = config.get(Loader.CONFIG_SECTION, Loader.DATABASE_CONFIG_KEY)
+        self.port = config.get(Loader.CONFIG_SECTION, Loader.PORT_CONFIG_KEY)
+        self.table_name = config.get(Loader.CONFIG_SECTION, Loader.TABLE_NAME_CONFIG_KEY)
 
     def _validate_config_file(self, ini_config_path: pathlib.Path) -> None:
         """Ensure config file exists and is an ini file
@@ -64,10 +68,10 @@ class Loader:
         connection = self._get_db_connection()
         records_df = pd.DataFrame([record.__dict__ for record in organizations])
         records_df.drop_duplicates(
-            subset=["ein", "irs_month", "year"], keep="first", inplace=True
+            subset=Loader.PRIMARY_KEY, keep="first", inplace=True
         )
         records_df.to_sql(
-            Loader.TABLE_NAME, connection, index=False, if_exists="append"
+            self.table_name, connection, index=False, if_exists="append"
         )
         connection.dispose()
 
@@ -78,5 +82,5 @@ class Loader:
         :rtype: sqlalchemy.Engine
         """
         return sqlalchemy.create_engine(
-            f"mysql+mysqlconnector://{self.user}:{self.password}@{self.hostname}:{Loader.PORT}/{self.database}"
+            f"mysql+mysqlconnector://{self.user}:{self.password}@{self.hostname}:{self.port}/{self.database}"
         )
