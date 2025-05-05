@@ -45,8 +45,9 @@ The expected format for `ini` files containing database credentials is:
 user = "USERNAME_HERE"
 password = "PASSWORD_HERE"
 hostname = "HOSTNAME_HERE"
+port = "PORT_HERE"
 database = "DATABASE_NAME_HERE"
-
+table_name = "TABLE_NAME"
 ```
 
 # IRS XML File Format
