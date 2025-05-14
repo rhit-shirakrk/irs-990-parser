@@ -21,6 +21,10 @@ To install dependencies:
 
 # Usage
 
+Before running the pipeline, ensure that the database you are importing the data
+to contains an empty table who's schema matches `db_tables/org_table.sql`. If
+not, run the SQL script mentioned to create such a table.
+
 The `main.py` class must be run with start and end year parameters to indicate
 the range of years to parse IRS 990 xml files.
 
