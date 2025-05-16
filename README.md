@@ -14,7 +14,7 @@ directory.
 - `common.txt` are the dependencies required to run the pipeline
 - `dev.txt` are dependencies used specifically during development (i.e., testing)
 
-To install dependencies:
+To install dependencies (these should be ran while a virtual environment is up):
 
 - `pip install -r requirements/common.txt`
 - `pip install -r requirements/dev.txt`
