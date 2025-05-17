@@ -25,6 +25,13 @@ As an example, `python3 main.py --credentials-file creds.ini --xml-directory xml
 will parse all xml files in the directory `xml_files_here` and connect to a database
 using credentials stored in `creds.ini`.
 
+To ensure IRS files are properly categorized based on their release year and month,
+the `xml-directory` argument must be of the regex form `2[0-9][0-9][0-9]_TEOS_XML_[1-12]A`.
+While the IRS website has clear indications of when forms are released, such
+information is not as easily found in the files themselves. For example, there are
+multiple instances of files in release 2024_TEOS_XML_01A (January 2024) whose
+timestamps are dated to 2023.
+
 Any errors will be logged to the `src/errors.log` file. Any bad files will be
 stored in the `src/bad_files` directory for easier debugging.
 
@@ -34,12 +41,12 @@ The expected format for `ini` files containing database credentials is:
 
 ```python
 [irs_db]
-user = "USERNAME_HERE"
-password = "PASSWORD_HERE"
-hostname = "HOSTNAME_HERE"
-port = "PORT_HERE"
-database = "DATABASE_NAME_HERE"
-table_name = "TABLE_NAME"
+user = USERNAME_HERE
+password = PASSWORD_HERE
+hostname = HOSTNAME_HERE
+port = PORT_HERE
+database = DATABASE_NAME_HERE
+table_name = TABLE_NAME
 ```
 
 # IRS XML File Format
