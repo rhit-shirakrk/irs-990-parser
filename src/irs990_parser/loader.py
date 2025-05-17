@@ -39,7 +39,9 @@ class Loader:
         self.password = config.get(Loader.CONFIG_SECTION, Loader.PASSWORD_CONFIG_KEY)
         self.database = config.get(Loader.CONFIG_SECTION, Loader.DATABASE_CONFIG_KEY)
         self.port = config.get(Loader.CONFIG_SECTION, Loader.PORT_CONFIG_KEY)
-        self.table_name = config.get(Loader.CONFIG_SECTION, Loader.TABLE_NAME_CONFIG_KEY)
+        self.table_name = config.get(
+            Loader.CONFIG_SECTION, Loader.TABLE_NAME_CONFIG_KEY
+        )
 
     def _validate_config_file(self, ini_config_path: pathlib.Path) -> None:
         """Ensure config file exists and is an ini file
@@ -65,22 +67,12 @@ class Loader:
         :param organizations: Data representations of organizations
         :type organizations: list[irs_field_extractor.OrganizationDataModel]
         """
-        connection = self._get_db_connection()
         records_df = pd.DataFrame([record.__dict__ for record in organizations])
         records_df.drop_duplicates(
             subset=Loader.PRIMARY_KEY, keep="first", inplace=True
         )
-        records_df.to_sql(
-            self.table_name, connection, index=False, if_exists="append"
-        )
-        connection.dispose()
-
-    def _get_db_connection(self) -> sqlalchemy.Engine:
-        """Creates connection to database
-
-        :return: Connection to database
-        :rtype: sqlalchemy.Engine
-        """
-        return sqlalchemy.create_engine(
+        connection = sqlalchemy.create_engine(
             f"mysql+mysqlconnector://{self.user}:{self.password}@{self.hostname}:{self.port}/{self.database}"
         )
+        records_df.to_sql(self.table_name, connection, index=False, if_exists="append")
+        connection.dispose()
