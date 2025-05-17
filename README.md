@@ -26,7 +26,16 @@ will parse all xml files in the directory `xml_files_here` and connect to a data
 using credentials stored in `creds.ini`.
 
 To ensure IRS files are properly categorized based on their release year and month,
-the `xml-directory` argument must be of the regex form `2[0-9][0-9][0-9]_TEOS_XML_[1-12]A`.
+the `xml-directory` argument must be of the regex form below:
+
+- `^\d{4}_TEOS_XML_(0[1-9]|1[0-2])A$`
+- `d{4}`: Any four-digit prefix (representing year)
+- `_TEOS_XML_`: IRS naming convention
+- `(0[1-9]|1[0-2])A`: 01A, 02A, ..., 12A
+- There are release going back earlier than 2020 that use different formatting,
+but because the Gender Fair 2024-2025 team only focused on recent data, this
+format will not be considered
+
 While the IRS website has clear indications of when forms are released, such
 information is not as easily found in the files themselves. For example, there are
 multiple instances of files in release 2024_TEOS_XML_01A (January 2024) whose
