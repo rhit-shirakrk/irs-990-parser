@@ -1,13 +1,6 @@
 
 # Installation
 
-First, ensure you have Python 3.10 installed. The reason is an external
-dependency to extract zip files ([`zipfile-deflate64`](https://github.com/brianhelba/zipfile-deflate64)) provides support
-only up to Python 3.10.
-
-- This is used because the IRS zip files used a proprietary compression
-algorithm, which causes issues with Python's `zipfile` library
-
 Dependencies are documented in the `pyproject.toml` file and the `requirements/`
 directory.
 
@@ -25,17 +18,12 @@ Before running the pipeline, ensure that the database you are importing the data
 to contains an empty table who's schema matches `db_tables/org_table.sql`. If
 not, run the SQL script mentioned to create such a table.
 
-The `main.py` class must be run with start and end year parameters to indicate
-the range of years to parse IRS 990 xml files.
+The `main.py` class must be run with a specified directory containing XML files
+to upload.
 
-These files are extracted into temporary directories to reduce redundant storage
-of information, as the extracted data is intended to be sent to a database.
-As each zip link will extract a certain number files, all files will be deleted
-after they have been parsed.
-
-As an example, `python3 main.py --start-year 2019 --end-year 2024 --credentials-file creds.ini`
-will parse all XML files from 2019 (inclusive) to 2024 (inclusive) and connect
-to a database using credentials stored in `creds.ini`.
+As an example, `python3 main.py --credentials-file creds.ini --xml-directory xml_files_here`
+will parse all xml files in the directory `xml_files_here` and connect to a database
+using credentials stored in `creds.ini`.
 
 Any errors will be logged to the `src/errors.log` file. Any bad files will be
 stored in the `src/bad_files` directory for easier debugging.
