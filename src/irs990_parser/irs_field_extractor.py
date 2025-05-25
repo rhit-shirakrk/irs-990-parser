@@ -497,7 +497,7 @@ class KeyEmployeeExtractor:
             return None
 
         full_name = name_xml_object.text.lower().split()
-        return full_name[0] if len(full_name) == 2 else full_name[1]
+        return full_name[0]
 
     def calculate_male_to_female_pay_ratio(self) -> Optional[float]:
         """Calculate male to female pay ratio of key employees
